@@ -1,0 +1,35 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  align-items: center;
+  align-content: center;
+  //background-color: tomato;
+  height: 3.5rem;
+  border-bottom: solid 1px #3d3f7b4d;
+  box-shadow: 0 0 29px #3c3c3c6b;
+
+}
+
+.section-2 {
+  .list-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+
+    .item-menu {
+      cursor: pointer;
+      padding: 0 1rem;
+      transition: all ease 200ms;
+      &:hover {
+        opacity: .8;
+      }
+    }
+
+    .item-number {
+      color: var(--color-2);
+      padding: 0 .5rem;
+    }
+  }
+}

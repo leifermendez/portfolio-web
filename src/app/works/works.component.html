@@ -1,0 +1,31 @@
+<div class="wrapper"
+     [perfectScrollbar]="config">
+  <div class=" d-flex flex-wrap">
+    <div class="block-repo  animate__animated animate__fadeInUp animation-{{i*2}}
+   col-12 col-sm-12 col-md-12 col-lg-4" *ngFor="let item of repos;let i = index">
+      <div class="block-repo-in d-flex">
+        <div class="left d-flex">
+          <div class="top">
+            <div class="date">{{item.created_at |date}}</div>
+            <div class="description">{{item.description}}</div>
+          </div>
+          <div class="bottom">
+            <div class="title">{{item.name}}</div>
+          </div>
+        </div>
+        <div class="right d-flex">
+          <div class="top">
+            <a [href]="item.html_url" target="_blank">
+              <i class="uil uil-external-link-alt"></i>
+            </a>
+
+          </div>
+          <div class="bottom">
+            <span>{{item.stargazers_count}} </span><i class="uil uil-star"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
