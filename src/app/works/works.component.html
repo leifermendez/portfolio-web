@@ -1,16 +1,26 @@
 <div class="wrapper"
      [perfectScrollbar]="config">
   <div class=" d-flex flex-wrap">
+    <div class="col-12">
+      Lorem ipsum.
+    </div>
     <div class="block-repo  animate__animated animate__fadeInUp animation-{{i*2}}
    col-12 col-sm-12 col-md-12 col-lg-4" *ngFor="let item of repos;let i = index">
       <div class="block-repo-in d-flex">
         <div class="left d-flex">
           <div class="top">
             <div class="date">{{item.created_at |date}}</div>
-            <div class="description">{{item.description}}</div>
+            <div class="description">
+<!--              <img width="80" class="image-description" src="https://i2.wp.com/academy.leewayweb.com/wp-content/uploads/2019/05/dashboard.png?fit=3251%2C1972&ssl=1" alt="">-->
+              {{item.description}}
+            </div>
           </div>
           <div class="bottom">
             <div class="title">{{item.name}}</div>
+            <div class="tag">
+              <span>{{item.language}}</span>
+
+            </div>
           </div>
         </div>
         <div class="right d-flex">
@@ -21,7 +31,10 @@
 
           </div>
           <div class="bottom">
-            <span>{{item.stargazers_count}} </span><i class="uil uil-star"></i>
+            <span class="text">{{item.forks}} </span><i class="uil uil-code-branch"></i>
+          </div>
+          <div class="bottom">
+            <span class="text">{{item.stargazers_count}} </span><i class="uil uil-star"></i>
           </div>
         </div>
       </div>

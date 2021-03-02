@@ -7,9 +7,11 @@
 
   <div class="section-2">
     <ul class="list-menu">
-      <li class="item-menu" *ngFor="let item of [1,1,1];let i = index">
-        <span class="item-number">{{i}}.</span>
-        <span class="link">Link</span>
+      <li class="item-menu" *ngFor="let item of links;let i = index">
+        <a [href]="item.src" target="_blank">
+          <span class="item-number">{{i}}.</span>
+          <span class="link">{{item.name}}</span>
+        </a>
       </li>
     </ul>
   </div>

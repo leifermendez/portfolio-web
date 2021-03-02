@@ -7,31 +7,66 @@
 
 .block-repo {
   height: 15rem;
-  padding: .25rem;
+  padding: .5rem;
   display: block;
 
-  .date{
-    color: #ffffffdb;
+  .date {
+    color: #ffffff78;
     font-size: .85rem;
   }
+
   .block-repo-in {
     background-color: #ffffff0d;
     width: 100%;
     height: 100%;
     padding: .5rem;
+    //opacity: .7;
+    transition: all ease 150ms;
+
+    &:hover {
+      transform: translate(0px, -5px);
+      box-shadow:
+        0 4.9px 10px rgba(0, 0, 0, 0.16),
+        0 39px 80px rgba(0, 0, 0, 0.32)
+    ;
+      //opacity: 1;
+    }
 
     .left {
       width: 80%;
       flex-direction: column;
       justify-content: space-between;
 
-      .title{
+      .title {
         font-size: 1.4rem;
       }
-      .description{
+
+      .tag {
+        span {
+          font-family: 'Roboto Mono', monospace;
+          //background-color: red;
+          //opacity: .7;
+          font-size: .8rem;
+          color: var(--color-2);
+          margin-right: .5rem;
+          padding: .3rem;
+        }
+      }
+
+      .description {
         padding: .5rem 0;
-        color: #ffffffdb;
+        color: #ffffff;
+        opacity: .6;
+        font-size: .9rem;
         font-family: 'IBM Plex Sans', sans-serif;
+
+        .image-description {
+          width: 130px;
+          height: 90px;
+          object-fit: cover;
+          float: left;
+          margin: .5rem .5rem .5rem 0;
+        }
       }
     }
 
@@ -43,6 +78,10 @@
       font-size: 1.2rem;
       opacity: .7;
       width: 20%;
+
+      span{
+        font-size: 1rem;
+      }
     }
   }
 }

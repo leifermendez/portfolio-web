@@ -2,29 +2,37 @@
   <div class="pre-title animate__animated animate__fadeInUp animation-1">Hola mi nombre es</div>
   <h1 #asTitle class="title  animate__animated animate__fadeInUp animation-2"></h1>
   <h2 class="sub-title  animate__animated animate__fadeInUp animation-3">Soy desarrollador Web</h2>
-  <p class="description  animate__animated animate__fadeInUp animation-4">
-    Me apasionan las tecnologías web, también creo contenido en <a href="https://youtube.com/leifermendez"
-                                                                   target="_blank">Youtube</a> me encantan los proyectos
+  <p class="description  animate__animated animate__fadeInUp animation-6">
+    Me apasionan las tecnologías web, también creo contenido en
+    <a href="https://youtube.com/leifermendez" target="_blank">Youtube</a> me encantan los proyectos
     retadores y aportar conocimiento a la comunidad.
   </p>
 
-  <div class="video-wrapper animate__animated animate__fadeInUp animation-5">
+  <div class="video-wrapper animate__animated animate__fadeInUp animation-7">
     <hr>
     <iframe width="100%" height="315" src="https://www.youtube.com/embed/05rP763gCuo" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
   </div>
 
-  <div class="link-wrapper animate__animated animate__fadeInUp animation-5">
+  <div class="link-wrapper animate__animated animate__fadeInUp animation-8">
     <hr>
     <div class="links d-flex flex-wrap">
-      <div class="block col-12 col-lg-4" *ngFor="let linkObj of links">
+      <div class="block col-12 col-lg-4"
+           *ngFor="let linkObj of links;let i = index">
         <a [href]="linkObj.link" target="_blank">
           <div class="block-in">
             <span [innerHTML]="linkObj.icon"></span>
           </div>
         </a>
       </div>
+    </div>
+    <div class="footer-copy ">
+      <a [href]="dataProfile?.html_url" target="_blank">
+        <span>Desarrollado por Leifer Mendez </span>
+        <span class="icon-footer"><i class="uil uil-star"></i> {{dataProfile?.stargazers_count}}</span>
+        <span class="icon-footer"><i class="uil uil-code-branch"></i> {{dataProfile?.stargazers_count}}</span>
+      </a>
     </div>
   </div>
 </div>

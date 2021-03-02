@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import Typewriter from 't-writer.js';
+import {GithubService} from '../github.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -22,12 +23,14 @@ export class SidebarComponent implements OnInit, AfterViewInit {
       icon: '<i class="uil uil-envelope"></i>'
     },
   ];
+  dataProfile: any;
 
-  constructor() {
+  constructor(private gitHubService: GithubService) {
   }
 
   ngOnInit(): void {
-
+    this.gitHubService.getRepo()
+      .subscribe(res => this.dataProfile = res);
   }
 
   ngAfterViewInit(): void {
@@ -45,6 +48,9 @@ export class SidebarComponent implements OnInit, AfterViewInit {
       .changeCursorColor('white')
       .type('Leifer Mendez')
       .rest(50000)
+      .clear()
+      .type('¿Ya viste mis videos?')
+      .rest(2000)
       .start();
 
   };
