@@ -1,3 +1,28 @@
+::ng-deep {
+  .wrapper-tab-group-custom {
+    .mat-tab-body-content {
+      overflow-y: hidden;
+    }
+
+    .mat-tab-label {
+      color: white;
+    }
+
+    .mat-tab-label-container {
+      margin-bottom: .5rem;
+    }
+
+  }
+
+  .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: #ffffffb5;
+  }
+
+  .mat-tab-nav-bar, .mat-tab-header {
+    border-bottom: solid 1px transparent;
+  }
+}
+
 .wrapper {
   height: calc(100vh - 4rem);
   position: relative;
@@ -5,10 +30,51 @@
   overflow-y: auto;
 }
 
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.truncate {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .block-repo {
   height: 15rem;
   padding: .5rem;
-  display: block;
+  display: inline-block;
+  overflow-y: hidden;
+
+  &.block-yt {
+    height: 25rem;
+  }
+
+  .title-yt{
+    font-size: 1rem !important;
+    a{
+      text-decoration: none;
+    }
+  }
+  .img-yt {
+    width: 100%;
+    height: 215px;
+    object-fit: cover;
+    object-position: center;
+    border: solid 2px #ffffff14;
+    opacity: .6;
+    transition: all ease 150ms;
+  }
+
+  &:hover {
+    .img-yt{
+      opacity: 1;
+    }
+  }
 
   .date {
     color: #ffffff78;
@@ -25,10 +91,7 @@
 
     &:hover {
       transform: translate(0px, -5px);
-      box-shadow:
-        0 4.9px 10px rgba(0, 0, 0, 0.16),
-        0 39px 80px rgba(0, 0, 0, 0.32)
-    ;
+      box-shadow: 0 4.9px 3px rgb(0 0 0 / 16%), 0 3px 20px rgb(0 0 0 / 32%)
       //opacity: 1;
     }
 
@@ -79,7 +142,7 @@
       opacity: .7;
       width: 20%;
 
-      span{
+      span {
         font-size: 1rem;
       }
     }

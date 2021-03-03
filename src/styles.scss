@@ -10,7 +10,7 @@ html, body {
   margin: 0;
   padding: 0;
   color: white;
-  font-family: 'Cabin', sans-serif;
+  font-family: 'Cabin', sans-serif !important;
   background-color: var(--color-1);
 }
 
@@ -33,3 +33,8 @@ hr {
   border-color: #ffffff17;
   margin: 2rem 0;
 }
+.w-100{
+  width: 100% !important;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

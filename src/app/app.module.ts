@@ -9,6 +9,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {PERFECT_SCROLLBAR_CONFIG} from 'ngx-perfect-scrollbar';
 import {PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTabsModule} from '@angular/material/tabs';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -21,11 +23,13 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SidebarComponent,
     WorksComponent,
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    PerfectScrollbarModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        PerfectScrollbarModule,
+        BrowserAnimationsModule,
+        MatTabsModule
+    ],
   providers: [
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
