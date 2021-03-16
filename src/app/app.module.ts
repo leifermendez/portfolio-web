@@ -9,10 +9,11 @@ import {HttpClientModule} from '@angular/common/http';
 import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {PERFECT_SCROLLBAR_CONFIG} from 'ngx-perfect-scrollbar';
 import {PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatTabsModule} from '@angular/material/tabs';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {environment} from '../environments/environment';
+import {ConnectionServiceModule} from 'ngx-connection-service';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -25,14 +26,15 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SidebarComponent,
     WorksComponent,
   ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        PerfectScrollbarModule,
-        BrowserAnimationsModule,
-        MatTabsModule,
-        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
-    ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    PerfectScrollbarModule,
+    BrowserAnimationsModule,
+    MatTabsModule,
+    ConnectionServiceModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production, registrationStrategy: 'registerImmediately'})
+  ],
   providers: [
     {
       provide: PERFECT_SCROLLBAR_CONFIG,

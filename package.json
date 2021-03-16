@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --prod"
+    "postinstall": "ng build --prod",
+    "start-pwa": "ng build --prod  && http-server -p 8080 -c-1 dist/portafolio-web"
   },
   "private": true,
   "dependencies": {
@@ -23,11 +24,15 @@
     "@angular/platform-browser-dynamic": "~11.1.0",
     "@angular/router": "~11.1.0",
     "@angular/service-worker": "~11.1.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+    "ngx-connection-service": "^7.0.3",
     "ngx-perfect-scrollbar": "^10.1.0",
     "rxjs": "~6.6.0",
     "t-writer.js": "^1.0.4",
     "tslib": "^2.0.0",
+    "web-push": "^3.4.4",
     "zone.js": "~0.11.3"
   },
   "devDependencies": {

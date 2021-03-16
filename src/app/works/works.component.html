@@ -47,7 +47,7 @@
               <div class="top">
                 <div class="date">{{item.snippet.publishedAt |date}}</div>
                 <div class="description w-100">
-                  <img class="img-yt" [src]="item.snippet.thumbnails.standard.url" alt="">
+                  <img class="img-yt" [src]="item.snippet?.thumbnails?.standard?.url" alt="">
                   <div class="line-clamp">{{item.snippet.description}}</div>
                 </div>
               </div>
