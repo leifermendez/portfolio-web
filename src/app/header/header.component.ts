@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
+import {isPlatformBrowser} from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -25,6 +26,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
 }
+
+

@@ -11,8 +11,8 @@ app.use(cors())
 app.use(bodyParser.json())
 
 const vapidKeys = {
-  "publicKey": "BLsPtiDIHfvdJu_PbjezOcH48U3AJdzSXgMHiYkb7Z-gbyDvM_XA3ZkN_dQf0RgNef7c4LBfIwPMWMfdMEl5x60",
-  "privateKey": "Tt9lwU8hHRWOu__0WansnXjVJYVrrtORnZQI5LEH8bk"
+  "publicKey": "BGmZ039okFid9eDMauKTunFpaqytiISZ_niGKXXKZpkcj5uWXNwcdfO2CVxEjQVw6Ud0gNFHM1BVsWXFFdwTAQA",
+  "privateKey": "l6oKTW8TvFSGuCOC-nM4G1IEgB6g9_bhEHJ0iQx-NFM"
 }
 
 webpush.setVapidDetails(
@@ -47,10 +47,10 @@ const sendPush = (req, res) => {
 
   const payload = {
     "notification": {
-      "title": "HOLA CLARO QUE SIIIIII !! MUY BIEN",
+      "title": "EY!! Mira esto",
       "body": "Subscribete a mi canal de YOUTUBE",
       "vibrate": [100, 50, 100],
-      "image": "https://avatars2.githubusercontent.com/u/15802366?s=460&u=ac6cc646599f2ed6c4699a74b15192a29177f85a&v=4",
+      "image": "https://i.imgur.com/TtHZzvc.png",
       "actions": [{
         "action": "explore",
         "title": "HOLA!"

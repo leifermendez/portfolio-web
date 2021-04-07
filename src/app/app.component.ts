@@ -10,7 +10,7 @@ import {ApiRestService} from './api-rest.service';
 
 export class AppComponent {
   title = 'portafolio-web';
-  public readonly VAPID_PUBLIC_KEY = 'BLsPtiDIHfvdJu_PbjezOcH48U3AJdzSXgMHiYkb7Z-gbyDvM_XA3ZkN_dQf0RgNef7c4LBfIwPMWMfdMEl5x60';
+  public readonly VAPID_PUBLIC_KEY = 'BGmZ039okFid9eDMauKTunFpaqytiISZ_niGKXXKZpkcj5uWXNwcdfO2CVxEjQVw6Ud0gNFHM1BVsWXFFdwTAQA';
 
   constructor(private swPush: SwPush, private apiRest: ApiRestService) {
     this.subscribeToNotifications();

@@ -1,6 +1,7 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Inject, OnInit, PLATFORM_ID, ViewChild} from '@angular/core';
 import Typewriter from 't-writer.js';
 import {GithubService} from '../github.service';
+import {isPlatformBrowser} from '@angular/common';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,6 +10,7 @@ import {GithubService} from '../github.service';
 })
 export class SidebarComponent implements OnInit, AfterViewInit {
   @ViewChild('asTitle') asTitle: ElementRef;
+  public isBrowser = false;
   links: Array<LinkModel> = [
     {
       link: 'http://youtube.com/leifermendez',
@@ -25,16 +27,24 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   ];
   dataProfile: any;
 
-  constructor(private gitHubService: GithubService) {
+  constructor(private gitHubService: GithubService, @Inject(PLATFORM_ID) private platformId) {
   }
 
   ngOnInit(): void {
     this.gitHubService.getRepo()
       .subscribe(res => this.dataProfile = res);
+
+    if (isPlatformBrowser(this.platformId)) {
+      this.isBrowser = true;
+    }
   }
 
+
   ngAfterViewInit(): void {
-    this.initEffect();
+    if (isPlatformBrowser(this.platformId)) {
+      this.initEffect();
+    }
+
   }
 
   initEffect = () => {
