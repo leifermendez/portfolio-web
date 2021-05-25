@@ -2,16 +2,23 @@
 @import '~perfect-scrollbar/css/perfect-scrollbar.css';
 
 :root {
-  --color-1: #00296b;
-  --color-2: #38ffec;
+  --color-1: white;
+  //--color-1: #00296b;
+  --color-2: #3f51b5;
+  --color-3: #1a1a1a;
+  --opacity-1: #ffffff85;
 }
 
 html, body {
   margin: 0;
   padding: 0;
-  color: white;
-  font-family: 'Cabin', sans-serif !important;
+  color: var(--color-3);
+  font-family: 'Poppins', sans-serif;
   background-color: var(--color-1);
+}
+
+.mat-tab-group {
+  font-family: 'Poppins', sans-serif;
 }
 
 h1, h2 {
@@ -19,8 +26,8 @@ h1, h2 {
 }
 
 a, a:visited, a:hover, a:link {
-  color: white;
-  font-weight: 500;
+  color: var(--color-3);
+  //font-weight: 500;
 }
 
 @for $i from 1 through 100 {
@@ -29,12 +36,29 @@ a, a:visited, a:hover, a:link {
   }
 }
 
+.title {
+  .type-span {
+    color: var(--color-3) !important;
+  }
+
+  .cursor-span {
+    color: var(--color-3) !important;
+  }
+}
+
+.link-clear {
+  text-decoration: none;
+}
+
 hr {
   border-color: #ffffff17;
   margin: 2rem 0;
 }
-.w-100{
+
+.w-100 {
   width: 100% !important;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html, body {
+  height: 100%;
+}

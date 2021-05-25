@@ -14,6 +14,11 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {ConnectionServiceModule} from 'ngx-connection-service';
+import { AppRoutingModule } from './app-routing.module';
+import {RouterModule} from '@angular/router';
+import { HomeComponent } from './pages/home/home.component';
+import { AboutMeComponent } from './pages/about-me/about-me.component';
+import { PageDynamicComponent } from './pages/page-dynamic/page-dynamic.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -25,15 +30,20 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     HeaderComponent,
     SidebarComponent,
     WorksComponent,
+    HomeComponent,
+    AboutMeComponent,
+    PageDynamicComponent,
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule.withServerTransition({appId: 'serverApp'}),
     HttpClientModule,
     PerfectScrollbarModule,
     BrowserAnimationsModule,
     MatTabsModule,
     ConnectionServiceModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production, registrationStrategy: 'registerImmediately'})
+    ServiceWorkerModule.register('./ngsw-worker.js', {enabled: environment.production, registrationStrategy: 'registerImmediately'}),
+    AppRoutingModule,
+    RouterModule
   ],
   providers: [
     {

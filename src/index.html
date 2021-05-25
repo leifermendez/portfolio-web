@@ -18,14 +18,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&amp;display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#00296b">
+  <meta name="theme-color" content="#fff">
 </head>
 <body>
 <app-root></app-root>
   <noscript>Please enable JavaScript to continue using this application.</noscript>
 </body>
 </html>
+<script>
+  // Log the value of FCP to the console | https://web.dev/fcp/#measure-fcp-in-javascript
+  const observer = new PerformanceObserver((list) => {
+    for (const entry of list.getEntriesByName('first-contentful-paint')) {
+      console.log('FCP: CON SRR ', entry.startTime);
+      observer.disconnect();
+    }
+  })
+  observer.observe({type: 'paint', buffered: true});
+</script>

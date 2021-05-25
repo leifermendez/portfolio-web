@@ -15,7 +15,8 @@ export class WorksComponent implements OnInit {
   constructor(private gitHubService: GithubService, private youtubeService: YoutubeService) {
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { //
+
     this.loadRepos();
     this.loadYt();
   }

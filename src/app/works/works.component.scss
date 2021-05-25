@@ -5,7 +5,7 @@
     }
 
     .mat-tab-label {
-      color: white;
+      color: var(--color-3);
     }
 
     .mat-tab-label-container {
@@ -31,6 +31,7 @@
 }
 
 .line-clamp {
+  text-decoration: none;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -65,8 +66,8 @@
     height: 215px;
     object-fit: cover;
     object-position: center;
-    border: solid 2px #ffffff14;
-    opacity: .6;
+    //border: solid 2px #ffffff14;
+    //opacity: .6;
     transition: all ease 150ms;
   }
 
@@ -82,7 +83,7 @@
   }
 
   .block-repo-in {
-    background-color: #ffffff0d;
+    background-color: #1a1a1a05;
     width: 100%;
     height: 100%;
     padding: .5rem;
@@ -91,7 +92,7 @@
 
     &:hover {
       transform: translate(0px, -5px);
-      box-shadow: 0 4.9px 3px rgb(0 0 0 / 16%), 0 3px 20px rgb(0 0 0 / 32%)
+      box-shadow: 0 100px 80px rgba(0, 0, 0, 0.07)
       //opacity: 1;
     }
 
@@ -118,10 +119,12 @@
 
       .description {
         padding: .5rem 0;
-        color: #ffffff;
-        opacity: .6;
-        font-size: .9rem;
-        font-family: 'IBM Plex Sans', sans-serif;
+        color: var(--color-3);
+        //opacity: .6;
+        opacity: .9;
+        font-size: .85rem;
+        font-weight: 500;
+        //font-family: 'IBM Plex Sans', sans-serif;
 
         .image-description {
           width: 130px;
@@ -139,7 +142,7 @@
       align-items: center;
       align-content: center;
       font-size: 1.2rem;
-      opacity: .7;
+      //opacity: .7;
       width: 20%;
 
       span {

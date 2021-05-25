@@ -15,12 +15,12 @@ export class YoutubeService {
     const query = [
       this.url,
       `&part=id%2Csnippet&channelId=UCgrIGp5QAnC0J8LfNJxDRDw`,
-      `&maxResults=10`
+      `&maxResults=50`
     ].join('');
     return this.httpModule.get(query)
       .pipe(
         map((item: any) => item.items.reverse()),
-        map((item: any) => item.filter(value => value.snippet.title.includes('curso'))),
+        map((item: any) => item.filter(value => value.snippet.description.toLowerCase().includes('curso'))),
       );
   };
 }

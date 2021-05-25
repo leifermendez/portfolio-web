@@ -2,6 +2,35 @@
      [perfectScrollbar]="config">
   <div class=" d-flex flex-wrap">
     <mat-tab-group class="wrapper-tab-group-custom" disableRipple>
+      <mat-tab label="Cursos">
+        <div class="block-repo block-yt animate__animated animate__fadeInUp animation-{{i*2}}
+   col-12 col-sm-12 col-md-12 col-lg-4" *ngFor="let item of youtube;let i = index">
+          <div class="block-repo-in d-flex">
+            <div class="left d-flex w-100">
+              <div class="top">
+                <div class="date">{{item.snippet.publishedAt |date}}</div>
+                <div class="description w-100">
+                  <a target="_blank"  class="link-clear" href="https://www.youtube.com/playlist?list={{item.id}}">
+                    <img class="img-yt" [src]="item.snippet?.thumbnails?.standard?.url" alt="">
+                    <div class="line-clamp">{{item.snippet.description}}</div>
+                  </a>
+
+                </div>
+              </div>
+              <div class="bottom">
+                <div class="title title-yt truncate">
+                  <a target="_blank" href="https://www.youtube.com/playlist?list={{item.id}}">{{item.snippet.title}}</a>
+                </div>
+                <div class="tag">
+                  <!--                  <span>{{item.language}}</span>-->
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </mat-tab>
       <mat-tab label="Repositorios">
         <div class="block-repo  animate__animated animate__fadeInUp animation-{{i*2}}
    col-12 col-sm-12 col-md-12 col-lg-4" *ngFor="let item of repos;let i = index">
@@ -39,32 +68,7 @@
           </div>
         </div>
       </mat-tab>
-      <mat-tab label="Cursos">
-        <div class="block-repo block-yt animate__animated animate__fadeInUp animation-{{i*2}}
-   col-12 col-sm-12 col-md-12 col-lg-4" *ngFor="let item of youtube;let i = index">
-          <div class="block-repo-in d-flex">
-            <div class="left d-flex w-100">
-              <div class="top">
-                <div class="date">{{item.snippet.publishedAt |date}}</div>
-                <div class="description w-100">
-                  <img class="img-yt" [src]="item.snippet?.thumbnails?.standard?.url" alt="">
-                  <div class="line-clamp">{{item.snippet.description}}</div>
-                </div>
-              </div>
-              <div class="bottom">
-                <div class="title title-yt truncate">
-                  <a target="_blank" href="https://www.youtube.com/playlist?list={{item.id}}">{{item.snippet.title}}</a>
-                </div>
-                <div class="tag">
-<!--                  <span>{{item.language}}</span>-->
 
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </mat-tab>
       <!--        <mat-tab label="Third"> Content 3 </mat-tab>-->
     </mat-tab-group>
 

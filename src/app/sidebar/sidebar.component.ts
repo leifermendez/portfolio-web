@@ -31,8 +31,8 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.gitHubService.getRepo()
-      .subscribe(res => this.dataProfile = res);
+    // this.gitHubService.getRepo()
+    //   .subscribe(res => this.dataProfile = res);
 
     if (isPlatformBrowser(this.platformId)) {
       this.isBrowser = true;

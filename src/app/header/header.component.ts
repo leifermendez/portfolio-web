@@ -19,6 +19,10 @@ export class HeaderComponent implements OnInit {
     {
       src: 'mailto:leifer33@gmail.com',
       name: 'Contacto'
+    },
+    {
+      name: 'Acerca',
+      route: ['/', 'about-me']
     }
   ];
 
