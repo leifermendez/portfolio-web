@@ -19,6 +19,7 @@ import {RouterModule} from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutMeComponent } from './pages/about-me/about-me.component';
 import { PageDynamicComponent } from './pages/page-dynamic/page-dynamic.component';
+import { ImagBrakeDirective } from './imag-brake.directive';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -33,6 +34,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     HomeComponent,
     AboutMeComponent,
     PageDynamicComponent,
+    ImagBrakeDirective,
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),

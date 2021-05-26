@@ -4,21 +4,23 @@
 :root {
   --color-1: white;
   //--color-1: #00296b;
-  --color-2: #3f51b5;
+  --color-2: #1a86db;
   --color-3: #1a1a1a;
   --opacity-1: #ffffff85;
 }
 
 html, body {
+  scroll-behavior: smooth;
   margin: 0;
   padding: 0;
   color: var(--color-3);
   font-family: 'Poppins', sans-serif;
   background-color: var(--color-1);
+  text-rendering: optimizeLegibility;
 }
 
-.mat-tab-group {
-  font-family: 'Poppins', sans-serif;
+.mat-tab-group, .mat-tab-label, .mat-tab-link {
+  font-family: 'Poppins', sans-serif !important;
 }
 
 h1, h2 {
@@ -34,6 +36,10 @@ a, a:visited, a:hover, a:link {
   .animation-#{$i} {
     animation-delay: #{$i /10}s;
   }
+}
+
+.m-0{
+  margin: 0 !important;
 }
 
 .title {
@@ -61,4 +67,16 @@ hr {
 
 html, body {
   height: 100%;
+}
+
+@media screen and (max-width: 415px) {
+  .video-wrapper{
+    display: none;
+  }
+  .block-repo-in, .block-repo{
+    padding: 0 !important;
+  }
+  .col-12 {
+    padding: .25rem;
+  }
 }

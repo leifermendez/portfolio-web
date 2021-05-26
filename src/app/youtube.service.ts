@@ -14,13 +14,21 @@ export class YoutubeService {
   loadCourses = () => {
     const query = [
       this.url,
-      `&part=id%2Csnippet&channelId=UCgrIGp5QAnC0J8LfNJxDRDw`,
+      `&part=id,snippet,contentDetails,status&channelId=UCgrIGp5QAnC0J8LfNJxDRDw`,
       `&maxResults=50`
     ].join('');
     return this.httpModule.get(query)
       .pipe(
         map((item: any) => item.items.reverse()),
         map((item: any) => item.filter(value => value.snippet.description.toLowerCase().includes('curso'))),
+        map((item: any) => {
+          return item.map(i => {
+            const myRegexp = /^(COVER).(\S+)/gm;
+            const match = myRegexp.exec(i.snippet.description) || [];
+            i.cover = match.reverse().shift();
+            return i;
+          });
+        }),
       );
   };
 }

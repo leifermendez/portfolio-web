@@ -40,7 +40,8 @@ export class AppComponent {
       const d = new Date();
       const n = d.getHours();
       console.log(n);
-      let switchMode = n > 8 && n < 20;
+      // let switchMode = n > 8 && n < 20;
+      const switchMode = true;
       // switchMode = !switchMode
       document.documentElement.style.setProperty('--color-1', switchMode ? 'white' : '#00296b');
       document.documentElement.style.setProperty('--color-2', switchMode ? '#3f51b5' : '#38ffec');

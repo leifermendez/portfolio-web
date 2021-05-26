@@ -1,8 +1,12 @@
-<div class="wrapper"
+<div class="wrapper" (psScrollY)="listenerY($event)"
      [perfectScrollbar]="config">
   <div class=" d-flex flex-wrap">
     <mat-tab-group class="wrapper-tab-group-custom" disableRipple>
-      <mat-tab label="Cursos">
+      <mat-tab >
+        <ng-template mat-tab-label>
+          <span class="icon"><i class="uil uil-youtube"></i></span>
+          <span>Cursos</span>
+        </ng-template>
         <div class="block-repo block-yt animate__animated animate__fadeInUp animation-{{i*2}}
    col-12 col-sm-12 col-md-12 col-lg-4" *ngFor="let item of youtube;let i = index">
           <div class="block-repo-in d-flex">
@@ -10,8 +14,10 @@
               <div class="top">
                 <div class="date">{{item.snippet.publishedAt |date}}</div>
                 <div class="description w-100">
-                  <a target="_blank"  class="link-clear" href="https://www.youtube.com/playlist?list={{item.id}}">
-                    <img class="img-yt" [src]="item.snippet?.thumbnails?.standard?.url" alt="">
+
+                  <img class="img-yt" appImgBrake [src]="item?.cover" alt="">
+                  <a target="_blank" class="link-clear" href="https://www.youtube.com/playlist?list={{item.id}}">
+                    <div class="badge-count">{{item?.contentDetails?.itemCount | json}} videos o más</div>
                     <div class="line-clamp">{{item.snippet.description}}</div>
                   </a>
 
@@ -31,7 +37,11 @@
           </div>
         </div>
       </mat-tab>
-      <mat-tab label="Repositorios">
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <span class="icon"><i class="uil uil-github"></i></span>
+          <span>Repositorio</span>
+        </ng-template>
         <div class="block-repo  animate__animated animate__fadeInUp animation-{{i*2}}
    col-12 col-sm-12 col-md-12 col-lg-4" *ngFor="let item of repos;let i = index">
           <div class="block-repo-in d-flex">
