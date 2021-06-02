@@ -3,26 +3,7 @@ const facebookProvider = require('../services/oauth.facebook')
 const {db} = require('../services/dbHandler')
 const {postFb} = require('../services/postFanPage')
 const {generate} = require('../services/generateToken')
-
-const newUser = (data) => {
-  const checkUser = db.get('users')
-    .find({id: data.idFb})
-    .value();
-
-  if (!checkUser) {
-    db.get('users')
-      .push({
-        id: data.idFb,
-        name: data.dataJson.first_name,
-        lastName: data.dataJson.last_name,
-        avatar: data.avatar,
-        emails: data.emailsArray.find(() => true)
-      })
-      .write();
-  }
-
-
-}
+const {newUser} = require('../services/dbHandler')
 
 const getUrlParams = (search) => {
   const hashes = search.slice(search.indexOf('?') + 1).split('&')

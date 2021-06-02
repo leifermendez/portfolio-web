@@ -15,7 +15,7 @@
   </div>
   <div class="avatars-test">
     <div class="list-avatar" *ngFor="let a of users| slice:0:4">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaOO0yhHzY_v-XiPjRuBnImn7skoUsnhBOHg&usqp=CAU"
+      <img [src]="a?.avatar"
            alt="">
     </div>
   </div>

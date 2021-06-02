@@ -7,5 +7,12 @@
       "avatar": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=4063241993756368&height=200&width=200&ext=1625146055&hash=AeQioNa7V97_3s3Sy5Q",
       "emails": "tecniserviciosleifer@gmail.com"
     }
+  ],
+  "tests": [
+    {
+      "userId": 1,
+      "avatar": "https://media0.giphy.com/media/rOSsuYA9Yj49iYBkj5/200.webp",
+      "testId": "aer3faef"
+    }
   ]
 }

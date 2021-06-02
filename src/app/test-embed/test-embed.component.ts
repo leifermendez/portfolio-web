@@ -6,6 +6,7 @@ import {FacebookService, InitParams} from 'ngx-facebook';
 import {environment} from '../../environments/environment';
 import {isPlatformBrowser} from '@angular/common';
 import {UserModel} from '../oauth-lm.service';
+import {ApiRestService} from '../api-rest.service';
 
 @Component({
   selector: 'app-test-embed',
@@ -31,7 +32,7 @@ export class TestEmbedComponent implements OnInit, AfterViewInit {
   };
 
   constructor(private testEmbedService: TestEmbedService, private fb: FacebookService,
-              @Inject(PLATFORM_ID) private platformId) {
+              @Inject(PLATFORM_ID) private platformId, private apiRestService: ApiRestService) {
 
   }
 
@@ -57,6 +58,9 @@ export class TestEmbedComponent implements OnInit, AfterViewInit {
       }
     };
 
+    console.log(this.asDataTest);
+    this.testEmbedService.loadTest({test: this.asDataTest?.testId})
+      .subscribe(res => this.users = res);
 
     // @ts-ignore
 

@@ -37,6 +37,7 @@ import {NgxYoutubePlayerModule} from 'ngx-youtube-player';
 import {CallbackSocialComponent} from './callback-social/callback-social.component';
 import {CookieService} from 'ngx-cookie-service';
 import {CountdownModule} from 'ngx-countdown';
+import {InViewportModule} from 'ng-in-viewport';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -79,7 +80,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FacebookModule.forRoot(),
     NgxLocalStorageModule.forRoot(),
     NgpSortModule,
-    CountdownModule
+    CountdownModule,
+    InViewportModule
   ],
   providers: [
     {

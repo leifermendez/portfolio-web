@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
@@ -6,10 +7,10 @@ import {
   Input,
   OnChanges,
   OnInit,
-  PLATFORM_ID,
+  PLATFORM_ID, QueryList,
   Renderer2,
   SimpleChanges,
-  ViewChild
+  ViewChild, ViewChildren
 } from '@angular/core';
 import {isPlatformBrowser} from '@angular/common';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -33,6 +34,8 @@ export class PathLearningComponent implements OnInit, OnChanges {
   playListId: string;
   listObserver$: Array<Subscription> = [];
   currentUser: UserModel;
+  viewActive: Array<any> = [];
+  viewInActive: Array<any> = [];
 
   constructor(@Inject(PLATFORM_ID) private platformId, private route: ActivatedRoute, private youtubeService: YoutubeService,
               private renderer2: Renderer2, public oAuthService: OAuthLmService, private router: Router) {
@@ -146,5 +149,18 @@ export class PathLearningComponent implements OnInit, OnChanges {
         queryParamsHandling: 'merge'
       }
     );
+  }
+
+
+  public onIntersection({target, visible}: { target: Element; visible: boolean }): void {
+    const {value} = target.attributes['data-test'];
+    this.viewInActive = [...new Set(this.viewInActive.concat(value))];
+    if (visible) {
+      this.viewInActive = this.viewInActive.filter(a => a !== value);
+      this.viewActive.push(value);
+    } else {
+      this.viewActive = this.viewActive.filter(a => a !== value);
+      this.viewInActive.push(value);
+    }
   }
 }

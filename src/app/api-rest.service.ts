@@ -28,4 +28,12 @@ export class ApiRestService {
     });
     return this.http.get(`${this.url}/profile`, {headers: this.headerUser});
   };
+
+  getTest = (opt?: any) => {
+    const token = this.cookieService.get('token');
+    this.headerUser = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    return this.http.get<Array<any>>(`${this.url}/test?idTest=${opt.test || ''}`, {headers: this.headerUser});
+  };
 }

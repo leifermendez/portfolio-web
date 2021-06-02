@@ -1,7 +1,13 @@
-<div class="wrapper-path " (psScrollY)="listenerY($event)" [perfectScrollbar]="config">
+<div class="wrapper-path "
+
+     (psScrollY)="listenerY($event)" [perfectScrollbar]="config">
   <div class="in">
 
     <div class="animate__animated  animate__fadeInUp animation-{{i*3}}"
+         inViewport
+         [inViewportOptions]="{ threshold: [0] }"
+         (inViewportAction)="onIntersection($event)"
+         [attr.data-test]="'test_'+i"
          *ngFor="let video of listVideos;let i = index">
       <div class="step-course1" [ngClass]="{'active-step':indexVideo.includes(i)}">
         <div class="line"></div>
@@ -27,14 +33,15 @@
             </ul>
           </div>
           <div class="section-btn">
-<!--            <a-->
-<!--              [href]="'https://www.youtube.com/watch?v='+video?.snippet?.resourceId?.videoId+'&list='+playListId"-->
-<!--              target="_blank" class="play-btn">-->
-<!--              <span>VER VIDEO</span>-->
-<!--              <i class="uil uil-play-circle"></i>-->
-<!--            </a>-->
+            <!--            <a-->
+            <!--              [href]="'https://www.youtube.com/watch?v='+video?.snippet?.resourceId?.videoId+'&list='+playListId"-->
+            <!--              target="_blank" class="play-btn">-->
+            <!--              <span>VER VIDEO</span>-->
+            <!--              <i class="uil uil-play-circle"></i>-->
+            <!--            </a>-->
 
-            <button (click)="setPlayer(video?.snippet?.resourceId?.videoId)" class="play-btn btn-default draw-border not-border">
+            <button (click)="setPlayer(video?.snippet?.resourceId?.videoId)"
+                    class="play-btn btn-default draw-border not-border">
               <span>VER VIDEO</span>
               <i class="uil uil-play-circle"></i>
             </button>
@@ -42,8 +49,8 @@
           </div>
         </div>
         <div class="line"></div>
-        <div class="test-embed">
-          <app-test-embed [asDataTest]="{a:1}" [asUser]="currentUser"></app-test-embed>
+        <div class="test-embed" *ngIf="viewActive.includes('test_'+i)">
+          <app-test-embed [asDataTest]="{testId:'test_'+i}" [asUser]="currentUser"></app-test-embed>
         </div>
       </div>
     </div>
