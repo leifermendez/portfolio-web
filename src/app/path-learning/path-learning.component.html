@@ -1,0 +1,67 @@
+<div class="wrapper-path " (psScrollY)="listenerY($event)" [perfectScrollbar]="config">
+  <div class="in">
+
+    <div class="animate__animated  animate__fadeInUp animation-{{i*3}}"
+         *ngFor="let video of listVideos;let i = index">
+      <div class="step-course1" [ngClass]="{'active-step':indexVideo.includes(i)}">
+        <div class="line"></div>
+        <div class="block-img">
+          <span class="number">{{i + 1}}</span>
+        </div>
+        <div class="line"></div>
+        <div class="duration-badge"><i class="uil uil-clock"></i> {{video?.snippet?.description | averageTime}} min
+        </div>
+        <div class="block">
+          <div class="video-info">
+            <!--          <div>-->
+            <!--            <img class="cover" src="https://i.ytimg.com/vi/6741ceWzsKQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCjSTnopenlCS5x0xtsQdLyf7p87A" alt="">-->
+            <!--          </div>-->
+            <div class="title">{{video?.snippet?.title |cleanText}}</div>
+          </div>
+
+          <div class="description ">
+            <ul class="topics">
+              <li *ngFor="let topic of video?.snippet?.description | topic">
+                <span><i class="uil uil-angle-right"></i></span><span>{{topic}}</span>
+              </li>
+            </ul>
+          </div>
+          <div class="section-btn">
+<!--            <a-->
+<!--              [href]="'https://www.youtube.com/watch?v='+video?.snippet?.resourceId?.videoId+'&list='+playListId"-->
+<!--              target="_blank" class="play-btn">-->
+<!--              <span>VER VIDEO</span>-->
+<!--              <i class="uil uil-play-circle"></i>-->
+<!--            </a>-->
+
+            <button (click)="setPlayer(video?.snippet?.resourceId?.videoId)" class="play-btn btn-default draw-border not-border">
+              <span>VER VIDEO</span>
+              <i class="uil uil-play-circle"></i>
+            </button>
+
+          </div>
+        </div>
+        <div class="line"></div>
+        <div class="test-embed">
+          <app-test-embed [asDataTest]="{a:1}" [asUser]="currentUser"></app-test-embed>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div #asOverBlock *ngIf="!oAuthService.checkSession" class="over-close animate__animated  animate__fadeIn">
+  <app-wizard></app-wizard>
+</div>
+
+<div #asOverComment *ngIf="oAuthService.cbTest.test" class="over-close block animate__animated  animate__fadeIn">
+  <app-ctamodal></app-ctamodal>
+</div>
+
+<!--<div #asVideoPlayer class="over-close block animate__animated  animate__fadeIn">-->
+<!--  <app-video-player></app-video-player>-->
+<!--</div>-->
+
+
+<div #asLoadingHorizontal class="scroll-horizontal"></div>

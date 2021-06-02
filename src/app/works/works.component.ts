@@ -2,6 +2,7 @@ import {Component, ElementRef, Inject, OnInit, PLATFORM_ID, ViewChild} from '@an
 import {GithubService} from '../github.service';
 import {YoutubeService} from '../youtube.service';
 import {isPlatformBrowser} from '@angular/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-works',
@@ -13,8 +14,11 @@ export class WorksComponent implements OnInit {
   repos: any;
   youtube: any;
   config: any;
+  tags: Array<string> = [];
 
-  constructor(private gitHubService: GithubService, private youtubeService: YoutubeService, @Inject(PLATFORM_ID) private platformId) {
+
+  constructor(private gitHubService: GithubService, private youtubeService: YoutubeService, @Inject(PLATFORM_ID) private platformId,
+              private router: Router) {
   }
 
   ngOnInit(): void { //
@@ -30,7 +34,9 @@ export class WorksComponent implements OnInit {
 
   loadYt = () => {
     this.youtubeService.loadCourses().subscribe(res => {
-      // console.log(res);
+
+      this.tags = res.map((a) => a.tag).filter((i) => (i));
+      console.log(this.tags);
       this.youtube = res;
     });
   };
@@ -43,5 +49,10 @@ export class WorksComponent implements OnInit {
         window.scroll(0, 800);
       }
     }
+  }
+
+  goToCourse(item: any): void {
+    this.router.navigate(['/', 'course', item.id], {state: {a: 1}});
+    // ['/','course',item.id]
   }
 }

@@ -61,6 +61,26 @@
   text-overflow: ellipsis;
 }
 
+.list-tag{
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: .5rem;
+  li{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    padding: 0.25rem 0.75rem;
+    margin: 0 0.5rem 0 0;
+    background-color: #f4f4f4;
+    border-radius: 0.15rem;
+    font-weight: 500;
+    font-size: .85rem;
+  }
+}
+
 .block-repo {
   height: 15rem;
   padding: .5rem;

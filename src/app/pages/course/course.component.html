@@ -1,0 +1,11 @@
+<div class="d-flex flex-wrap row m-0">
+  <app-sidebar [asData]="dataCourse" [ngClass]="{'col-12 col-sm-12 col-md-6 col-lg-4':!modeVideo,
+  'moveTemplate1':modeVideo}"></app-sidebar>
+  <app-video-player [ngClass]="{'d-none p-0':!modeVideo,
+                      'd-block col-12 col-md-8 col-lg-8 p-0 animate__animated  animate__fadeInDown':modeVideo}"></app-video-player>
+  <app-path-learning [asData]="dataCourse"
+                     class="path-course"
+                     [ngClass]="{'col-12 col-sm-12 col-md-6 col-lg-8':!modeVideo,
+                      'col-12 col-sm-12 col-md-4 col-lg-4':modeVideo}"></app-path-learning>
+</div>
+

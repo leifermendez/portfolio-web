@@ -7,6 +7,8 @@
   --color-2: #1a86db;
   --color-3: #1a1a1a;
   --opacity-1: #ffffff85;
+  --course-brand: #fa3254;
+  --course-logo: #fa3254;
 }
 
 html, body {
@@ -19,7 +21,7 @@ html, body {
   text-rendering: optimizeLegibility;
 }
 
-.mat-tab-group, .mat-tab-label, .mat-tab-link {
+.mat-tab-group, .mat-tab-label, .mat-tab-link, button {
   font-family: 'Poppins', sans-serif !important;
 }
 
@@ -27,9 +29,141 @@ h1, h2 {
   margin: 0;
 }
 
-a, a:visited, a:hover, a:link {
+
+.p-0 {
+  padding: 0 !important;
+}
+
+.btn-default {
+  cursor: pointer;
+  font-weight: 500;
+  border: 0;
+  background-color: var(--color-1);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  padding: .35rem .85rem;
+
+  &.not-border {
+    border-color: transparent;
+    box-shadow: 0 0 0 transparent;
+  }
+
+  &.small {
+    font-size: 80%;
+  }
+
+  &.opacity {
+    opacity: .7;
+  }
+
+  .uil {
+    margin-left: .5rem;
+    font-size: 1.4rem;
+  }
+}
+
+.moveTemplate1 {
+  transition: all ease 250ms;
+  transform: translateX(-100%);
+  position: fixed !important;
+  opacity: .5;
+  height: 100vh;
+
+  .video-wrapper {
+    opacity: 0 !important;
+  }
+
+
+}
+
+youtube-player{
+  display: block;
+}
+
+@mixin btn-border-drawing($color: #ccc, $hover: black, $width: 2px, $vertical: top, $horizontal: left, $duration: 0.25s) {
+  box-shadow: inset 0 0 0 $width var(--color-3);
+  //color: $color;
+  transition: color $duration $duration/3;
+  position: relative;
+
+  &::before,
+  &::after {
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+    height: 0;
+
+    #{$vertical}: 0;
+    #{$horizontal}: 0;
+  }
+
+  &::before {
+    $h-side: if($horizontal == 'left', 'right', 'left');
+
+    border-#{$vertical}-width: $width;
+    border-#{$h-side}-width: $width;
+  }
+
+  &::after {
+    $v-side: if($vertical == 'top', 'bottom', 'top');
+
+    border-#{$v-side}-width: $width;
+    border-#{$horizontal}-width: $width;
+  }
+
+  &:hover {
+    color: var(--course-brand);
+
+    &::before,
+    &::after {
+      border-color: var(--course-brand);
+      transition: border-color 0s, width $duration, height $duration;
+      width: 100%;
+      height: 100%;
+    }
+
+    &::before {
+      transition-delay: 0s, 0s, $duration;
+    }
+
+    &::after {
+      transition-delay: 0s, $duration, 0s;
+    }
+  }
+}
+
+.draw-border {
+  @include btn-border-drawing(transparent, #ffe593, 2px, bottom, right);
+}
+
+//=== Button styling, semi-ignore
+.btn {
+
+  &:focus {
+    outline: 2px dotted transparent;
+  }
+}
+
+.font-weight{
+  font-weight: 600;
+}
+
+a, a:visited, a:link {
   color: var(--color-3);
+  text-decoration: none;
   //font-weight: 500;
+}
+
+a:hover {
+  transition: all ease 150ms;
+  color: var(--course-brand);
+}
+
+.cursor {
+  cursor: pointer;
 }
 
 @for $i from 1 through 100 {
@@ -38,7 +172,7 @@ a, a:visited, a:hover, a:link {
   }
 }
 
-.m-0{
+.m-0 {
   margin: 0 !important;
 }
 
@@ -70,10 +204,10 @@ html, body {
 }
 
 @media screen and (max-width: 415px) {
-  .video-wrapper{
+  .video-wrapper {
     display: none;
   }
-  .block-repo-in, .block-repo{
+  .block-repo-in, .block-repo {
     padding: 0 !important;
   }
   .col-12 {

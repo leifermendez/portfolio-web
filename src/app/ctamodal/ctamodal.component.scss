@@ -1,0 +1,48 @@
+.wrapper-login {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+  min-height: 100vh;
+
+  .main-text {
+    text-align: center;
+
+  }
+
+  .wrapper-comment{
+    padding: 1.5rem 0;
+  }
+
+  .zone-slug-name {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    img {
+      width: 35px;
+      height: 35px;
+      border-radius: 100px;
+      object-fit: cover;
+      margin: 0 .5rem;
+    }
+
+
+  }
+
+  .btn-zone {
+    padding: .5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem
+  }
+
+  .image-center {
+    text-align: center;
+
+    img {
+      width: 500px;
+    }
+  }
+}

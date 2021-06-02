@@ -1,0 +1,79 @@
+<div class="wrapper-login" [ngSwitch]="subConfirmation">
+  <ng-container *ngSwitchCase="true" [ngTemplateOutlet]="asSubOk"></ng-container>
+  <ng-container *ngSwitchCase="false" [ngTemplateOutlet]="asSubFalse"></ng-container>
+  <ng-container *ngSwitchCase="null" [ngTemplateOutlet]="asSubPending"></ng-container>
+</div>
+
+<ng-template #asSubOk>
+  <div>
+    <div class="main-text animate__animated animate__fadeInDown">
+      <h1>Comenzando...</h1>
+      <h3>Tú prueba se está creando y serás redirigido en
+        <countdown (event)="handleEvent($event)" class="font-weight" [config]="{leftTime: 5,format: 's'}"></countdown>
+        segundos
+      </h3>
+    </div>
+
+
+    <div class="btn-zone animate__animated animate__fadeInDown">
+      <button (click)="openRun()" class="btn-default btn draw-border">
+        <span>Comenzar</span>
+        <span><i class="uil uil-code-branch"></i></span>
+      </button>
+    </div>
+
+    <div class="image-center animate__animated animate__fadeInUp">
+      <img src="https://i.imgur.com/vxYvZFL.png" alt="">
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #asSubPending>
+  <div>
+    <div class="main-text animate__animated animate__fadeInDown">
+      <h1>¿Estas listo?</h1>
+      <h3>Recuerda que todo el contenido es posible gracias a que te subscribes y compartes</h3>
+    </div>
+    <div class="wrapper-comment animate__animated animate__fadeInDown">
+      <fb-comment-embed href="https://www.facebook.com/zuck/posts/10102735452532991?comment_id=1070233703036185"
+                        width="500"></fb-comment-embed>
+
+    </div>
+    <div class="btn-zone animate__animated animate__fadeInDown">
+      <a [href]="urlLoginFb" class="btn-default btn draw-border">
+        <span>Continuar</span>
+        <span><i class="uil uil-youtube"></i></span>
+      </a>
+    </div>
+
+    <div class="btn-zone ">
+      <button class="btn-default small opacity" [routerLink]="['/']">
+        <span>Saltar paso</span>
+      </button>
+    </div>
+    <div class="image-center animate__animated animate__fadeInUp">
+      <img src="https://i.imgur.com/vxYvZFL.png" alt="">
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #asSubFalse>
+  <div>
+    <div class="main-text animate__animated animate__fadeInDown">
+      <h1>Solo falta un paso</h1>
+      <h3>Para formar parte de esta comunidad donde aprendemos juntos.</h3>
+    </div>
+
+    <div class="btn-zone animate__animated animate__fadeInDown">
+      <a target="_blank" (click)="openRun()" [href]="urlYoutube" class="btn-default btn draw-border">
+        <span>subscribirme</span>
+        <span><i class="uil uil-youtube"></i></span>
+      </a>
+    </div>
+
+
+    <div class="image-center animate__animated animate__fadeInUp">
+      <img src="https://i.imgur.com/vxYvZFL.png" alt="">
+    </div>
+  </div>
+</ng-template>

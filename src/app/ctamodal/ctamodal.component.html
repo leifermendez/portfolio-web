@@ -1,0 +1,116 @@
+<div class="wrapper-login" [ngSwitch]="oAuthService.cbTest.test">
+  <ng-container *ngSwitchCase="'01'" [ngTemplateOutlet]="testFirst"></ng-container>
+  <ng-container *ngSwitchCase="'02'" [ngTemplateOutlet]="testSecond"></ng-container>
+  <ng-container *ngSwitchCase="'03'" [ngTemplateOutlet]="testThird"></ng-container>
+  <ng-container *ngSwitchDefault [ngTemplateOutlet]="testDefault"></ng-container>
+</div>
+
+<ng-template #testFirst>
+  <div>
+    <div class="main-text">
+      <div class="zone-slug-name">
+        <h1>Excelente {{currentUser?.name}} <i class="uil uil-award"></i></h1>
+      </div>
+      <div class="wrapper-comment">
+        <fb-post href="https://www.facebook.com/20531316728/posts/10154009990506729/"></fb-post>
+      </div>
+    </div>
+    <div class="btn-zone ">
+      <button class="btn-default btn draw-border" (click)="share()">
+        <span>Compartir logro</span>
+        <span><i class="uil uil-facebook-f"></i></span>
+      </button>
+    </div>
+<!--    <div class="btn-zone ">-->
+<!--      <button [routerLink]="['/','course',oAuthService.cbTest.id]" class="btn-default small opacity">-->
+<!--        <span>Saltar paso</span>-->
+<!--      </button>-->
+<!--    </div>-->
+    <div class="image-center animate__animated animate__fadeInUp">
+      <img src="https://i.imgur.com/vxYvZFL.png" alt="">
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #testSecond>
+  <div>
+    <div class="main-text">
+      <div class="zone-slug-name">
+        <h1>😮 {{currentUser?.name}} <i class="uil uil-award"></i><i class="uil uil-award"></i></h1>
+      </div>
+      <div class="wrapper-comment">
+        <fb-post href="https://www.facebook.com/20531316728/posts/10154009990506729/"></fb-post>
+      </div>
+    </div>
+    <div class="btn-zone ">
+      <button class="btn-default btn draw-border" (click)="share()">
+        <span>Compartir logro</span>
+        <span><i class="uil uil-facebook-f"></i></span>
+      </button>
+    </div>
+    <div class="btn-zone ">
+      <button [routerLink]="['/','course',oAuthService.cbTest.id]" class="btn-default small opacity">
+        <span>Saltar paso</span>
+      </button>
+    </div>
+    <div class="image-center animate__animated animate__fadeInUp">
+      <img src="https://i.imgur.com/vxYvZFL.png" alt="">
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #testThird>
+  <div>
+    <div class="main-text">
+      <div class="zone-slug-name">
+        <h1>😮 {{currentUser?.name}} <i class="uil uil-award"></i><i class="uil uil-award"></i><i class="uil uil-award"></i>
+        </h1>
+      </div>
+      <div class="wrapper-comment">
+        <fb-post href="https://www.facebook.com/groups/dev.angular/permalink/1133509790471473/"></fb-post>
+      </div>
+    </div>
+    <div class="btn-zone ">
+      <button class="btn-default btn draw-border" (click)="share()">
+        <span>Compartir logro</span>
+        <span><i class="uil uil-facebook-f"></i></span>
+      </button>
+    </div>
+    <div class="btn-zone ">
+      <button [routerLink]="['/','course',oAuthService.cbTest.id]" class="btn-default small opacity">
+        <span>Saltar paso</span>
+      </button>
+    </div>
+    <div class="image-center animate__animated animate__fadeInUp">
+      <img src="https://i.imgur.com/vxYvZFL.png" alt="">
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #testDefault>
+<div>
+  <div class="main-text">
+    <div class="zone-slug-name">
+      <h1>😮 <i class="uil uil-award"></i><i class="uil uil-award"></i><i class="uil uil-award"></i>
+      </h1>
+    </div>
+    <div class="wrapper-comment">
+      <fb-post href="https://www.facebook.com/groups/dev.angular/permalink/1133509790471473/"></fb-post>
+    </div>
+  </div>
+  <div class="btn-zone ">
+    <button class="btn-default btn draw-border" (click)="share()">
+      <span>Compartir logro</span>
+      <span><i class="uil uil-facebook-f"></i></span>
+    </button>
+  </div>
+  <div class="btn-zone ">
+    <button [routerLink]="['/','course',oAuthService.cbTest.id]" class="btn-default small opacity">
+      <span>Saltar paso</span>
+    </button>
+  </div>
+  <div class="image-center animate__animated animate__fadeInUp">
+    <img src="https://i.imgur.com/vxYvZFL.png" alt="">
+  </div>
+</div>
+</ng-template>

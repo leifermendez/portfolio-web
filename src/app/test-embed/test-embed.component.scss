@@ -1,0 +1,83 @@
+.loading-block{
+  transition: all ease 150ms;
+  //background-color: #f8f8f8;
+  min-height: 200px;
+  min-width: 300px;
+  width: fit-content;
+  background-image: url("../../assets/images/loading.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 50px;
+}
+
+.avatars-test {
+  display: flex;
+
+  img {
+    width: 35px;
+    height: 35px;
+    border-radius: 100px;
+    object-fit: cover;
+  }
+
+  .list-avatar {
+    padding: .15rem;
+  }
+
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.fb_post{
+  padding: 1rem 0;
+}
+
+.small {
+  font-size: 0.85rem;
+  //background-color: #f9c74f;
+  background-color: #fafafa;
+  border: solid 1px #f3f3f3;
+  width: fit-content;
+  padding: .25rem .5rem;
+  border-radius: .25rem;
+}
+
+.fb_iframe_widget{
+  pointer-events: none;
+  &.fb-video{
+    pointer-events: all;
+  }
+}
+
+.wrapper-btn-test {
+  padding: 1.5rem 0;
+
+  button {
+    cursor: pointer;
+    color: var(--course-brand);
+    //padding: 0.15rem 1.5rem;
+    font-weight: 500;
+    border-radius: 0.25rem;
+    display: flex;
+    align-content: center;
+    //font-size: 1rem;
+    align-items: center;
+    text-decoration: none;
+    border: 0;
+    box-shadow: 0 0 0 transparent;
+    background-color: transparent;
+
+  }
+
+  .uil{
+    margin-left: 0.5rem;
+    font-size: 1.4rem;
+  }
+}
+
+h3 {
+  margin: 0;
+}

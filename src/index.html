@@ -6,8 +6,10 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-
-  <meta property="og:description" content="Me apasionan las tecnologías web, también creo contenido en Youtube me encantan los proyectos retadores y aportar conocimiento a la comunidad."/>
+  <meta name="description" content="XXXXXXXXXXXXXXXXXX" />
+  <meta name="keywords" content="XXXXXXXXXXXXXXXXXXXX">
+  <meta property="og:description"
+        content="Me apasionan las tecnologías web, también creo contenido en Youtube me encantan los proyectos retadores y aportar conocimiento a la comunidad."/>
   <meta property="og:locale" content="es_ES"/>
   <meta property="og:image" content="https://i.imgur.com/uOODwdU.png"/>
   <meta property="og:type" content="website"/>
@@ -15,7 +17,9 @@
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.6/css/line.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap-grid.min.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@300;400;500&amp;display=swap"
+    rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -27,19 +31,21 @@
 </head>
 <body>
 <app-root></app-root>
-  <noscript>Please enable JavaScript to continue using this application.</noscript>
+<noscript>Please enable JavaScript to continue using this application.</noscript>
 </body>
+<script type="text/javascript" src="https://connect.facebook.net/en_US/sdk.js"></script>
 </html>
-<script>
-  // Log the value of FCP to the console | https://web.dev/fcp/#measure-fcp-in-javascript
-  const observer = new PerformanceObserver((list) => {
-    for (const entry of list.getEntriesByName('first-contentful-paint')) {
-      console.log('FCP: CON SRR ', entry.startTime);
-      observer.disconnect();
-    }
-  })
-  observer.observe({type: 'paint', buffered: true});
-</script>
+<!--<script>-->
+<!--  // Log the value of FCP to the console | https://web.dev/fcp/#measure-fcp-in-javascript-->
+<!--  const observer = new PerformanceObserver((list) => {-->
+<!--    for (const entry of list.getEntriesByName('first-contentful-paint')) {-->
+<!--      console.log('FCP: CON SRR ', entry.startTime);-->
+<!--      observer.disconnect();-->
+<!--    }-->
+<!--  })-->
+<!--  observer.observe({type: 'paint', buffered: true});-->
+<!--</script>-->
+<!--<script src="https://unpkg.com/@stackblitz/sdk/bundles/sdk.umd.js"></script>-->
 <!-- Messenger Chat Plugin Code -->
 <div id="fb-root"></div>
 
@@ -51,18 +57,20 @@
 <!--  var chatbox = document.getElementById('fb-customer-chat');-->
 <!--  chatbox.setAttribute("page_id", "108020131360293");-->
 <!--  chatbox.setAttribute("attribution", "biz_inbox");-->
-<!--  window.fbAsyncInit = function() {-->
+<!--  window.fbAsyncInit = function () {-->
 <!--    FB.init({-->
-<!--      xfbml            : true,-->
-<!--      version          : 'v10.0'-->
+<!--      xfbml: true,-->
+<!--      version: 'v10.0'-->
 <!--    });-->
 <!--  };-->
 
-<!--  (function(d, s, id) {-->
+<!--  (function (d, s, id) {-->
 <!--    var js, fjs = d.getElementsByTagName(s)[0];-->
 <!--    if (d.getElementById(id)) return;-->
-<!--    js = d.createElement(s); js.id = id;-->
+<!--    js = d.createElement(s);-->
+<!--    js.id = id;-->
 <!--    js.src = 'https://connect.facebook.net/es_ES/sdk/xfbml.customerchat.js';-->
 <!--    fjs.parentNode.insertBefore(js, fjs);-->
 <!--  }(document, 'script', 'facebook-jssdk'));-->
 <!--</script>-->
+

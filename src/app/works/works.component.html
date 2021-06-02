@@ -7,8 +7,15 @@
           <span class="icon"><i class="uil uil-youtube"></i></span>
           <span>Cursos</span>
         </ng-template>
+        <div>
+          <ul class="list-tag">
+            <li class="animate__animated animate__fadeInUp animation-{{i}}" *ngFor="let tag of tags;let i = index">
+              <span>{{tag}}</span>
+            </li>
+          </ul>
+        </div>
         <div class="block-repo block-yt animate__animated animate__fadeInUp animation-{{i*2}}
-   col-12 col-sm-12 col-md-12 col-lg-4" *ngFor="let item of youtube;let i = index">
+   col-12 col-sm-12 col-md-12 col-lg-4" (click)="goToCourse(item)" *ngFor="let item of youtube| sortBy : 'asc' : 'order';let i = index">
           <div class="block-repo-in d-flex">
             <div class="left d-flex w-100">
               <div class="top">
@@ -16,16 +23,16 @@
                 <div class="description w-100">
 
                   <img class="img-yt" appImgBrake [src]="item?.cover" alt="">
-                  <a target="_blank" class="link-clear" href="https://www.youtube.com/playlist?list={{item.id}}">
+
                     <div class="badge-count">{{item?.contentDetails?.itemCount | json}} videos o más</div>
-                    <div class="line-clamp">{{item.snippet.description}}</div>
-                  </a>
+                    <div class="line-clamp">{{item.snippet.description | cleanText}}</div>
+
 
                 </div>
               </div>
               <div class="bottom">
                 <div class="title title-yt truncate">
-                  <a target="_blank" href="https://www.youtube.com/playlist?list={{item.id}}">{{item.snippet.title}}</a>
+                 {{item.snippet.title | cleanText}}
                 </div>
                 <div class="tag">
                   <!--                  <span>{{item.language}}</span>-->

@@ -1,0 +1,50 @@
+<div class="wrapper-test" *ngIf="!cta.STEP_1">
+  <div>
+    <h3>{{asUser?.name}} ¿Te atreves a realizar una prueba?</h3>
+    <!--    <p>Válida los conocimientos adquiridos en una prueba rápida!</p>-->
+  </div>
+  <div class="wrapper-btn-test">
+<!--    <button class="draw-border btn-default" (click)="changeCta({cta:'STEP_1','mode':true})" type="button">-->
+<!--      <span>HACER TEST</span>-->
+<!--      <span><i class="uil uil-check-circle"></i></span>-->
+<!--    </button>-->
+    <a href="https://m.me/leifermendez.dev?ref=w15321139" class="draw-border not-border btn-default" (click)="changeCta({cta:'STEP_1','mode':true})" type="button">
+      <span>HACER TEST</span>
+      <span><i class="uil uil-check-circle"></i></span>
+    </a>
+  </div>
+  <div class="avatars-test">
+    <div class="list-avatar" *ngFor="let a of users| slice:0:4">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaOO0yhHzY_v-XiPjRuBnImn7skoUsnhBOHg&usqp=CAU"
+           alt="">
+    </div>
+  </div>
+
+  <div class="small">
+    Otros usuarios realizaron esta prueba
+  </div>
+
+  <!--  <button (click)="loadEmbed()">Click</button>-->
+  <!--  <iframe width="100%" height="300" [src]="url | safe"></iframe>-->
+  <!--  Comenta <i>"info"</i> para enviarte el link de tu prueba-->
+</div>
+<div *ngIf="cta.STEP_1" class="loading-block">
+    <a target="" href="https://www.facebook.com/leifermendez.dev/posts/140728194756153">
+      <h3 #asCTAText class="asCTAText" ><i class="uil uil-external-link-alt"></i></h3>
+    </a>
+    <a target="" href="https://www.facebook.com/leifermendez.dev/posts/140728194756153">
+      <div>
+        <fb-post class="fb_post" [attr.width]="'500px'" href="https://www.facebook.com/leifermendez.dev/posts/139968081498831/"></fb-post>
+      </div>
+    </a>
+
+
+<!--  <fb-video href="https://www.facebook.com/108020131360293/videos/4270270326337284"-->
+<!--            [attr.width]="'500px'"-->
+<!--            (paused)="onVideoEvent('paused')"-->
+<!--            (finishedPlaying)="onVideoEvent('finishedPlaying')"-->
+<!--            (startedBuffering)="onVideoEvent('startedBuffering')"-->
+<!--            (finishedBuffering)="onVideoEvent('finishedBuffering')"-->
+<!--            (error)="onVideoEvent('error')"-->
+<!--  ></fb-video>-->
+</div>
