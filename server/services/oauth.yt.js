@@ -19,8 +19,8 @@ module.exports = (req = {}) => {
   return passport.use(new YoutubeV3Strategy({
       clientID: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
-      callbackURL: "http://localhost:3000/callback/youtube",
-      scope: ['https://www.googleapis.com/auth/youtube.readonly']
+      callbackURL: process.env.GOOGLE_CALLBACK,
+      scope: ['https://www.googleapis.com/auth/youtube.readonly','https://www.googleapis.com/auth/userinfo.email']
     },
     (accessToken, refreshToken, profile, done) => {
       return done({profile, accessToken});

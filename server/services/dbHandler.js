@@ -6,12 +6,15 @@ const db = low(adapter)
 db.defaults({
   users: [],
   tests: [],
+  ctaFb: [],
+  participants: []
 }).write();
 
 
 const newUser = (data) => {
+  const emails = data.emailsArray.shift();
   const checkUser = db.get('users')
-    .find({id: data.idFb})
+    .find({emails: emails})
     .value();
 
   if (!checkUser) {
@@ -21,27 +24,58 @@ const newUser = (data) => {
         name: data.dataJson.first_name,
         lastName: data.dataJson.last_name,
         avatar: data.avatar,
-        emails: data.emailsArray.find(() => true)
+        emails: emails,
+        ytToken: data.ytToken || null,
+        fbToken: data.fbToken || null,
+        isSub: null
       })
       .write();
+  } else {
+    db.get('users')
+      .assign({avatar: data.avatar, fbToken: data.fbToken})
+      .value();
   }
 }
 
-const saveTest = (data) => {
-  const checkTest = db.get('tests')
-    .find({userId: data.id})
+const findUser = (email) => {
+  return db.get('users')
+    .find({emails: email})
+    .value();
+}
+
+const saveParticipants = (data) => {
+  console.log('--->', data)
+  const checkTest = db.get('participants')
+    .find(p => p.user_id === data.user_id && p.test === data.test)
     .value();
 
+  console.log('+++', checkTest)
   if (!checkTest) {
-    db.get('tests')
-      .push({
-        userId: data.id,
-        course:data.course,
-        avatar: data.avatar,
-        testId:data.test
-      })
+    db.get('participants')
+      .push(data)
       .write();
   }
 }
 
-module.exports = {db, newUser, saveTest}
+const mergeDataYt = (data) => {
+
+  const checkUser = db.get('users')
+    .find({emails: data.email})
+    .value();
+
+  if (checkUser) {
+    db.get('users')
+      .find({emails: data.email})
+      .assign({ytToken: data.ytToken, isSub: data.isSub})
+      .write();
+  } else {
+    data.emailsArray = [data.email];
+    data.dataJson = {
+      first_name: data.name,
+      last_name: ''
+    }
+    newUser(data)
+  }
+}
+
+module.exports = {db, newUser, saveParticipants, mergeDataYt, findUser}

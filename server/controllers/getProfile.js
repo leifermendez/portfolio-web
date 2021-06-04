@@ -1,13 +1,14 @@
 const {db} = require('../services/dbHandler')
-const {decodeToken} = require('../services/generateToken')
+const {decodeToken, extraJwt} = require('../services/generateToken')
 
 
 const getProfile = async (req, res) => {
-  let tokenHeader = req.headers.authorization || '';
-  tokenHeader = tokenHeader.split(' ').pop();
-
+  const tokenHeader = extraJwt(req);
   const {data} = await decodeToken(tokenHeader) || {data: null}
-  const dataRaw = db.get('users').find({id: data.id}) || {};
+  const dataRaw = db.get('users')
+      .find({id: data.id})
+      .omit(['ytToken','fbToken','emails']) || {};
+
 
 
   res.send(dataRaw)

@@ -51,7 +51,16 @@ export class YoutubeService {
     ].join('');
     return this.httpModule.get(query)
       .pipe(
-        map((item: any) => item.items)
+        map((item: any) => item.items),
+        tap(a => a.map(i => {
+          const myRegexp = /^(TEST).(\S+)/gm;
+          const match = myRegexp.exec(i.snippet.description) || [];
+          i.test = match.reverse().shift() || null;
+
+          const myRegexpReq = /(REQUIREMENT:)"(.*?)"/gm;
+          const matchReq = myRegexpReq.exec(i.snippet.description) || [];
+          i.requeriment = matchReq.reverse().shift() || null;
+        }))
       );
   };
 

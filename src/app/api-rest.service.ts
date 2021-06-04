@@ -11,6 +11,15 @@ export class ApiRestService {
   headerUser: HttpHeaders;
 
   constructor(private http: HttpClient, private cookieService: CookieService) {
+
+
+  }
+
+  buildHeader(): void {
+    const token = this.cookieService.get('token');
+    this.headerUser = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
   }
 
   saveToken = (token) => {
@@ -21,19 +30,23 @@ export class ApiRestService {
     );
   };
 
+  saveTest = (data) => {
+    this.buildHeader();
+    return this.http.post(`${this.url}/send-test`, data, {headers: this.headerUser});
+  };
+
   getProfile = () => {
-    const token = this.cookieService.get('token');
-    this.headerUser = new HttpHeaders({
-      Authorization: `Bearer ${token}`
-    });
+    this.buildHeader();
     return this.http.get(`${this.url}/profile`, {headers: this.headerUser});
   };
 
   getTest = (opt?: any) => {
-    const token = this.cookieService.get('token');
-    this.headerUser = new HttpHeaders({
-      Authorization: `Bearer ${token}`
-    });
-    return this.http.get<Array<any>>(`${this.url}/test?idTest=${opt.test || ''}`, {headers: this.headerUser});
+    this.buildHeader();
+    return this.http.get<any>(`${this.url}/test?idTest=${opt.test || ''}`, {headers: this.headerUser});
+  };
+
+  getCta = (opt?: any) => {
+    this.buildHeader();
+    return this.http.get<Array<any>>(`${this.url}/cta-fb?id=${opt?.id || ''}`, {headers: this.headerUser});
   };
 }

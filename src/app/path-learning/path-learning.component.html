@@ -5,12 +5,21 @@
 
     <div class="animate__animated  animate__fadeInUp animation-{{i*3}}"
          inViewport
-         [inViewportOptions]="{ threshold: [0] }"
+         [inViewportOptions]="{ threshold: [50], partial:false }"
          (inViewportAction)="onIntersection($event)"
          [attr.data-test]="'test_'+i"
-         *ngFor="let video of listVideos;let i = index">
+         *ngFor="let video of listVideos;let i = index;let f = first">
       <div class="step-course1" [ngClass]="{'active-step':indexVideo.includes(i)}">
         <div class="line"></div>
+        <ng-container *ngIf="f && video?.requeriment">
+          <div class="block-question">
+            <div >
+              <h2>¿Qué necesito para comenzar?</h2>
+              <p>{{video?.requeriment}}</p>
+            </div>
+          </div>
+          <div class="line"></div>
+        </ng-container>
         <div class="block-img">
           <span class="number">{{i + 1}}</span>
         </div>
@@ -49,8 +58,10 @@
           </div>
         </div>
         <div class="line"></div>
+
         <div class="test-embed" *ngIf="viewActive.includes('test_'+i)">
-          <app-test-embed [asDataTest]="{testId:'test_'+i}" [asUser]="currentUser"></app-test-embed>
+
+          <app-test-embed [asDataTest]="{testId:video?.test}" [asUser]="currentUser"></app-test-embed>
         </div>
       </div>
     </div>

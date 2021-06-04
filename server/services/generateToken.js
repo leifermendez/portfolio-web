@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const generate = (user) => {
   return new Promise((resolve, reject) => {
-    try{
+    try {
       const token = jwt.sign({
         iss: 'LeiferMendez',
         data: user,
@@ -10,7 +10,7 @@ const generate = (user) => {
         exp: new Date().setDate(new Date().getDate() + 1)
       }, process.env.JWT_SECRET);
       resolve(token)
-    }catch (e) {
+    } catch (e) {
       reject(null)
     }
   })
@@ -18,14 +18,20 @@ const generate = (user) => {
 
 const decodeToken = (token) => {
   return new Promise((resolve, reject) => {
-    try{
+    try {
       const tokenDecode = jwt.decode(token);
       resolve(tokenDecode)
-    }catch (e) {
+    } catch (e) {
       reject(null)
     }
   })
 
 }
 
-module.exports = {generate ,decodeToken}
+const extraJwt = (req) => {
+  let tokenHeader = req.headers.authorization || '';
+  tokenHeader = tokenHeader.split(' ').pop();
+  return tokenHeader;
+}
+
+module.exports = {generate, decodeToken, extraJwt}

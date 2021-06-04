@@ -13,9 +13,17 @@ export class CallbackSocialComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(({tok, course}) => {
+    this.route.queryParams.subscribe(({tok, course, action, test}) => {
       this.oAuthService.setToken(tok);
-      this.router.navigate(['/', 'course', course]);
+      if (action === 'test') {
+        this.router.navigate(['/', 'test', course, test]);
+        // res.redirect(`${process.env.FRONT_URL}/test/${objQuery.course}/${objQuery.test}?sub_confirmation=${isSub.id}`)
+        return;
+      }
+      if (action === 'init') {
+        this.router.navigate(['/', 'course', course]);
+        return;
+      }
     });
   }
 

@@ -1,1 +1,23 @@
-<p>callback-social works!</p>
+<div class="wrapper-login">
+  <ng-container *ngTemplateOutlet="testDefault"></ng-container>
+</div>
+
+
+<ng-template #testDefault>
+  <div>
+    <div class="main-text">
+      <div class="zone-slug-name">
+        <h1>Redireccionando...
+        </h1>
+      </div>
+
+    </div>
+    <div class="btn-zone ">
+      <button [routerLink]="['/']" class="btn-default btn draw-border" >
+        <span>Volver a inicio</span>
+      </button>
+    </div>
+
+
+  </div>
+</ng-template>

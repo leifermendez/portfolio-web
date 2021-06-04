@@ -6,6 +6,7 @@ const {loginCbYt} = require('../controllers/loginCbYt')
 const {getParticipants} = require('../controllers/getParticipants')
 const {getProfile} = require('../controllers/getProfile')
 const {getTest} = require('../controllers/getTest')
+const {getCtaFB} = require('../controllers/ctaFb')
 const {postTest} = require('../controllers/postTest')
 require('../services/oauth.jwt')
 const passport = require('passport')
@@ -52,8 +53,14 @@ router.get(
   getTest
 )
 
+router.get(
+  '/cta-fb',
+  getCtaFB
+)
+
 router.post(
   '/send-test',
+  requireAuth,
   postTest
 )
 

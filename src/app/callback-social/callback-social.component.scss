@@ -1,0 +1,49 @@
+.wrapper-btn-back{
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: .5rem;
+}
+
+.wrapper-login {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
+
+  .main-text {
+    text-align: center;
+
+    h4, h3 {
+      font-weight: 400;
+    }
+  }
+
+  .wrapper-comment{
+    padding: 1.5rem 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn-zone {
+    padding: .5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem
+  }
+
+  .image-center {
+    text-align: center;
+
+    img {
+      width: 500px;
+    }
+  }
+}
+
+.cta-free {
+  font-weight: 600;
+  color: var(--course-brand) !important;
+}

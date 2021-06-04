@@ -16,7 +16,7 @@ export class SidebarComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() asData: DataIn = {
     title: 'Soy desarrollador Web',
     description: `Me apasionan las tecnologías web, también creo contenido en
-    <a href="https://youtube.com/leifermendez" target="_blank">Youtube</a> me encantan los proyectos
+    <b><a href="https://youtube.com/leifermendez" target="_blank">Youtube</a></b> me encantan los proyectos
     retadores y aportar conocimiento a la comunidad.`,
     slug: 'Hola mi nombre es'
   };

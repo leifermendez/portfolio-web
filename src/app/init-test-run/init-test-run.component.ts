@@ -5,14 +5,14 @@ import {ActivatedRoute} from '@angular/router';
 import {FacebookService, InitParams} from 'ngx-facebook';
 import {CountdownEvent} from 'ngx-countdown';
 import {OAuthLmService, UserModel} from '../oauth-lm.service';
+import {ApiRestService} from '../api-rest.service';
 
 @Component({
   selector: 'app-init-test-run',
   templateUrl: './init-test-run.component.html',
   styleUrls: ['./init-test-run.component.scss']
 })
-export class InitTestRunComponent implements OnInit {
-  project: any;
+export class InitTestRunComponent implements OnInit, AfterViewInit {
   urlLoginFb: string;
   readonly urlYoutube = 'https://www.youtube.com/channel/UCgrIGp5QAnC0J8LfNJxDRDw?sub_confirmation=1';
   initParams: InitParams = {
@@ -24,29 +24,39 @@ export class InitTestRunComponent implements OnInit {
   idTest: string;
   subConfirmation = null;
   currentUser: UserModel;
+  urlStack: string;
 
-  constructor(private route: ActivatedRoute, private fb: FacebookService, private oAuthService: OAuthLmService) {
+  constructor(private route: ActivatedRoute, private fb: FacebookService, private oAuthService: OAuthLmService,
+              private apiRest: ApiRestService) {
   }
 
   ngOnInit(): void {
     this.fb.init(this.initParams);
     this.idCourse = this.route.snapshot.paramMap.get('id');
     this.idTest = this.route.snapshot.paramMap.get('slug');
-    this.subConfirmation = this.route.snapshot.queryParamMap.get('sub_confirmation');
-    this.subConfirmation = (this.subConfirmation === null) ? null : isNaN(this.subConfirmation);
+    this.subConfirmation = this.oAuthService.currentUser?.isSub;
     this.urlLoginFb = `${environment.api}/login-google?course=${this.idCourse}&test=${this.idTest}`;
-    this.oAuthService.getCurrentUser().subscribe(res => this.currentUser = res);
-
     if (this.subConfirmation) {
       setTimeout(() => this.openRun(), 3000);
     }
 
+    this.loadTest(this.idTest);
+  }
+
+  ngAfterViewInit(): void {
+
+  }
+
+  loadTest(id): void {
+    this.apiRest.getTest({test: id}).subscribe(({stack}) => {
+      this.urlStack = stack;
+    });
   }
 
   openRun(): any {
     // @ts-ignore
     // sdk.openProject(this.project);
-    sdk.openGithubProject('leifermendez/angular-buscador', {
+    sdk.openGithubProject(this.urlStack, {
       newWindow: false,
       initialPath: `?course=${this.idCourse}&test=${this.idTest}`
     });
@@ -59,4 +69,6 @@ export class InitTestRunComponent implements OnInit {
     }
 
   }
+
+
 }

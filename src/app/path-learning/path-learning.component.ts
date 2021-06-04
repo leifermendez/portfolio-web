@@ -48,15 +48,7 @@ export class PathLearningComponent implements OnInit, OnChanges {
     this.playListId = this.route.snapshot.paramMap.get('id');
     this.loadCourse(this.playListId);
     this.checkCbTest();
-
-    const observer$1 = this.oAuthService.getCurrentUser().subscribe(res => {
-      console.log('---->', res);
-      this.currentUser = res;
-    }, error => {
-
-    });
-
-    this.listObserver$ = [observer$1];
+    this.listObserver$ = [];
 
   }
 
@@ -64,14 +56,12 @@ export class PathLearningComponent implements OnInit, OnChanges {
     const {firstChange, currentValue} = changes.asData;
     if (!firstChange) {
       this.getBrand(currentValue);
-      console.log('*******************', currentValue);
     }
 
 
   }
 
   checkCbTest(): void {
-    console.log(this.route.snapshot);
     const id = this.route.snapshot.paramMap.get('id');
     const user = this.route.snapshot.paramMap.get('user');
     const test = this.route.snapshot.paramMap.get('test');
@@ -82,7 +72,6 @@ export class PathLearningComponent implements OnInit, OnChanges {
   loadCourse(id): void {
     this.youtubeService.loadPlayList(id).subscribe(res => {
       this.listVideos = res;
-      console.log(res);
     });
   }
 
@@ -121,17 +110,14 @@ export class PathLearningComponent implements OnInit, OnChanges {
       }
       if (percent > 60 && !this.indexVideo.includes(2)) {
         this.indexVideo = [...new Set(this.indexVideo.concat([2]))];
-        console.log(this.indexVideo);
         return;
       }
       if (percent > 70 && !this.indexVideo.includes(3)) {
         this.indexVideo = [...new Set(this.indexVideo.concat([3]))];
-        console.log(this.indexVideo);
         return;
       }
       if (percent > 90) {
         this.indexVideo = [...new Set(this.indexVideo.concat([3, 4, 5, 6]))];
-        console.log(this.indexVideo);
         return;
       }
 
@@ -156,11 +142,10 @@ export class PathLearningComponent implements OnInit, OnChanges {
     const {value} = target.attributes['data-test'];
     this.viewInActive = [...new Set(this.viewInActive.concat(value))];
     if (visible) {
-      this.viewInActive = this.viewInActive.filter(a => a !== value);
-      this.viewActive.push(value);
-    } else {
-      this.viewActive = this.viewActive.filter(a => a !== value);
-      this.viewInActive.push(value);
+      // this.viewInActive = this.viewInActive.filter(a => a !== value);
+      this.viewActive = [...this.viewActive, ...[value]];
+      // console.log(this.viewActive);
+      // this.viewActive.push(value);
     }
   }
 }

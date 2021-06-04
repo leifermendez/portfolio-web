@@ -19,6 +19,10 @@ export class OAuthLmService {
     this.cookieService.set('token', token, 4, '/');
   }
 
+  removeToken(): void {
+    this.cookieService.delete('token','/');
+  }
+
   getCurrentUser(): Observable<any> {
     return this.apiRestService.getProfile()
       .pipe(tap((res) => {
@@ -37,7 +41,7 @@ export class ResTest {
 
 export class UserModel {
   name?: string;
-  _id?: string;
+  id?: string;
   avatar?: string;
-  email?: string;
+  emails?: string;
 }

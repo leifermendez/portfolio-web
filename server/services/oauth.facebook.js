@@ -29,6 +29,7 @@ module.exports = (req = {}) => {
         profile._json.picture = profile && profile._json.picture ? profile._json.picture.data.url : ''
         profile.loginFlag = loginFlag;
         profile.queryParams = req.query;
+        profile.fbToken = accessToken;
         done(null, profile)
       }
     )

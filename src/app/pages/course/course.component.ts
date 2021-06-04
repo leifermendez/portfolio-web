@@ -61,8 +61,11 @@ export class CourseComponent implements OnInit, OnDestroy {
         const order = this.getOrderNumber(snippet.description);
         const title = this.getTitle(snippet.description);
         const description = this.getDescription(snippet.description);
+        const requirement = this.getRequirement(snippet.description);
+        // const requeriment = this.getDescription(snippet.description);
+        console.log(res);
 
-        resolve({color, logo, order, title, description});
+        resolve({color, logo, order, title, description, requirement});
       }, () => {
         console.log('** ERROR **');
         reject(false);
@@ -118,6 +121,17 @@ export class CourseComponent implements OnInit, OnDestroy {
     value = value.replace(/(\r\n|\n|\r)/gm, '****');
     // console.log(value);
     const myRegexp = /(TEXT:)"(.*?)"/gm;
+    const match = myRegexp.exec(value) || [];
+    const line = match.pop() || '';
+    let lineRaw = line.replace(':', '');
+    lineRaw = lineRaw.split('****').shift();
+    return lineRaw;
+  }
+
+  getRequirement(value: string): string {
+    value = value.replace(/(\r\n|\n|\r)/gm, '****');
+    // console.log(value);
+    const myRegexp = /(REQUIREMENT:)"(.*?)"/gm;
     const match = myRegexp.exec(value) || [];
     const line = match.pop() || '';
     let lineRaw = line.replace(':', '');

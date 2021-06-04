@@ -24,13 +24,13 @@ const loginCbFb = async (req, res, next) => {
     {failureRedirect: '/'},
     async (rq, rs) => {
       if (!rq) {
-        const {emails, name, queryParams} = rs
+        const {emails, name, queryParams, fbToken} = rs
         const dataJson = rs._json // picture
         const emailsArray = emails.map((a) => a.value)
         const avatar = dataJson && dataJson.picture ? dataJson.picture : ''
         const idFb = rs.id;
         // console.log(dataJson, avatar, idFb, emailsArray)
-        const data = {idFb, dataJson, avatar, emailsArray, id: idFb};
+        const data = {idFb, dataJson, avatar, emailsArray, id: idFb, fbToken};
         newUser(data);
         // postFb(data)
         //     .then(response => {
@@ -45,7 +45,7 @@ const loginCbFb = async (req, res, next) => {
         const objQuery = getUrlParams(state);
         // console.log(objQuery)
         const token = await generate({id: idFb, avatar: avatar, name: dataJson.name})
-        res.redirect(`${process.env.FRONT_URL}/callback?provider=facebook&tok=${token}&course=${objQuery.course}`)
+        res.redirect(`${process.env.FRONT_URL}/callback?provider=facebook&tok=${token}&course=${objQuery.course}&action=init`)
       } else {
         console.log('** ERROR **')
         res.redirect('/')

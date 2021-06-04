@@ -7,6 +7,7 @@ import {CourseComponent} from './pages/course/course.component';
 import {BrandCourseGuard} from './brand-course.guard';
 import {InitTestRunComponent} from './init-test-run/init-test-run.component';
 import {CallbackSocialComponent} from './callback-social/callback-social.component';
+import {TokenUserGuard} from './token-user.guard';
 
 const routes: Routes = [
   {
@@ -15,7 +16,8 @@ const routes: Routes = [
   },
   {
     path: 'callback',
-    component: CallbackSocialComponent
+    component: CallbackSocialComponent,
+    canActivate: [TokenUserGuard]
   },
   {
     path: 'about-me',
@@ -24,15 +26,17 @@ const routes: Routes = [
   {
     path: 'course/:id',
     component: CourseComponent,
-    // canActivate: [BrandCourseGuard]
+    canActivate: [TokenUserGuard]
   },
   {
-    path: 'course/:id/:user/:test',
+    path: 'course/:id/:test',
     component: CourseComponent,
+    canActivate: [TokenUserGuard]
   },
   {
     path: 'test/:id/:slug',
     component: InitTestRunComponent,
+    canActivate: [TokenUserGuard]
   }
 ];
 

@@ -12,4 +12,10 @@ const checkSub = (token) => {
   });
 }
 
-module.exports = {checkSub}
+const checkUser = (token) => {
+  const urlToken = ['https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=', token]
+  return axios.get(urlToken.join(''));
+}
+
+
+module.exports = {checkSub, checkUser}

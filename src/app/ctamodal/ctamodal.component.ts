@@ -3,6 +3,7 @@ import {FacebookService, InitParams, UIParams, UIResponse} from 'ngx-facebook';
 import {environment} from '../../environments/environment';
 import {OAuthLmService, UserModel} from '../oauth-lm.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ApiRestService} from '../api-rest.service';
 
 @Component({
   selector: 'app-ctamodal',
@@ -12,9 +13,10 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class CTAModalComponent implements OnInit {
   currentUser: UserModel;
   idCourse: string;
+  idTest: string;
 
   constructor(private fb: FacebookService, public oAuthService: OAuthLmService, private route: ActivatedRoute,
-              private router: Router) {
+              private router: Router, private apiRestService: ApiRestService) {
     const initParams: InitParams = {
       appId: environment.fbApp,
       xfbml: true,
@@ -27,9 +29,17 @@ export class CTAModalComponent implements OnInit {
   ngOnInit(): void {
     this.oAuthService.getCurrentUser().subscribe(res => this.currentUser = res);
     this.idCourse = this.route.snapshot.paramMap.get('id');
+    this.idTest = this.route.snapshot.paramMap.get('test');
+    this.sendTest({test: this.idTest, course: this.idCourse});
 
   }
 
+  sendTest(data): void {
+    this.apiRestService.saveTest(data)
+      .subscribe(res => {
+        console.log(res);
+      });
+  }
 
   share(): void {
 

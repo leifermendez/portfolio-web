@@ -5,7 +5,7 @@ import {TestEmbedService} from '../test-embed.service';
 import {FacebookService, InitParams} from 'ngx-facebook';
 import {environment} from '../../environments/environment';
 import {isPlatformBrowser} from '@angular/common';
-import {UserModel} from '../oauth-lm.service';
+import {OAuthLmService, UserModel} from '../oauth-lm.service';
 import {ApiRestService} from '../api-rest.service';
 
 @Component({
@@ -18,7 +18,8 @@ export class TestEmbedComponent implements OnInit, AfterViewInit {
   @Input() asDataTest: any;
   @Input() asUser: UserModel;
   url: string;
-  project: any;
+  fbCta: FbCta = {id: '', mod: ''};
+  testCta: any;
   users: Array<any> = [];
   cta = {
     STEP_1: false,
@@ -32,6 +33,7 @@ export class TestEmbedComponent implements OnInit, AfterViewInit {
   };
 
   constructor(private testEmbedService: TestEmbedService, private fb: FacebookService,
+              public oAuthService: OAuthLmService,
               @Inject(PLATFORM_ID) private platformId, private apiRestService: ApiRestService) {
 
   }
@@ -41,42 +43,54 @@ export class TestEmbedComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-
-    this.users = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-
-    this.project = {
-      files: {
-        'index.ts': 'code',
-        'index.html': 'html'
-      },
-      title: 'Dynamically Generated Project',
-      description: 'Created with <3 by the StackBlitz SDK!',
-      template: 'typescript',
-      tags: ['stackblitz', 'sdk'],
-      dependencies: {
-        moment: '*' // * = latest version
-      }
-    };
-
-    console.log(this.asDataTest);
-    this.testEmbedService.loadTest({test: this.asDataTest?.testId})
-      .subscribe(res => this.users = res);
-
-    // @ts-ignore
-
-
-    // this.url = 'https://stackblitz.com/edit/sdk-create-project?embed=1&file=index.ts';
-    // this.loadEmbed();
+    this.checkTypeCTA();
   }
 
-  openRun(): any {
-    // @ts-ignore
-    // sdk.openProject(this.project);
-    sdk.openGithubProject('leifermendez/angular-validacion-async');
+  checkTypeCTA(): void {
+    console.log('**************', this.asDataTest?.testId);
+    const ref = this.asDataTest?.testId || null;
+
+    if (ref) {
+      if (ref.includes('FB') && ref.includes('POST')) {
+        this.fb.init(this.initParams);
+        const idCta = ref.split('_').pop();
+        this.loadCta(idCta, 'posts');
+      }
+
+      if (ref.includes('FB') && ref.includes('VIDEO')) {
+        this.fb.init(this.initParams);
+        const idCta = ref.split('_').pop();
+        this.loadCta(idCta, 'videos');
+      }
+
+      if (ref.includes('STACK')) {
+        const idCta = ref.split('_').pop();
+        this.loadTest(idCta);
+      }
+    }
+  }
+
+
+  loadCta(id, mode): void {
+
+    this.testEmbedService.loadCta({id, ref: 'fb'})
+      .subscribe(({page}) => {
+        this.fbCta = {mod: mode, id: `${page}/${mode}/${id}`};
+        this.fb.init(this.initParams);
+      });
+  }
+
+  loadTest(id): void {
+    this.testEmbedService.loadTest({test: id})
+      .subscribe(res => {
+        console.log(res);
+        this.users = [...res.participants];
+        this.fbCta = {mod: 'test', id: res.link};
+      });
   }
 
   initEffect = () => {
-
+    // console.log(this.asCTAText);
     const target = this.asCTAText.nativeElement;
     const writer = new Typewriter(target, {
       loop: false,
@@ -94,14 +108,11 @@ export class TestEmbedComponent implements OnInit, AfterViewInit {
 
   changeCta({cta, mode}): void {
 
-
-    this.fb.init(this.initParams);
-
     this.cta[cta] = mode;
     if (isPlatformBrowser(this.platformId)) {
-      setTimeout(() => {
-        this.initEffect();
-      }, 250);
+      // setTimeout(() => {
+      //   this.initEffect();
+      // }, 250);
     }
   }
 
@@ -112,4 +123,9 @@ export class TestEmbedComponent implements OnInit, AfterViewInit {
   onVideoEvent(paused: string): void {
 
   }
+}
+
+export class FbCta {
+  mod: string;
+  id: string;
 }

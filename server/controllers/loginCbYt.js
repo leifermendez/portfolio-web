@@ -1,29 +1,10 @@
 /* eslint-disable no-underscore-dangle */
 const youtubeProvider = require('../services/oauth.yt')
-const {db} = require('../services/dbHandler')
+const {mergeDataYt, findUser} = require('../services/dbHandler')
 const {postFb} = require('../services/postFanPage')
-const {checkSub} = require('../services/checkSubscription')
+const {checkSub, checkUser} = require('../services/checkSubscription')
 const {generate} = require('../services/generateToken')
 
-const newUser = (data) => {
-  const checkUser = db.get('users')
-    .find({id: data.idFb})
-    .value();
-
-  if (!checkUser) {
-    db.get('users')
-      .push({
-        id: data.idFb,
-        name: data.dataJson.first_name,
-        lastName: data.dataJson.last_name,
-        avatar: data.avatar,
-        emails: data.emailsArray.find(() => true)
-      })
-      .write();
-  }
-
-
-}
 
 const getUrlParams = (search) => {
   const hashes = search.slice(search.indexOf('?') + 1).split('&')
@@ -44,23 +25,24 @@ const loginCbYt = async (req, res, next) => {
     {failureRedirect: '/'},
     async (rq, rs) => {
       try {
-        console.log(rq.accessToken)
         if (rq.accessToken) {
           const subData = await checkSub(rq.accessToken)
-          console.log(subData.data)
+          const userDataRaw = await checkUser(rq.accessToken)
+          const userData = {...userDataRaw.data, ...{name: rq.profile.displayName}}
           const isSub = subData.data.items.shift() || {id: 0};
+          mergeDataYt({...userData, ...{ytToken: rq.accessToken, isSub: isNaN(isSub.id)}})
           const {state} = req.query;
-          console.log('****', req.query)
           const objQuery = getUrlParams(state);
-          console.log(objQuery)
-          // const token = await generate({id: idFb, avatar: avatar, name: dataJson.name})
-          res.redirect(`${process.env.FRONT_URL}/test/${objQuery.course}/${objQuery.test}?sub_confirmation=${isSub.id}`)
+          const token = await generate(findUser(userData.email))
+          console.log('-->', token)
+          res.redirect(`${process.env.FRONT_URL}/callback?provider=youtube&tok=${token}&action=test&course=${objQuery.course}&test=${objQuery.test}&sub_confirmation=${isSub.id}`)
+          // res.redirect(`${process.env.FRONT_URL}/test/${objQuery.course}/${objQuery.test}?sub_confirmation=${isSub.id}`)
         } else {
           console.log('** ERROR **')
           res.redirect('/')
         }
       } catch (e) {
-        console.log(e.response.data)
+        console.log(e)
         res.redirect(`${process.env.FRONT_URL}?error_login=youtube`)
       }
     }
