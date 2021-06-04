@@ -22,6 +22,7 @@
   display: flex;
   justify-content: left;
   flex-direction: column;
+  //width: 100%;
 
 
 
@@ -123,14 +124,6 @@
     opacity: .85;
   }
 
-  .line-clamp {
-    padding: .15rem 0;
-    text-decoration: none;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
 
   .block-img {
     border: solid 2px var(--color-1);
@@ -187,3 +180,4 @@
 
   }
 }
+

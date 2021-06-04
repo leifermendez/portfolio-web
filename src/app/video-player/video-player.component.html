@@ -1,4 +1,4 @@
-<div class="wrapper-video">
+<div class="wrapper-video ">
   <div class="fixed-title cursor">
     <button class="draw-border btn-default not-border" [routerLink]="['/','course',courseId]">
       <span class="back">
@@ -8,7 +8,7 @@
     </button>
 
   </div>
-  <div #asVideoSingle class="video-single">
+  <div #asVideoSingle class="video-single m-100">
     <div class="overlay-video" [ngClass]="{'play':(state!=0)}">
       <div>
         <i class="uil uil-play-circle"></i>
@@ -17,8 +17,8 @@
     </div>
     <youtube-player *ngIf="videoDimensions && videoId"
                     [videoId]="videoId"
-                    [width]="videoDimensions.w"
-                    [height]="videoDimensions.h"
+                    [width]=" isDesktop ? videoDimensions.w : '100%'"
+                    [height]="isDesktop ? videoDimensions.h : '250px'"
                     [playerVars]="videoOptions"
                     (ready)="savePlayer($event)"
                     (change)="onStateChange($event)"

@@ -7,6 +7,7 @@ import {environment} from '../../environments/environment';
 import {isPlatformBrowser} from '@angular/common';
 import {OAuthLmService, UserModel} from '../oauth-lm.service';
 import {ApiRestService} from '../api-rest.service';
+import {DeviceDetectorService} from 'ngx-device-detector';
 
 @Component({
   selector: 'app-test-embed',
@@ -31,9 +32,10 @@ export class TestEmbedComponent implements OnInit, AfterViewInit {
     xfbml: true,
     version: 'v10.0'
   };
+  isDesktop = false;
 
   constructor(private testEmbedService: TestEmbedService, private fb: FacebookService,
-              public oAuthService: OAuthLmService,
+              public oAuthService: OAuthLmService, private deviceService: DeviceDetectorService,
               @Inject(PLATFORM_ID) private platformId, private apiRestService: ApiRestService) {
 
   }
@@ -43,6 +45,8 @@ export class TestEmbedComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.isDesktop = this.deviceService.isDesktop();
+    console.log('-_____________',this.isDesktop);
     this.checkTypeCTA();
   }
 

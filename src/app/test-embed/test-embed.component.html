@@ -34,8 +34,8 @@
 <div class="loading-block" *ngIf="fbCta.mod === 'posts'">
 
   <a target="_blank" [href]="fbCta.id">
-    <div>
-      <fb-post class="fb_post" [attr.width]="'500px'"
+    <div class="wrapper-post-fb">
+      <fb-post class="fb_post" [attr.width]="isDesktop ? '500px' : '350px'"
                [attr.href]="fbCta.id"></fb-post>
     </div>
   </a>
@@ -43,7 +43,7 @@
 <!--&ndash;&gt; {{fbCta | json}}-->
 <div class="loading-block" *ngIf="fbCta.mod === 'videos'">
   <fb-video [attr.href]="fbCta.id"
-            [attr.width]="'500px'"
+            [attr.width]="isDesktop ? '500px' : '350px'"
             (paused)="onVideoEvent('paused')"
             (finishedPlaying)="onVideoEvent('finishedPlaying')"
             (startedBuffering)="onVideoEvent('startedBuffering')"

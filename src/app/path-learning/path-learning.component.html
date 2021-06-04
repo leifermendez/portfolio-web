@@ -1,5 +1,6 @@
 <div class="wrapper-path "
-
+     #ps="ngxPerfectScrollbar"
+     #asScroll
      (psScrollY)="listenerY($event)" [perfectScrollbar]="config">
   <div class="in">
 
@@ -12,7 +13,7 @@
       <div class="step-course1" [ngClass]="{'active-step':indexVideo.includes(i)}">
         <div class="line"></div>
         <ng-container *ngIf="f && video?.requeriment">
-          <div class="block-question">
+          <div class="block-question m-100">
             <div >
               <h2>¿Qué necesito para comenzar?</h2>
               <p>{{video?.requeriment}}</p>
@@ -26,7 +27,7 @@
         <div class="line"></div>
         <div class="duration-badge"><i class="uil uil-clock"></i> {{video?.snippet?.description | averageTime}} min
         </div>
-        <div class="block">
+        <div class="block m-100">
           <div class="video-info">
             <!--          <div>-->
             <!--            <img class="cover" src="https://i.ytimg.com/vi/6741ceWzsKQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCjSTnopenlCS5x0xtsQdLyf7p87A" alt="">-->

@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {delay, tap} from 'rxjs/operators';
+import {DeviceDetectorService} from 'ngx-device-detector';
 
 @Component({
   selector: 'app-video-player',
@@ -15,8 +16,11 @@ export class VideoPlayerComponent implements OnInit, AfterViewInit {
   courseId: string;
   state = 0;
   resize = false;
+  isDesktop = false;
 
-  constructor(private element: ElementRef, private route: ActivatedRoute, private renderer2: Renderer2) {
+  constructor(private element: ElementRef, private route: ActivatedRoute, private renderer2: Renderer2,
+              private deviceDetectorService: DeviceDetectorService) {
+    this.isDesktop = deviceDetectorService.isDesktop();
   }
 
   ngOnInit(): void {

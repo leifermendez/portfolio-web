@@ -1,4 +1,7 @@
-<div class="wrapper" (psScrollY)="listenerY($event)"
+<div class="wrapper"
+     #ps="ngxPerfectScrollbar"
+     #asScroll
+     (psScrollY)="listenerY($event)"
      [perfectScrollbar]="config">
   <div class=" d-flex flex-wrap">
     <mat-tab-group class="wrapper-tab-group-custom" disableRipple>

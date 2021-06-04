@@ -1,16 +1,20 @@
-import {Component, ElementRef, Inject, OnInit, PLATFORM_ID, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Inject, OnInit, PLATFORM_ID, Renderer2, ViewChild} from '@angular/core';
 import {GithubService} from '../github.service';
 import {YoutubeService} from '../youtube.service';
 import {isPlatformBrowser} from '@angular/common';
 import {Router} from '@angular/router';
+import {PerfectScrollbarComponent, PerfectScrollbarDirective} from 'ngx-perfect-scrollbar';
+import {DeviceDetectorService} from 'ngx-device-detector';
 
 @Component({
   selector: 'app-works',
   templateUrl: './works.component.html',
   styleUrls: ['./works.component.scss']
 })
-export class WorksComponent implements OnInit {
+export class WorksComponent implements OnInit, AfterViewInit {
   @ViewChild('asWorks') asWorks: ElementRef;
+  @ViewChild('ps') ps: PerfectScrollbarDirective;
+  @ViewChild('asScroll') asScroll: ElementRef;
   repos: any;
   youtube: any;
   config: any;
@@ -18,7 +22,18 @@ export class WorksComponent implements OnInit {
 
 
   constructor(private gitHubService: GithubService, private youtubeService: YoutubeService, @Inject(PLATFORM_ID) private platformId,
-              private router: Router) {
+              private router: Router, private renderer2: Renderer2, private deviceService: DeviceDetectorService) {
+  }
+
+  ngAfterViewInit(): void {
+    if (isPlatformBrowser(this.platformId) && (!this.deviceService.isDesktop())) {
+
+      this.ps.ngOnDestroy();
+      this.renderer2.setStyle(this.asScroll.nativeElement, 'height', '100%');
+      // this.renderer2.removeClass(el, 'ps--active-y');
+      // this.renderer2.removeClass(el, 'ps');
+    }
+
   }
 
   ngOnInit(): void { //

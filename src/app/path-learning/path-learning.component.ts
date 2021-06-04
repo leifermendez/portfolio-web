@@ -17,6 +17,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {YoutubeService} from '../youtube.service';
 import {OAuthLmService, UserModel} from '../oauth-lm.service';
 import {Subscription} from 'rxjs';
+import {PerfectScrollbarComponent, PerfectScrollbarDirective} from 'ngx-perfect-scrollbar';
+import {DeviceDetectorService} from 'ngx-device-detector';
 
 @Component({
   selector: 'app-path-learning',
@@ -24,9 +26,12 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./path-learning.component.scss'],
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PathLearningComponent implements OnInit, OnChanges {
+export class PathLearningComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild('asLoadingHorizontal') asLoadingHorizontal: ElementRef;
   @ViewChild('asOverBlock') asOverBlock: ElementRef;
+  @ViewChild('ps') ps: PerfectScrollbarDirective;
+  @ViewChild('asScroll') asScroll: ElementRef;
+
   @Input() asData: any;
   config: any;
   indexVideo: Array<number> = [];
@@ -38,8 +43,20 @@ export class PathLearningComponent implements OnInit, OnChanges {
   viewInActive: Array<any> = [];
 
   constructor(@Inject(PLATFORM_ID) private platformId, private route: ActivatedRoute, private youtubeService: YoutubeService,
-              private renderer2: Renderer2, public oAuthService: OAuthLmService, private router: Router) {
+              private renderer2: Renderer2, public oAuthService: OAuthLmService, private router: Router,
+              private deviceService: DeviceDetectorService) {
 
+
+  }
+
+  ngAfterViewInit(): void {
+    if (isPlatformBrowser(this.platformId) && (!this.deviceService.isDesktop())) {
+
+      this.ps.ngOnDestroy();
+      this.renderer2.setStyle(this.asScroll.nativeElement, 'height', '100%');
+      // this.renderer2.removeClass(el, 'ps--active-y');
+      // this.renderer2.removeClass(el, 'ps');
+    }
 
   }
 

@@ -76,7 +76,7 @@ h1, h2 {
 
 }
 
-youtube-player{
+youtube-player {
   display: block;
 }
 
@@ -139,7 +139,7 @@ youtube-player{
   @include btn-border-drawing(transparent, #ffe593, 2px, bottom, right);
 }
 
-.icon-yellow{
+.icon-yellow {
   color: #ffb300;
 }
 
@@ -151,7 +151,19 @@ youtube-player{
   }
 }
 
-.font-weight{
+
+.line-clamp {
+  padding: 0.15rem 0;
+  text-decoration: none;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+  width: 100%;
+}
+
+.font-weight {
   font-weight: 600;
 }
 
@@ -217,4 +229,40 @@ html, body {
   .col-12 {
     padding: .25rem;
   }
+  .ps--active-y {
+    overflow-y: hidden !important;
+    height: 100% !important;
+  }
+  .wrapper-path {
+    .in {
+      padding: 0 !important;
+    }
+  }
+
+  .animate__animated {
+    animation: none !important;
+  }
+
+  .m-100, .fb_iframe_widget {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  .fb_iframe_widget {
+    pointer-events: none !important;
+    overflow-y: hidden !important;
+    overflow-x: hidden !important;
+    //transform: scale(.75);
+  }
+
+  .video-single {
+    margin: 0 !important;
+    height: 250px !important;
+  }
+
+  .wrapper-video {
+    height: 100% !important;
+  }
+
 }
+
+
