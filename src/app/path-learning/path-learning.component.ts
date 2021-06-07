@@ -1,24 +1,25 @@
 import {
   AfterViewInit,
-  ChangeDetectionStrategy,
   Component,
   ElementRef,
   Inject,
   Input,
   OnChanges,
   OnInit,
-  PLATFORM_ID, QueryList,
+  PLATFORM_ID,
   Renderer2,
   SimpleChanges,
-  ViewChild, ViewChildren
+  ViewChild
 } from '@angular/core';
 import {isPlatformBrowser} from '@angular/common';
 import {ActivatedRoute, Router} from '@angular/router';
 import {YoutubeService} from '../youtube.service';
 import {OAuthLmService, UserModel} from '../oauth-lm.service';
 import {Subscription} from 'rxjs';
-import {PerfectScrollbarComponent, PerfectScrollbarDirective} from 'ngx-perfect-scrollbar';
+import {PerfectScrollbarDirective} from 'ngx-perfect-scrollbar';
 import {DeviceDetectorService} from 'ngx-device-detector';
+import {AverageTimePipe} from '../average-time.pipe';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-path-learning',
@@ -41,10 +42,11 @@ export class PathLearningComponent implements OnInit, OnChanges, AfterViewInit {
   currentUser: UserModel;
   viewActive: Array<any> = [];
   viewInActive: Array<any> = [];
+  averageTotal: number;
 
   constructor(@Inject(PLATFORM_ID) private platformId, private route: ActivatedRoute, private youtubeService: YoutubeService,
               private renderer2: Renderer2, public oAuthService: OAuthLmService, private router: Router,
-              private deviceService: DeviceDetectorService) {
+              private deviceService: DeviceDetectorService, private averageTimePipe: AverageTimePipe) {
 
 
   }
@@ -87,7 +89,16 @@ export class PathLearningComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   loadCourse(id): void {
-    this.youtubeService.loadPlayList(id).subscribe(res => {
+    this.youtubeService.loadPlayList(id).subscribe((res: any) => {
+      // this.averageTimePipe.transform()
+      let allMinString = res.map((a) => {
+        const tmp = this.averageTimePipe.transform(a?.snippet?.description);
+        return typeof tmp === 'string' ? tmp : null;
+      });
+
+      allMinString = allMinString.filter(a => (a));
+      const sum = allMinString.reduce((acc, time) => acc.add(moment.duration(time)), moment.duration());
+      this.averageTotal = sum.asHours() || 0;
       this.listVideos = res;
     });
   }

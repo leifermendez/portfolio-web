@@ -57,6 +57,10 @@ export class YoutubeService {
           const match = myRegexp.exec(i.snippet.description) || [];
           i.test = match.reverse().shift() || null;
 
+          const myRegexpLvl = /^(LEVEL).(\S+)/gm;
+          const matchLvl = myRegexpLvl.exec(i.snippet.description) || [];
+          i.level = matchLvl.reverse().shift() || null;
+
           const myRegexpReq = /(REQUIREMENT:)"(.*?)"/gm;
           const matchReq = myRegexpReq.exec(i.snippet.description) || [];
           i.requeriment = matchReq.reverse().shift() || null;

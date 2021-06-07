@@ -14,13 +14,20 @@
         <div class="line"></div>
         <ng-container *ngIf="f && video?.requeriment">
           <div class="block-question m-100">
-            <div >
+            <div>
               <h2>¿Qué necesito para comenzar?</h2>
               <p>{{video?.requeriment}}</p>
+              <div *ngIf="averageTotal">
+                <b>Duración</b>: {{averageTotal | number:'1.0-0'}} min
+              </div>
+              <div *ngIf="video?.level">
+                <b>Nivel</b>: {{video?.level}}
+              </div>
             </div>
           </div>
           <div class="line"></div>
         </ng-container>
+
         <div class="block-img">
           <span class="number">{{i + 1}}</span>
         </div>
