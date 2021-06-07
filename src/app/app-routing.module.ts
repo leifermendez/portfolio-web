@@ -8,6 +8,7 @@ import {BrandCourseGuard} from './brand-course.guard';
 import {InitTestRunComponent} from './init-test-run/init-test-run.component';
 import {CallbackSocialComponent} from './callback-social/callback-social.component';
 import {TokenUserGuard} from './token-user.guard';
+import {PathRouteComponent} from './path-route/path-route.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,11 @@ const routes: Routes = [
     path: 'test/:id/:slug',
     component: InitTestRunComponent,
     canActivate: [TokenUserGuard]
+  },
+  {
+    path: 'test',
+    component: PathRouteComponent,
+    // canActivate: [TokenUserGuard]
   }
 ];
 

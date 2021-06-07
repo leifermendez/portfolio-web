@@ -32,6 +32,7 @@
     "@angular/service-worker": "~11.1.0",
     "@nguniversal/express-engine": "^11.1.2",
     "@stackblitz/sdk": "^1.5.2",
+    "@swimlane/ngx-graph": "^7.2.0",
     "body-parser": "^1.19.0",
     "cache-manager": "^3.4.3",
     "cors": "^2.8.5",

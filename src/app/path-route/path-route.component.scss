@@ -1,0 +1,41 @@
+.wrapper-path{
+  //background-color: red;
+  //justify-content: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+
+::ng-deep{
+  .node-avatar{
+    background: red;
+    position: relative;
+    display: inline-block;
+  }
+
+
+}
+
+.fixed-section{
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  img{
+    width: 22rem;
+    height: 22rem;
+  }
+
+  .text-path{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem 1rem;
+    //background-color: white;
+  }
+
+
+}

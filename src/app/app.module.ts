@@ -38,6 +38,8 @@ import {CallbackSocialComponent} from './callback-social/callback-social.compone
 import {CookieService} from 'ngx-cookie-service';
 import {CountdownModule} from 'ngx-countdown';
 import {InViewportModule} from 'ng-in-viewport';
+import { PathRouteComponent } from './path-route/path-route.component';
+import {NgxGraphModule} from '@swimlane/ngx-graph';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -64,7 +66,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     CTAModalComponent,
     InitTestRunComponent,
     VideoPlayerComponent,
-    CallbackSocialComponent
+    CallbackSocialComponent,
+    PathRouteComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),
@@ -81,7 +84,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgxLocalStorageModule.forRoot(),
     NgpSortModule,
     CountdownModule,
-    InViewportModule
+    InViewportModule,
+    NgxGraphModule
   ],
   providers: [
     {
