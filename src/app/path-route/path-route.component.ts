@@ -11,6 +11,8 @@ import {
 } from '@angular/core';
 import {isPlatformBrowser} from '@angular/common';
 import Typewriter from 't-writer.js';
+import {GraphComponent} from '@swimlane/ngx-graph';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-path-route',
@@ -19,10 +21,12 @@ import Typewriter from 't-writer.js';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PathRouteComponent implements OnInit, AfterViewInit {
+  @ViewChild(GraphComponent) graphEl: GraphComponent;
   wrapperResize = {w: 0, h: 0, flag: false};
   @ViewChild('wrapper') wrapper: ElementRef;
   @ViewChild('asTitle') asTitle: ElementRef;
   @ViewChild('asDescription') asDescription: ElementRef;
+  update$: Subject<boolean> = new Subject();
 
   constructor(@Inject(PLATFORM_ID) private platformId, private cdr: ChangeDetectorRef) {
   }
@@ -37,6 +41,7 @@ export class PathRouteComponent implements OnInit, AfterViewInit {
 
   onNodeClick($event: MouseEvent): void {
 
+    // this.panOffsetX = this.graphEl.panOffsetX + 250;
   }
 
   checkDimensions(): void {
@@ -47,7 +52,7 @@ export class PathRouteComponent implements OnInit, AfterViewInit {
       this.wrapperResize = {w: win.offsetWidth, h: win.offsetHeight, flag: true};
       setTimeout(() => this.cdr.markForCheck(), 0);
       // console.log(intViewportWidth);
-      this.initEffect()
+      this.initEffect();
     }
 
   }
@@ -61,14 +66,21 @@ export class PathRouteComponent implements OnInit, AfterViewInit {
 
     writer
       .changeCursorColor('white')
-      .type('Leifer Mendez')
+      .type('Ruta de aprendizaje')
       .rest(50000)
-      .clear()
-      .type('¿Ya viste mis videos?')
-      .rest(2000)
       .start();
 
   };
 
+  updateChart(): void {
+    this.update$.next(true);
+  }
 
+  activate($event): void {
+    // this.graphEl.panOffsetY = 5000;
+    // // this.graphEl.panOffsetY = 100
+    // console.log(this.graphEl.panOffsetY);
+    // this.updateChart()
+    console.log($event);
+  }
 }

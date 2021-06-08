@@ -21,7 +21,7 @@ export class CallbackSocialComponent implements OnInit {
         return;
       }
       if (action === 'init') {
-        this.router.navigate(['/', 'course', course]);
+        this.router.navigate(['/', 'course', course]); // TODO:REVISAR Y COLOCAR UN MIDDLEWARE
         return;
       }
     });

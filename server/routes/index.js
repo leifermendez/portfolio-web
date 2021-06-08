@@ -1,8 +1,13 @@
 const express = require('express')
 const {loginFb} = require('../controllers/loginFb')
 const {loginYt} = require('../controllers/loginYt')
+const {loginInsta} = require('../controllers/loginInstagram')
+const {loginGoogle} = require('../controllers/loginGoogle')
 const {loginCbFb} = require('../controllers/loginCbFb')
 const {loginCbYt} = require('../controllers/loginCbYt')
+const {loginCbGoogle} = require('../controllers/loginCbGoogle')
+const {loginCbInsta} = require('../controllers/loginCbInstagram')
+const {loginEmail} = require('../controllers/loginEmail')
 const {getParticipants} = require('../controllers/getParticipants')
 const {getProfile} = require('../controllers/getProfile')
 const {getTest} = require('../controllers/getTest')
@@ -23,8 +28,23 @@ router.get(
 )
 
 router.get(
+  '/login-instagram',
+  loginInsta
+)
+
+router.get(
   '/login-google',
+  loginGoogle
+)
+
+router.get(
+  '/login-youtube',
   loginYt
+)
+
+router.post(
+  '/login-email',
+  loginEmail
 )
 
 router.get(
@@ -35,6 +55,16 @@ router.get(
 router.get(
   '/callback/youtube',
   loginCbYt
+)
+
+router.get(
+  '/callback/google',
+  loginCbGoogle
+)
+
+router.get(
+  '/callback/instagram',
+  loginCbInsta
 )
 
 router.get(

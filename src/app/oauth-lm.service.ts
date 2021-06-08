@@ -10,6 +10,7 @@ import {Observable} from 'rxjs';
 export class OAuthLmService {
   public checkSession = false;
   public currentUser = null;
+  sessionEmail: boolean;
   public cbTest: ResTest = {id: '', user: '', test: ''};
 
   constructor(private cookieService: CookieService, private apiRestService: ApiRestService) {

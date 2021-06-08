@@ -1,4 +1,15 @@
+<div class="fixed-title cursor">
+  <button class="draw-border btn-default not-border" [routerLink]="['/']">
+      <span class="back">
+        <i class="uil uil-arrow-left"></i>
+      </span>
+    <span>Regresar</span>
+  </button>
+</div>
+
 <div class="wrapper-login">
+
+
   <div>
     <div class="main-text">
       <h1>Nuevas dinámicas  ¿Quieres participar?</h1>
@@ -6,16 +17,35 @@
         <span class="cta-free" #asCTAFree></span>
         y es posible gracias a que te subscribes, compartes</h3>
     </div>
-    <div class="btn-zone ">
-      <a [href]="urlLoginFb" class="btn-default btn draw-border">
-        <span>Continuar</span>
-        <span><i class="uil uil-facebook-f"></i></span>
-      </a>
-    </div>
-    <div class="btn-zone ">
-      <button (click)="skip()" class="btn-default small opacity">
-        <span>Saltar paso</span>
-      </button>
+    <ng-container *ngIf="!oAuthService.sessionEmail">
+      <div class="btn-zone ">
+        <a [href]="urlLoginFb" class="btn-default btn draw-border">
+          <span>Continuar</span>
+          <span><i class="uil uil-facebook-f"></i></span>
+        </a>
+        <a [href]="urlLoginGoogle" class="btn-default btn draw-border">
+          <span>Continuar</span>
+          <span><i class="uil uil-google"></i></span>
+        </a>
+        <!--        <a [href]="urlLoginInstagram" class="btn-default btn draw-border">-->
+        <!--          <span>Continuar</span>-->
+        <!--          <span><i class="uil uil-instagram"></i></span>-->
+        <!--        </a>-->
+      </div>
+      <div class="btn-zone ">
+        <button (click)="getEmail()" class="btn-default small opacity">
+          <span>Saltar paso</span>
+        </button>
+      </div>
+    </ng-container>
+
+    <div *ngIf="oAuthService.sessionEmail" class="btn-zone animate__animated animate__fadeInUp">
+      <form class="form-email" [formGroup]="formEmail" (submit)="skip()">
+        <input formControlName="email" class="email-input" placeholder="Email..." type="email">
+        <button [disabled]="!formEmail.valid" class="btn-default not-border draw-border">
+          <i class="uil uil-arrow-circle-right"></i>
+        </button>
+      </form>
     </div>
     <div class="image-center animate__animated animate__fadeInUp">
       <img src="https://i.imgur.com/vxYvZFL.png" alt="">

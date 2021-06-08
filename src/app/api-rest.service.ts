@@ -35,6 +35,12 @@ export class ApiRestService {
     return this.http.post(`${this.url}/send-test`, data, {headers: this.headerUser});
   };
 
+  postEmail = (email) => {
+    this.buildHeader();
+    return this.http.post(`${this.url}/login-email`, {email}, {headers: this.headerUser});
+  };
+
+
   getProfile = () => {
     this.buildHeader();
     return this.http.get(`${this.url}/profile`, {headers: this.headerUser});

@@ -40,7 +40,7 @@ const routes: Routes = [
     canActivate: [TokenUserGuard]
   },
   {
-    path: 'test',
+    path: 'path-test/:id',
     component: PathRouteComponent,
     // canActivate: [TokenUserGuard]
   }

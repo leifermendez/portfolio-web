@@ -1,3 +1,23 @@
+
+.fixed-title {
+  position: fixed;
+  top:0;
+  left: 0;
+  //background: red;
+  padding: .5rem;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-end;
+
+  button{
+    align-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+}
+
 .wrapper-login {
   display: flex;
   align-content: center;
@@ -5,6 +25,39 @@
   justify-content: flex-end;
   flex-direction: column;
   min-height: 100vh;
+
+
+
+
+  .form-email {
+
+    &.ng-touched{
+      .ng-invalid{
+        border:solid 2px #f72585;
+      }
+
+      .ng-valid{
+        border:solid 2px #8ac926;
+      }
+    }
+
+    display: flex;
+    align-items: center;
+    align-content: center;
+
+    .email-input {
+      border: solid 2px var(--color-3);
+      padding: .45rem 0.5rem;
+      font-size: 1.1rem;
+      width: 250px;
+    }
+
+    .btn-default {
+      .uil {
+        margin: 0;
+      }
+    }
+  }
 
   .main-text {
     text-align: center;
