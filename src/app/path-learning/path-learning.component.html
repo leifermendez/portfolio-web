@@ -23,6 +23,12 @@
               <div *ngIf="video?.level">
                 <b>Nivel</b>: {{video?.level}}
               </div>
+              <div class="zone-btn-path">
+                <button class="btn-default draw-border " type="button"
+                        [routerLink]="['/','path-test',playListId]">
+                  Ver ruta
+                </button>
+              </div>
             </div>
           </div>
           <div class="line"></div>

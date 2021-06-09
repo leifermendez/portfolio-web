@@ -41,6 +41,7 @@ import {InViewportModule} from 'ng-in-viewport';
 import { PathRouteComponent } from './path-route/path-route.component';
 import {NgxGraphModule} from '@swimlane/ngx-graph';
 import {ReactiveFormsModule} from '@angular/forms';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -70,25 +71,26 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     CallbackSocialComponent,
     PathRouteComponent
   ],
-    imports: [
-        BrowserModule.withServerTransition({appId: 'serverApp'}),
-        HttpClientModule,
-        PerfectScrollbarModule,
-        BrowserAnimationsModule,
-        MatTabsModule,
-        ConnectionServiceModule,
-        ServiceWorkerModule.register('./ngsw-worker.js', {enabled: environment.production, registrationStrategy: 'registerImmediately'}),
-        AppRoutingModule,
-        RouterModule,
-        NgxYoutubePlayerModule.forRoot(),
-        FacebookModule.forRoot(),
-        NgxLocalStorageModule.forRoot(),
-        NgpSortModule,
-        CountdownModule,
-        InViewportModule,
-        NgxGraphModule,
-        ReactiveFormsModule
-    ],
+  imports: [
+    BrowserModule.withServerTransition({appId: 'serverApp'}),
+    HttpClientModule,
+    PerfectScrollbarModule,
+    BrowserAnimationsModule,
+    MatTabsModule,
+    ConnectionServiceModule,
+    ServiceWorkerModule.register('./ngsw-worker.js', {enabled: environment.production, registrationStrategy: 'registerImmediately'}),
+    AppRoutingModule,
+    RouterModule,
+    NgxYoutubePlayerModule.forRoot(),
+    FacebookModule.forRoot(),
+    NgxLocalStorageModule.forRoot(),
+    NgpSortModule,
+    CountdownModule,
+    InViewportModule,
+    NgxGraphModule,
+    ReactiveFormsModule,
+    MatTooltipModule
+  ],
   providers: [
     {
       provide: PERFECT_SCROLLBAR_CONFIG,

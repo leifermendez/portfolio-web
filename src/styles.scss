@@ -34,6 +34,16 @@ h1, h2 {
   padding: 0 !important;
 }
 
+.text-primary{
+  color: var(--course-brand) !important;
+}
+
+.text-primary-span{
+  span{
+    color: var(--course-brand) !important;
+  }
+}
+
 .btn-default {
   cursor: pointer;
   font-weight: 500;

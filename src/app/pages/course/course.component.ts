@@ -63,7 +63,6 @@ export class CourseComponent implements OnInit, OnDestroy {
         const description = this.getDescription(snippet.description);
         const requirement = this.getRequirement(snippet.description);
         // const requeriment = this.getDescription(snippet.description);
-        console.log(res);
 
         resolve({color, logo, order, title, description, requirement});
       }, () => {

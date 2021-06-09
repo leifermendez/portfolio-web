@@ -7,77 +7,32 @@
   </button>
 </div>
 
-<div #wrapper class="d-flex flex-wrap row m-0 wrapper-path">
+<div #wrapper class="d-flex flex-wrap row m-0 wrapper-path ">
   <!--  <app-sidebar class="col-12 col-sm-12 col-md-6 col-lg-4"></app-sidebar>-->
-  <div class="fixed-section">
+  <div class="fixed-section animate__animated  animate__fadeInUp animation-2">
     <div>
       <img src="https://i.imgur.com/vhDXNnI.jpg" alt="">
     </div>
     <div class="text-path">
-      <h1 class="title" #asTitle></h1>
-      <div class="animate__animated animate__fadeInUp" #asDescription>
+      <h1 class="title text-primary-span" #asTitle></h1>
+      <div class="animate__animated animate__fadeInUp " #asDescription>
         Te presento tu ruta de estudio con la cual podrás concluir todos los retos de esta plataforma
       </div>
     </div>
   </div>
   <div *ngIf="wrapperResize.flag">
     <ngx-graph
+      [zoomLevel]="1.2"
       [update$]="update$"
       [draggingEnabled]="false"
       [autoCenter]="true"
+      [center$]="update$"
       (activate)="activate($event)"
       [panningEnabled]="true"
       class="chart-container"
       [view]="[wrapperResize.w,wrapperResize.h]"
-      [links]="[
-    {
-      id: 'a',
-      source: 'first',
-      target: 'second',
-      label: 'HTML/CSS'
-    },
-    {
-      id: 'b',
-      source: 'second',
-      target: 'third',
-      label: 'JAVASCRIPT'
-    },
-     {
-      id: 'c',
-      source: 'third',
-      target: 'fourth',
-      label: 'NODE'
-    },
-        {
-      id: 'd',
-      source: 'fourth',
-      target: 'fifth',
-      label: 'Angular'
-    },
-
-  ]"
-      [nodes]="[
-    {
-      id: 'first',
-      label: '0'
-    },
-     {
-      id: 'second',
-      label: '1'
-    },
-     {
-      id: 'third',
-      label: '2'
-    },
-    {
-      id: 'fourth',
-      label: '3'
-    },
-       {
-      id: 'fifth',
-      label: '4'
-    }
-  ]"
+      [links]="links"
+      [nodes]="nodeLink"
       layout="dagreCluster"
     >
       <!-- FLECHA --->
@@ -101,7 +56,7 @@
 
       <ng-template #nodeTemplate let-node>
         <svg>
-          <image class="node-avatar" (click)="activate(node)"  style="cursor: pointer" xlink:href="https://i.imgur.com/q4kTXiy.png" width="96" height="96"/>
+          <image class="node-avatar cursor" (click)="activate(node)"  xlink:href="https://i.imgur.com/q4kTXiy.png" width="96" height="96"/>
         </svg>
       </ng-template>
 
