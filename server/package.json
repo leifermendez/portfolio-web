@@ -27,6 +27,7 @@
     "passport-instagram": "^1.0.0",
     "passport-jwt": "^4.0.0",
     "passport-youtube-v3": "^2.1.0",
+    "qs": "^6.10.1",
     "querystring": "^0.2.1"
   }
 }

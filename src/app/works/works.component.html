@@ -12,40 +12,52 @@
         </ng-template>
         <div>
           <ul class="list-tag">
-            <li class="animate__animated animate__fadeInUp animation-{{i}}" *ngFor="let tag of tags;let i = index">
+
+            <li (click)="showFilter(tag)"
+                [ngClass]="{'active-tag':showTagName === tag}"
+                class="animate__animated animate__fadeInUp animation-{{i}}" *ngFor="let tag of tags;let i = index">
               <span>{{tag}}</span>
+            </li>
+            <li *ngIf="showTagName" (click)="showFilter(false)"
+                class="animate__animated animate__fadeInUp animation-0">
+              <span><i class="uil uil-trash-alt"></i></span>
             </li>
           </ul>
         </div>
-        <div class="block-repo block-yt animate__animated animate__fadeInUp animation-{{i*2}}
-   col-12 col-sm-12 col-md-12 col-lg-4" (click)="goToCourse(item)" *ngFor="let item of youtube| sortBy : 'asc' : 'order';let i = index">
-          <div class="block-repo-in d-flex">
-            <div class="left d-flex w-100">
-              <div class="top">
-                <div class="date">{{item.snippet.publishedAt |date}}</div>
-                <div class="description w-100">
+        <ng-container *ngFor="let item of youtube| sortBy : 'asc' : 'order';let i = index">
+          <div class="block-repo block-yt animate__animated animate__fadeInUp animation-{{i*2}}
+   col-12 col-sm-12 col-md-12 col-lg-4" (click)="goToCourse(item)" *ngIf="!showTagName || showTagName === item?.tag"
+          >
+            <div class="block-repo-in d-flex" >
+              <div class="left d-flex w-100">
+                <div class="top">
+                  <div class="date">{{item.snippet.publishedAt |date}}</div>
+                  <div class="description w-100">
 
-                  <img class="img-yt" appImgBrake [src]="item?.cover" alt="">
+                    <img class="img-yt" appImgBrake [src]="item?.cover" alt="">
 
                     <div class="badge-count">{{item?.contentDetails?.itemCount | json}} videos o más</div>
                     <div class="line-clamp">{{item.snippet.description | cleanText}}</div>
 
 
+                  </div>
                 </div>
-              </div>
-              <div class="bottom">
-                <div class="title title-yt truncate">
-                 {{item.snippet.title | cleanText}}
-                </div>
-                <div class="tag">
-                  <!--                  <span>{{item.language}}</span>-->
+                <div class="bottom">
+                  <div class="title title-yt truncate">
+                    {{item.snippet.title | cleanText}}
+                  </div>
+                  <div class="tag">
+                    <!--                  <span>{{item.language}}</span>-->
 
+                  </div>
                 </div>
               </div>
+
             </div>
-
           </div>
-        </div>
+        </ng-container>
+
+
       </mat-tab>
       <mat-tab>
         <ng-template mat-tab-label>
@@ -87,6 +99,15 @@
             </div>
           </div>
         </div>
+      </mat-tab>
+      <mat-tab >
+        <ng-template mat-tab-label>
+          <span class="icon"><i class="uil uil-book-alt"></i></span>
+          <span>Descubre más</span>
+        </ng-template>
+
+
+
       </mat-tab>
 
       <!--        <mat-tab label="Third"> Content 3 </mat-tab>-->

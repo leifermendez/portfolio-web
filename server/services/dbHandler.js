@@ -7,6 +7,7 @@ db.defaults({
   users: [],
   tests: [],
   ctaFb: [],
+  commentFb: [],
   participants: []
 }).write();
 
@@ -44,12 +45,10 @@ const findUser = (email) => {
 }
 
 const saveParticipants = (data) => {
-  console.log('--->', data)
   const checkTest = db.get('participants')
     .find(p => p.user_id === data.user_id && p.test === data.test)
     .value();
 
-  console.log('+++', checkTest)
   if (!checkTest) {
     db.get('participants')
       .push(data)
@@ -78,4 +77,26 @@ const mergeDataYt = (data) => {
   }
 }
 
-module.exports = {db, newUser, saveParticipants, mergeDataYt, findUser}
+
+const checkIfExist = ({id}) => {
+  return db.get('commentFb')
+    .find({id: id})
+    .value();
+}
+
+const insertPost = ({id, comment}) => {
+  db.get('commentFb')
+    .push({
+      id,
+      comment
+    })
+    .write();
+}
+
+const getCTATest = (action) => {
+  return db.get('ctaFb')
+    .find({action})
+    .value()
+}
+
+module.exports = {db, newUser, saveParticipants, mergeDataYt, findUser, checkIfExist, getCTATest, insertPost}

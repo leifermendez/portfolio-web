@@ -25,17 +25,20 @@ export class InitTestRunComponent implements OnInit, AfterViewInit {
   subConfirmation = null;
   currentUser: UserModel;
   urlStack: string;
+  commentPost: string | boolean = false;
 
   constructor(private route: ActivatedRoute, private fb: FacebookService, private oAuthService: OAuthLmService,
               private apiRest: ApiRestService) {
   }
 
   ngOnInit(): void {
-    this.fb.init(this.initParams);
+
     this.idCourse = this.route.snapshot.paramMap.get('id');
     this.idTest = this.route.snapshot.paramMap.get('slug');
     this.subConfirmation = this.oAuthService.currentUser?.isSub;
+    // this.subConfirmation = false;
     this.urlLoginFb = `${environment.api}/login-google?course=${this.idCourse}&test=${this.idTest}`;
+    // console.log(this.subConfirmation);
     if (this.subConfirmation) {
       setTimeout(() => this.openRun(), 3000);
     }
@@ -48,8 +51,10 @@ export class InitTestRunComponent implements OnInit, AfterViewInit {
   }
 
   loadTest(id): void {
-    this.apiRest.getTest({test: id}).subscribe(({stack}) => {
+    this.apiRest.getTest({test: id, post: true}).subscribe(({stack, comment}) => {
       this.urlStack = stack;
+      this.fb.init(this.initParams);
+      this.commentPost = comment;
     });
   }
 

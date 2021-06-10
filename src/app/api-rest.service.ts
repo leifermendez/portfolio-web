@@ -48,7 +48,8 @@ export class ApiRestService {
 
   getTest = (opt?: any) => {
     this.buildHeader();
-    return this.http.get<any>(`${this.url}/test?idTest=${opt.test || ''}`, {headers: this.headerUser});
+    const snippet = (opt?.post) ? '&post=true' : '';
+    return this.http.get<any>(`${this.url}/test?idTest=${opt.test || ''}${snippet}`, {headers: this.headerUser});
   };
 
   getCta = (opt?: any) => {

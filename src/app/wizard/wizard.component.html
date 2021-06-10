@@ -32,21 +32,31 @@
         <!--          <span><i class="uil uil-instagram"></i></span>-->
         <!--        </a>-->
       </div>
-      <div class="btn-zone ">
+      <div class="btn-zone " *ngIf="!oAuthService.sessionEmail">
         <button (click)="getEmail()" class="btn-default small opacity">
           <span>Saltar paso</span>
         </button>
       </div>
+
     </ng-container>
 
-    <div *ngIf="oAuthService.sessionEmail" class="btn-zone animate__animated animate__fadeInUp">
-      <form class="form-email" [formGroup]="formEmail" (submit)="skip()">
-        <input formControlName="email" class="email-input" placeholder="Email..." type="email">
-        <button [disabled]="!formEmail.valid" class="btn-default not-border draw-border">
-          <i class="uil uil-arrow-circle-right"></i>
+    <ng-container *ngIf="oAuthService.sessionEmail">
+      <div class="btn-zone animate__animated animate__fadeInUp">
+        <form class="form-email" [formGroup]="formEmail" (submit)="skip()">
+          <input formControlName="email" class="email-input" placeholder="Email..." type="email">
+          <button [disabled]="!formEmail.valid" class="btn-default not-border draw-border">
+            <i class="uil uil-arrow-circle-right"></i>
+          </button>
+        </form>
+      </div>
+      <div class="btn-zone animate__animated animate__fadeInUp ">
+        <button (click)="oAuthService.sessionEmail = false" class="btn-default small opacity">
+          <span>volver</span>
         </button>
-      </form>
-    </div>
+      </div>
+    </ng-container>
+
+
     <div class="image-center animate__animated animate__fadeInUp">
       <img src="https://i.imgur.com/vxYvZFL.png" alt="">
     </div>

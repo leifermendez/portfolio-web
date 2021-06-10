@@ -19,6 +19,7 @@ export class WorksComponent implements OnInit, AfterViewInit {
   youtube: any;
   config: any;
   tags: Array<string> = [];
+  showTagName: string | boolean = false;
 
 
   constructor(private gitHubService: GithubService, private youtubeService: YoutubeService, @Inject(PLATFORM_ID) private platformId,
@@ -49,10 +50,9 @@ export class WorksComponent implements OnInit, AfterViewInit {
 
   loadYt = () => {
     this.youtubeService.loadCourses().subscribe(res => {
-
       this.tags = res.map((a) => a.tag).filter((i) => (i));
-      console.log(this.tags);
       this.youtube = res;
+      console.log(res);
     });
   };
 
@@ -69,5 +69,9 @@ export class WorksComponent implements OnInit, AfterViewInit {
   goToCourse(item: any): void {
     this.router.navigate(['/', 'course', item.id], {state: {a: 1}});
     // ['/','course',item.id]
+  }
+
+  showFilter(tag: string | boolean): void {
+    this.showTagName = tag;
   }
 }

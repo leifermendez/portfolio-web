@@ -36,7 +36,6 @@
 }
 
 
-
 .badge-count {
   background: #dadada;
   padding: .1rem .25rem;
@@ -59,12 +58,17 @@
   width: 100%;
 }
 
+
 .list-tag {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   margin: 0;
   padding: .5rem;
+
+  .active-tag {
+    border: solid 2px var(--color-3);
+  }
 
   li {
     cursor: pointer;
@@ -73,6 +77,7 @@
     align-content: center;
     padding: 0.25rem 0.75rem;
     margin: 0 0.5rem 0 0;
+    border: solid 2px transparent;
     background-color: #f4f4f4;
     border-radius: 0.15rem;
     font-weight: 500;

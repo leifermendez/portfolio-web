@@ -42,6 +42,7 @@ import { PathRouteComponent } from './path-route/path-route.component';
 import {NgxGraphModule} from '@swimlane/ngx-graph';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {LoadingBarHttpClientModule} from '@ngx-loading-bar/http-client';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -86,6 +87,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgxLocalStorageModule.forRoot(),
     NgpSortModule,
     CountdownModule,
+    LoadingBarHttpClientModule,
     InViewportModule,
     NgxGraphModule,
     ReactiveFormsModule,

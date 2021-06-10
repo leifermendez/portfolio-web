@@ -94,10 +94,12 @@ export class PathRouteComponent implements OnInit, AfterViewInit {
         return {
           id: `src_${i}`,
           label: `${i}`,
+          image: `part_${counterNode}.png`
         };
       }).concat({
         id: `src_${counterNode}`,
         label: `${counterNode}`,
+        image: `part_${counterNode + 1}.png`
       });
 
       this.links = this.pathTag.map((a, i) => {

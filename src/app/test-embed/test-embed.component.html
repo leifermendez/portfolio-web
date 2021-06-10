@@ -29,7 +29,6 @@
   <!--  <iframe width="100%" height="300" [src]="url | safe"></iframe>-->
   <!--  Comenta <i>"info"</i> para enviarte el link de tu prueba-->
 </div>
-
 <!-- FACEBOOK ----->
 <div class="loading-block" *ngIf="fbCta.mod === 'posts'">
 
@@ -50,4 +49,25 @@
             (finishedBuffering)="onVideoEvent('finishedBuffering')"
             (error)="onVideoEvent('error')"
   ></fb-video>
+</div>
+<!-- FORM -->
+<div class="wrapper-test"  *ngIf="fbCta.mod === 'form'">
+  <div>
+    <h3>{{oAuthService?.currentUser?.name}} ¿Te atreves a realizar una cuestionario?</h3>
+    <!--    <p>Válida los conocimientos adquiridos en una prueba rápida!</p>-->
+  </div>
+  <div class="wrapper-btn-test">
+    <!--    <button class="draw-border btn-default" (click)="changeCta({cta:'STEP_1','mode':true})" type="button">-->
+    <!--      <span>HACER TEST</span>-->
+    <!--      <span><i class="uil uil-check-circle"></i></span>-->
+    <!--    </button>  https://m.me/leifermendez.dev?ref=w15321139-->
+    <a target="_blank" [href]="fbCta?.id" class="draw-border not-border btn-default" type="button">
+      <span>HACER CUESTIONARIO</span>
+      <span><i class="uil uil-check-square icon-yellow"></i></span>
+    </a>
+  </div>
+
+  <!--  <button (click)="loadEmbed()">Click</button>-->
+  <!--  <iframe width="100%" height="300" [src]="url | safe"></iframe>-->
+  <!--  Comenta <i>"info"</i> para enviarte el link de tu prueba-->
 </div>

@@ -46,7 +46,7 @@ export class TestEmbedComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.isDesktop = this.deviceService.isDesktop();
-    console.log('-_____________',this.isDesktop);
+    console.log('-_____________', this.isDesktop);
     this.checkTypeCTA();
   }
 
@@ -65,6 +65,12 @@ export class TestEmbedComponent implements OnInit, AfterViewInit {
         this.fb.init(this.initParams);
         const idCta = ref.split('_').pop();
         this.loadCta(idCta, 'videos');
+      }
+
+      if (ref.includes('FORMS')) {
+        // this.fb.init(this.initParams);
+        const idCta = ref.split('_').pop();
+        this.loadForm(idCta);
       }
 
       if (ref.includes('STACK')) {
@@ -90,6 +96,15 @@ export class TestEmbedComponent implements OnInit, AfterViewInit {
         console.log(res);
         this.users = [...res.participants];
         this.fbCta = {mod: 'test', id: res.link};
+      });
+  }
+
+  loadForm(id): void {
+    this.testEmbedService.loadTest({test: id})
+      .subscribe(res => {
+        console.log(res);
+        this.users = [...res.participants];
+        this.fbCta = {mod: 'form', id: res.form};
       });
   }
 

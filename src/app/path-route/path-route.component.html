@@ -1,5 +1,5 @@
 <div class="fixed-title cursor">
-  <button class="draw-border btn-default not-border" [routerLink]="['/']">
+  <button class="draw-border btn-default not-border" [routerLink]="['/','course',idCourse]">
       <span class="back">
         <i class="uil uil-arrow-left"></i>
       </span>
@@ -25,7 +25,6 @@
       [zoomLevel]="1.2"
       [update$]="update$"
       [draggingEnabled]="false"
-      [autoCenter]="true"
       [center$]="update$"
       (activate)="activate($event)"
       [panningEnabled]="true"
@@ -56,7 +55,8 @@
 
       <ng-template #nodeTemplate let-node>
         <svg>
-          <image class="node-avatar cursor" (click)="activate(node)"  xlink:href="https://i.imgur.com/q4kTXiy.png" width="96" height="96"/>
+          <image class="node-avatar cursor" (click)="activate(node)" [attr.href]="'../assets/images/'+node?.image"
+                 width="96" height="96"/>
         </svg>
       </ng-template>
 
