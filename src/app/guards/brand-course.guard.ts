@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {Observable} from 'rxjs';
-import {YoutubeService} from './youtube.service';
+import {YoutubeService} from '../services/youtube.service';
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {Observable} from 'rxjs';
-import {OAuthLmService} from './oauth-lm.service';
+import {OAuthLmService} from '../services/oauth-lm.service';
 import {tap} from 'rxjs/operators';
 
 @Injectable({

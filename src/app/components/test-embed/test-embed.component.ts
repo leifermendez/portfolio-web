@@ -1,12 +1,12 @@
 import {AfterViewInit, Component, ElementRef, Inject, Input, OnInit, PLATFORM_ID, Renderer2, ViewChild} from '@angular/core';
 import sdk from '@stackblitz/sdk';
 import Typewriter from 't-writer.js';
-import {TestEmbedService} from '../test-embed.service';
+import {TestEmbedService} from '../../services/test-embed.service';
 import {FacebookService, InitParams} from 'ngx-facebook';
-import {environment} from '../../environments/environment';
+import {environment} from '../../../environments/environment';
 import {isPlatformBrowser} from '@angular/common';
-import {OAuthLmService, UserModel} from '../oauth-lm.service';
-import {ApiRestService} from '../api-rest.service';
+import {OAuthLmService, UserModel} from '../../services/oauth-lm.service';
+import {ApiRestService} from '../../services/api-rest.service';
 import {DeviceDetectorService} from 'ngx-device-detector';
 
 @Component({

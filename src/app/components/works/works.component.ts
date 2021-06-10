@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, Inject, OnInit, PLATFORM_ID, Renderer2, ViewChild} from '@angular/core';
-import {GithubService} from '../github.service';
-import {YoutubeService} from '../youtube.service';
+import {GithubService} from '../../services/github.service';
+import {YoutubeService} from '../../services/youtube.service';
 import {isPlatformBrowser} from '@angular/common';
 import {Router} from '@angular/router';
 import {PerfectScrollbarComponent, PerfectScrollbarDirective} from 'ngx-perfect-scrollbar';

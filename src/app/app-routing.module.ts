@@ -4,11 +4,12 @@ import {HomeComponent} from './pages/home/home.component';
 import {AboutMeComponent} from './pages/about-me/about-me.component';
 import {PageDynamicComponent} from './pages/page-dynamic/page-dynamic.component';
 import {CourseComponent} from './pages/course/course.component';
-import {BrandCourseGuard} from './brand-course.guard';
-import {InitTestRunComponent} from './init-test-run/init-test-run.component';
-import {CallbackSocialComponent} from './callback-social/callback-social.component';
-import {TokenUserGuard} from './token-user.guard';
-import {PathRouteComponent} from './path-route/path-route.component';
+import {BrandCourseGuard} from './guards/brand-course.guard';
+import {InitTestRunComponent} from './pages/init-test-run/init-test-run.component';
+import {CallbackSocialComponent} from './pages/callback-social/callback-social.component';
+import {TokenUserGuard} from './guards/token-user.guard';
+import {PathRouteComponent} from './pages/path-route/path-route.component';
+import {HistoryCourseGuard} from './guards/history-course.guard';
 
 const routes: Routes = [
   {
@@ -27,22 +28,22 @@ const routes: Routes = [
   {
     path: 'course/:id',
     component: CourseComponent,
-    canActivate: [TokenUserGuard]
+    canActivate: [TokenUserGuard, HistoryCourseGuard]
   },
   {
     path: 'course/:id/:test',
     component: CourseComponent,
-    canActivate: [TokenUserGuard]
+    canActivate: [TokenUserGuard, HistoryCourseGuard]
   },
   {
     path: 'test/:id/:slug',
     component: InitTestRunComponent,
-    canActivate: [TokenUserGuard]
+    canActivate: [TokenUserGuard, HistoryCourseGuard]
   },
   {
     path: 'path-test/:id',
     component: PathRouteComponent,
-    // canActivate: [TokenUserGuard]
+    canActivate: [TokenUserGuard, HistoryCourseGuard]
   }
 ];
 

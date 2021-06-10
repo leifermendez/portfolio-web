@@ -1,7 +1,16 @@
+<div class="wrapper-btn-back">
+  <button class="draw-border btn-default not-border" [routerLink]="['/','course',idCourse]">
+      <span class="back">
+        <i class="uil uil-arrow-left"></i>
+      </span>
+    <span>Regresar</span>
+  </button>
+
+</div>
 <div class="wrapper-login" [ngSwitch]="oAuthService.cbTest.test">
-  <ng-container *ngSwitchCase="'01'" [ngTemplateOutlet]="testFirst"></ng-container>
-  <ng-container *ngSwitchCase="'02'" [ngTemplateOutlet]="testSecond"></ng-container>
-  <ng-container *ngSwitchCase="'03'" [ngTemplateOutlet]="testThird"></ng-container>
+<!--  <ng-container *ngSwitchCase="'001'" [ngTemplateOutlet]="testFirst"></ng-container>-->
+<!--  <ng-container *ngSwitchCase="'002'" [ngTemplateOutlet]="testSecond"></ng-container>-->
+<!--  <ng-container *ngSwitchCase="'003'" [ngTemplateOutlet]="testThird"></ng-container>-->
   <ng-container *ngSwitchDefault [ngTemplateOutlet]="testDefault"></ng-container>
 </div>
 
@@ -27,7 +36,7 @@
 <!--      </button>-->
 <!--    </div>-->
     <div class="image-center animate__animated animate__fadeInUp">
-      <img src="https://i.imgur.com/vxYvZFL.png" alt="">
+      <img src="../../../assets/images/image_2.png" alt="">
     </div>
   </div>
 </ng-template>
@@ -54,7 +63,7 @@
       </button>
     </div>
     <div class="image-center animate__animated animate__fadeInUp">
-      <img src="https://i.imgur.com/vxYvZFL.png" alt="">
+      <img src="../../../assets/images/image_2.png" alt="">
     </div>
   </div>
 </ng-template>
@@ -67,7 +76,7 @@
         </h1>
       </div>
       <div class="wrapper-comment">
-        <fb-post href="https://www.facebook.com/groups/dev.angular/permalink/1133509790471473/"></fb-post>
+        <fb-post href="https://www.facebook.com/20531316728/posts/10154009990506729/"></fb-post>
       </div>
     </div>
     <div class="btn-zone ">
@@ -95,7 +104,7 @@
       </h1>
     </div>
     <div class="wrapper-comment">
-      <fb-post href="https://www.facebook.com/groups/dev.angular/permalink/1133509790471473/"></fb-post>
+      <fb-post href="https://www.facebook.com/20531316728/posts/10154009990506729/"></fb-post>
     </div>
   </div>
   <div class="btn-zone ">
@@ -110,7 +119,7 @@
     </button>
   </div>
   <div class="image-center animate__animated animate__fadeInUp">
-    <img src="https://i.imgur.com/vxYvZFL.png" alt="">
+    <img src="../../../assets/images/image_2.png" alt="">
   </div>
 </div>
 </ng-template>

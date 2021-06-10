@@ -13,7 +13,7 @@ import {isPlatformBrowser} from '@angular/common';
 import Typewriter from 't-writer.js';
 import {GraphComponent} from '@swimlane/ngx-graph';
 import {Subject} from 'rxjs';
-import {YoutubeService} from '../youtube.service';
+import {YoutubeService} from '../../services/youtube.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({

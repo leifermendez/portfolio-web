@@ -1,9 +1,9 @@
 import {Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {YoutubeService} from '../../youtube.service';
-import {TemplateEmbed, TestEmbedService} from '../../test-embed.service';
+import {YoutubeService} from '../../services/youtube.service';
+import {TemplateEmbed, TestEmbedService} from '../../services/test-embed.service';
 import {Subscription} from 'rxjs';
-import {OAuthLmService} from '../../oauth-lm.service';
+import {OAuthLmService} from '../../services/oauth-lm.service';
 
 @Component({
   selector: 'app-course',

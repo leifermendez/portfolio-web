@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, ElementRef, Inject, Input, OnDestroy, OnInit, PLATFORM_ID, Renderer2, ViewChild} from '@angular/core';
 import Typewriter from 't-writer.js';
-import {GithubService} from '../github.service';
+import {GithubService} from '../../services/github.service';
 import {isPlatformBrowser} from '@angular/common';
-import {TestEmbedService} from '../test-embed.service';
+import {TestEmbedService} from '../../services/test-embed.service';
 import {Subscription} from 'rxjs';
 
 @Component({

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {GithubService} from '../../github.service';
+import {GithubService} from '../../services/github.service';
 import {Title} from '@angular/platform-browser';
 
 @Component({

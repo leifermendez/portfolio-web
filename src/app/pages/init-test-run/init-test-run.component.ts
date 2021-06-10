@@ -1,11 +1,11 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import sdk from '@stackblitz/sdk';
-import {environment} from '../../environments/environment';
+import {environment} from '../../../environments/environment';
 import {ActivatedRoute} from '@angular/router';
 import {FacebookService, InitParams} from 'ngx-facebook';
 import {CountdownEvent} from 'ngx-countdown';
-import {OAuthLmService, UserModel} from '../oauth-lm.service';
-import {ApiRestService} from '../api-rest.service';
+import {OAuthLmService, UserModel} from '../../services/oauth-lm.service';
+import {ApiRestService} from '../../services/api-rest.service';
 
 @Component({
   selector: 'app-init-test-run',
@@ -37,8 +37,8 @@ export class InitTestRunComponent implements OnInit, AfterViewInit {
     this.idTest = this.route.snapshot.paramMap.get('slug');
     this.subConfirmation = this.oAuthService.currentUser?.isSub;
     // this.subConfirmation = false;
-    this.urlLoginFb = `${environment.api}/login-google?course=${this.idCourse}&test=${this.idTest}`;
-    // console.log(this.subConfirmation);
+    this.urlLoginFb = `${environment.api}/login-youtube?course=${this.idCourse}&test=${this.idTest}`;
+    console.log(this.subConfirmation);
     if (this.subConfirmation) {
       setTimeout(() => this.openRun(), 3000);
     }

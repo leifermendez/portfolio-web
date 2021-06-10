@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FacebookService, InitParams, UIParams, UIResponse} from 'ngx-facebook';
-import {environment} from '../../environments/environment';
-import {OAuthLmService, UserModel} from '../oauth-lm.service';
+import {environment} from '../../../environments/environment';
+import {OAuthLmService, UserModel} from '../../services/oauth-lm.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ApiRestService} from '../api-rest.service';
+import {ApiRestService} from '../../services/api-rest.service';
 
 @Component({
   selector: 'app-ctamodal',
@@ -14,6 +14,7 @@ export class CTAModalComponent implements OnInit {
   currentUser: UserModel;
   idCourse: string;
   idTest: string;
+  urlTest: string;
 
   constructor(private fb: FacebookService, public oAuthService: OAuthLmService, private route: ActivatedRoute,
               private router: Router, private apiRestService: ApiRestService) {
@@ -30,7 +31,8 @@ export class CTAModalComponent implements OnInit {
     this.oAuthService.getCurrentUser().subscribe(res => this.currentUser = res);
     this.idCourse = this.route.snapshot.paramMap.get('id');
     this.idTest = this.route.snapshot.paramMap.get('test');
-    this.sendTest({test: this.idTest, course: this.idCourse});
+    this.urlTest = this.route.snapshot.queryParamMap.get('urlTest');
+    this.sendTest({test: this.idTest, course: this.idCourse, urlTest: this.urlTest});
 
   }
 

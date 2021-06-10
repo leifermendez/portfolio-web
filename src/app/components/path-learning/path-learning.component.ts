@@ -13,12 +13,12 @@ import {
 } from '@angular/core';
 import {isPlatformBrowser} from '@angular/common';
 import {ActivatedRoute, Router} from '@angular/router';
-import {YoutubeService} from '../youtube.service';
-import {OAuthLmService, UserModel} from '../oauth-lm.service';
+import {YoutubeService} from '../../services/youtube.service';
+import {OAuthLmService, UserModel} from '../../services/oauth-lm.service';
 import {Subscription} from 'rxjs';
 import {PerfectScrollbarDirective} from 'ngx-perfect-scrollbar';
 import {DeviceDetectorService} from 'ngx-device-detector';
-import {AverageTimePipe} from '../average-time.pipe';
+import {AverageTimePipe} from '../../pipe/average-time.pipe';
 import * as moment from 'moment';
 
 @Component({

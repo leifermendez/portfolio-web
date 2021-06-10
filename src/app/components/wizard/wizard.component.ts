@@ -1,10 +1,10 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import Typewriter from 't-writer.js';
-import {OAuthLmService} from '../oauth-lm.service';
+import {OAuthLmService} from '../../services/oauth-lm.service';
 import {ActivatedRoute} from '@angular/router';
-import {environment} from '../../environments/environment';
+import {environment} from '../../../environments/environment';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ApiRestService} from '../api-rest.service';
+import {ApiRestService} from '../../services/api-rest.service';
 import {log} from 'util';
 
 @Component({

@@ -1,6 +1,6 @@
 import {Component, Inject, PLATFORM_ID} from '@angular/core';
 import {SwPush} from '@angular/service-worker';
-import {ApiRestService} from './api-rest.service';
+import {ApiRestService} from './services/api-rest.service';
 import {isPlatformBrowser} from '@angular/common';
 
 @Component({
