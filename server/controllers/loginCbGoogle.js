@@ -1,8 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 const googleProvider = require('../services/oauth.google')
-const {mergeDataYt, findUser, newUser} = require('../services/dbHandler')
-const {postFb} = require('../services/postFanPage')
-const {checkSub, checkUser} = require('../services/checkSubscription')
+const {newUser} = require('../services/dbHandler')
+// const {postFb} = require('../services/postFanPage')
+// const {checkSub, checkUser} = require('../services/checkSubscription')
 const {generate} = require('../services/generateToken')
 
 
@@ -26,7 +26,7 @@ const loginCbGoogle = async (req, res, next) => {
     async (rq, rs) => {
       try {
         if (rq.accessToken) {
-          const {emails, name, id, photos, queryParams} = rq.profile;
+          const {emails, name, id, photos} = rq.profile;
           const emailsArray = emails.map((a) => a.value)
           const avatarFromArray = photos.shift();
           const data = {
@@ -39,12 +39,12 @@ const loginCbGoogle = async (req, res, next) => {
             emailsArray
           };
 
-          newUser(data);
+          const newData = newUser(data);
           // postFb(data)
 
           // const {state} = queryParams;
           // const objQuery = getUrlParams(state);
-          const token = await generate({id, avatar: avatarFromArray.value, name: name.familyName})
+          const token = await generate(newData)
           res.redirect(`${process.env.FRONT_URL}/callback?provider=google&tok=${token}&action=init`)
         } else {
           console.log('** ERROR **')

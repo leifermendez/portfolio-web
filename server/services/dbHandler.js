@@ -19,22 +19,27 @@ const newUser = (data) => {
     .value();
 
   if (!checkUser) {
+    const parseData = {
+      id: data.idFb,
+      name: data.dataJson.first_name,
+      lastName: data.dataJson.last_name,
+      avatar: data.avatar,
+      emails: emails,
+      ytToken: data.ytToken || null,
+      fbToken: data.fbToken || null,
+      isSub: null
+    };
+
     db.get('users')
-      .push({
-        id: data.idFb,
-        name: data.dataJson.first_name,
-        lastName: data.dataJson.last_name,
-        avatar: data.avatar,
-        emails: emails,
-        ytToken: data.ytToken || null,
-        fbToken: data.fbToken || null,
-        isSub: null
-      })
+      .push(parseData)
       .write();
+
+    return parseData;
   } else {
     db.get('users')
       .assign({avatar: data.avatar, fbToken: data.fbToken})
       .value();
+    return checkUser;
   }
 }
 

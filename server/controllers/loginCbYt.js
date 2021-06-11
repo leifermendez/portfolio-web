@@ -34,7 +34,6 @@ const loginCbYt = async (req, res, next) => {
           const {state} = req.query;
           const objQuery = getUrlParams(state);
           const token = await generate(findUser(userData.email))
-          console.log('-->', token)
           res.redirect(`${process.env.FRONT_URL}/callback?provider=youtube&tok=${token}&action=test&course=${objQuery.course}&test=${objQuery.test}&sub_confirmation=${isSub.id}`)
           // res.redirect(`${process.env.FRONT_URL}/test/${objQuery.course}/${objQuery.test}?sub_confirmation=${isSub.id}`)
         } else {

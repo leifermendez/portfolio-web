@@ -46,12 +46,10 @@ export class TestEmbedComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.isDesktop = this.deviceService.isDesktop();
-    console.log('-_____________', this.isDesktop);
     this.checkTypeCTA();
   }
 
   checkTypeCTA(): void {
-    console.log('**************', this.asDataTest?.testId);
     const ref = this.asDataTest?.testId || null;
 
     if (ref) {

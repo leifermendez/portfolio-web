@@ -20,6 +20,8 @@ import {PerfectScrollbarDirective} from 'ngx-perfect-scrollbar';
 import {DeviceDetectorService} from 'ngx-device-detector';
 import {AverageTimePipe} from '../../pipe/average-time.pipe';
 import * as moment from 'moment';
+import {FacebookService, InitParams, UIParams, UIResponse} from 'ngx-facebook';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-path-learning',
@@ -46,18 +48,19 @@ export class PathLearningComponent implements OnInit, OnChanges, AfterViewInit {
 
   constructor(@Inject(PLATFORM_ID) private platformId, private route: ActivatedRoute, private youtubeService: YoutubeService,
               private renderer2: Renderer2, public oAuthService: OAuthLmService, private router: Router,
-              private deviceService: DeviceDetectorService, private averageTimePipe: AverageTimePipe) {
-
-
+              private deviceService: DeviceDetectorService, private averageTimePipe: AverageTimePipe, private fb: FacebookService) {
+    const initParams: InitParams = {
+      appId: environment.fbApp,
+      xfbml: true,
+      version: 'v10.0'
+    };
+    fb.init(initParams);
   }
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId) && (!this.deviceService.isDesktop())) {
-
       this.ps.ngOnDestroy();
       this.renderer2.setStyle(this.asScroll.nativeElement, 'height', '100%');
-      // this.renderer2.removeClass(el, 'ps--active-y');
-      // this.renderer2.removeClass(el, 'ps');
     }
 
   }
@@ -85,12 +88,10 @@ export class PathLearningComponent implements OnInit, OnChanges, AfterViewInit {
     const user = this.route.snapshot.paramMap.get('user');
     const test = this.route.snapshot.paramMap.get('test');
     this.oAuthService.cbTest = {id, test, user};
-    console.log(this.oAuthService.cbTest);
   }
 
   loadCourse(id): void {
     this.youtubeService.loadPlayList(id).subscribe((res: any) => {
-      // this.averageTimePipe.transform()
       let allMinString = res.map((a) => {
         const tmp = this.averageTimePipe.transform(a?.snippet?.description);
         return typeof tmp === 'string' ? tmp : null;
@@ -104,7 +105,6 @@ export class PathLearningComponent implements OnInit, OnChanges, AfterViewInit {
   }
 
   getBrand(data): any {
-    // console.log(data);
     if (isPlatformBrowser(this.platformId)) {
       document.documentElement.style.setProperty('--course-brand', data.color);
       document.documentElement.style.setProperty('--course-logo', `url("${data.logo}")`);
@@ -122,7 +122,7 @@ export class PathLearningComponent implements OnInit, OnChanges, AfterViewInit {
       const el = this.asLoadingHorizontal.nativeElement;
       // console.log(percent - 100);
       this.renderer2.setStyle(el, 'width', `${percent}%`);
-//TODO: REV
+
       if (this.asOverBlock) {
         const elOver = this.asOverBlock.nativeElement;
         this.renderer2.setStyle(elOver, 'display', (percent > 3) ? `block` : 'none');
@@ -151,6 +151,26 @@ export class PathLearningComponent implements OnInit, OnChanges, AfterViewInit {
 
       // 100 solo 1 500
     }
+  }
+
+  share(): void {
+
+    const options: UIParams = {
+      method: 'share',
+      href: 'https://www.facebook.com/leifermendez.dev/posts/140728194756153',
+      hashtag: '#RetoProgramacionLeiferMendez'
+    };
+
+    this.fb.ui(options)
+      .then((res: UIResponse) => {
+      })
+      .catch(this.handleError);
+
+  }
+
+  handleError(handleError: any): void {
+    console.log(handleError);
+    throw new Error('Method not implemented.');
   }
 
 

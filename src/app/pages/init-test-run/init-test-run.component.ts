@@ -70,7 +70,7 @@ export class InitTestRunComponent implements OnInit, AfterViewInit {
 
   handleEvent($event: CountdownEvent): any {
     if ($event.action === 'done') {
-      this.openRun();
+      // this.openRun();
     }
 
   }

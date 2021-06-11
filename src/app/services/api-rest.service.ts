@@ -15,11 +15,17 @@ export class ApiRestService {
 
   }
 
-  buildHeader(): void {
+  buildHeader(loading = true): void {
     const token = this.cookieService.get('token');
-    this.headerUser = new HttpHeaders({
-      Authorization: `Bearer ${token}`
-    });
+    let preHeader = {
+      Authorization: `Bearer ${token}`,
+      ignoreLoadingBar: ''
+    };
+
+    if (!loading) {
+      preHeader = {...preHeader, ...{ignoreLoadingBar: ``}};
+    }
+    this.headerUser = new HttpHeaders(preHeader);
   }
 
   saveToken = (token) => {
@@ -47,13 +53,15 @@ export class ApiRestService {
   };
 
   getTest = (opt?: any) => {
-    this.buildHeader();
+    this.buildHeader(false);
     const snippet = (opt?.post) ? '&post=true' : '';
-    return this.http.get<any>(`${this.url}/test?idTest=${opt.test || ''}${snippet}`, {headers: this.headerUser});
+    return this.http.get<any>(`${this.url}/test?idTest=${opt.test || ''}${snippet}`, {
+      headers: this.headerUser
+    });
   };
 
   getCta = (opt?: any) => {
-    this.buildHeader();
+    this.buildHeader(false);
     return this.http.get<Array<any>>(`${this.url}/cta-fb?id=${opt?.id || ''}`, {headers: this.headerUser});
   };
 }

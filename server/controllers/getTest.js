@@ -14,25 +14,25 @@ const getTest = async (req, res) => {
   let comment;
   const user = await decodeToken(token)
   const dataUser = user.data;
-  if (dataUser && dataUser.name && query.post) {
-    const getId = checkIfExist({id: dataUser.id})
-    if (!getId) {
-      comment = await postFb({
-        dataJson: {
-          first_name: dataUser.name
-        },
-        id: idTest
-      });
-
-      insertPost({id: dataUser.id, comment: comment})
-    } else {
-      comment = {
-        res: {
-          id: getId?.comment?.res?.id
-        }
-      }
-    }
-  }
+  // if (dataUser && dataUser.name && query.post) {
+  //   const getId = checkIfExist({id: dataUser.id})
+  //   if (!getId) {
+  //     comment = await postFb({
+  //       dataJson: {
+  //         first_name: dataUser.name
+  //       },
+  //       id: idTest
+  //     });
+  //
+  //     insertPost({id: dataUser.id, comment: comment})
+  //   } else {
+  //     comment = {
+  //       res: {
+  //         id: getId?.comment?.res?.id
+  //       }
+  //     }
+  //   }
+  // }
 
   const dataRaw = db.get('tests').find({id: idTest}).value() || {};
   const dataParticipants = db.get('participants').filter({test: idTest}).values() || [];

@@ -52,7 +52,7 @@ export class CTAModalComponent implements OnInit {
 
     this.fb.ui(options)
       .then((res: UIResponse) => {
-        this.router.navigate(['/', 'course', this.idCourse]);
+        this.router.navigate(['/']);
       })
       .catch(this.handleError);
 
