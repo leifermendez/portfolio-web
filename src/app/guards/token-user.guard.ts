@@ -25,8 +25,10 @@ export class TokenUserGuard implements CanActivate {
           tap(a => {
             if (!a) {
               this.oAuthService.removeToken();
+              this.oAuthService.checkSession = false;
             } else {
               this.oAuthService.currentUser = a;
+              this.oAuthService.checkSession = true;
             }
           })
         ).subscribe(() => resolve(true)

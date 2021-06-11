@@ -48,6 +48,7 @@ export class PathLearningComponent implements OnInit, OnChanges, AfterViewInit {
 
   constructor(@Inject(PLATFORM_ID) private platformId, private route: ActivatedRoute, private youtubeService: YoutubeService,
               private renderer2: Renderer2, public oAuthService: OAuthLmService, private router: Router,
+              private deviceDetectorService: DeviceDetectorService,
               private deviceService: DeviceDetectorService, private averageTimePipe: AverageTimePipe, private fb: FacebookService) {
     const initParams: InitParams = {
       appId: environment.fbApp,
@@ -60,6 +61,7 @@ export class PathLearningComponent implements OnInit, OnChanges, AfterViewInit {
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId) && (!this.deviceService.isDesktop())) {
       this.ps.ngOnDestroy();
+      this.wizard(100);
       this.renderer2.setStyle(this.asScroll.nativeElement, 'height', '100%');
     }
 
@@ -122,12 +124,7 @@ export class PathLearningComponent implements OnInit, OnChanges, AfterViewInit {
       const el = this.asLoadingHorizontal.nativeElement;
       // console.log(percent - 100);
       this.renderer2.setStyle(el, 'width', `${percent}%`);
-
-      if (this.asOverBlock) {
-        const elOver = this.asOverBlock.nativeElement;
-        this.renderer2.setStyle(elOver, 'display', (percent > 3) ? `block` : 'none');
-      }
-
+      this.wizard(percent);
       if (percent < 40) {
         this.indexVideo = [...new Set(this.indexVideo.concat([0]))];
         return;
@@ -150,6 +147,13 @@ export class PathLearningComponent implements OnInit, OnChanges, AfterViewInit {
       }
 
       // 100 solo 1 500
+    }
+  }
+
+  wizard(percent): void {
+    if (this.asOverBlock) {
+      const elOver = this.asOverBlock.nativeElement;
+      this.renderer2.setStyle(elOver, 'display', (percent > 3) ? `block` : 'none');
     }
   }
 

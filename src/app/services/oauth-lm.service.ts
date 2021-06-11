@@ -21,7 +21,7 @@ export class OAuthLmService {
   }
 
   removeToken(): void {
-    this.cookieService.delete('token','/');
+    this.cookieService.delete('token', '/');
   }
 
   getCurrentUser(): Observable<any> {

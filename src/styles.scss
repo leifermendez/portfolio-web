@@ -11,10 +11,12 @@
   --course-logo: #fa3254;
 }
 
+
 html, body {
   scroll-behavior: smooth;
   margin: 0;
   padding: 0;
+  height: 100%;
   color: var(--color-3);
   font-family: 'Poppins', sans-serif;
   background-color: var(--color-1);
@@ -34,12 +36,12 @@ h1, h2 {
   padding: 0 !important;
 }
 
-.text-primary{
+.text-primary {
   color: var(--course-brand) !important;
 }
 
-.text-primary-span{
-  span{
+.text-primary-span {
+  span {
     color: var(--course-brand) !important;
   }
 }
@@ -202,12 +204,17 @@ a:hover {
   margin: 0 !important;
 }
 
-.ml-2{
+.ml-2 {
   margin-left: .5rem !important;
 }
 
-.mr-2{
+.mr-2 {
   margin-right: .5rem !important;
+}
+
+.m-100 {
+  width: 100%;
+  max-width: 100%;
 }
 
 .title {
@@ -233,8 +240,29 @@ hr {
   width: 100% !important;
 }
 
-html, body {
-  height: 100%;
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+}
+
+@for $i from 1 through 30 {
+  @keyframes particle-animation-#{$i} {
+    100% {
+      transform: translate3d((random(90) * 1vw), (random(90) * 1vh), (random(100) * 1px));
+    }
+  }
+
+  .particle:nth-child(#{$i}) {
+    animation: particle-animation-#{$i} 60s infinite;
+    $size: random(5) + 5 + px;
+    opacity: random(100)/100;
+    height: $size;
+    width: $size;
+    animation-delay: -$i * .2s;
+    transform: translate3d((random(90) * 1vw), (random(90) * 1vh), (random(100) * 1px));
+    background: hsl(random(360), 70%, 50%);
+  }
 }
 
 @media screen and (max-width: 415px) {
@@ -281,6 +309,20 @@ html, body {
     height: 100% !important;
   }
 
+  .wrapper-login {
+    padding: 8rem 0;
+    overflow-y: hidden;
+  }
+
+  .img-responsive {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .fixed-title {
+    top: auto !important;
+    bottom: 0 !important;
+  }
 }
 
 

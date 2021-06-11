@@ -13,7 +13,7 @@ export class ImagBrakeDirective {
   @HostListener('error')
   loadImage(): void {
     const element = this.elementRef.nativeElement;
-    element.src = this.urlCustom || `https://i.imgur.com/DYscMXA.png`;
+    element.src = this.urlCustom || `../assets/images/not-image.png`;
   }
 
 }

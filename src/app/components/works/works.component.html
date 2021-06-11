@@ -3,9 +3,9 @@
      #asScroll
      (psScrollY)="listenerY($event)"
      [perfectScrollbar]="config">
-  <div class=" d-flex flex-wrap">
-    <mat-tab-group class="wrapper-tab-group-custom" disableRipple>
-      <mat-tab >
+  <div class="flex-wrap">
+    <mat-tab-group class="wrapper-tab-group-custom " disableRipple>
+      <mat-tab>
         <ng-template mat-tab-label>
           <span class="icon"><i class="uil uil-youtube"></i></span>
           <span>Cursos</span>
@@ -28,7 +28,7 @@
           <div class="block-repo block-yt animate__animated animate__fadeInUp animation-{{i*2}}
    col-12 col-sm-12 col-md-12 col-lg-4" (click)="goToCourse(item)" *ngIf="!showTagName || showTagName === item?.tag"
           >
-            <div class="block-repo-in d-flex" >
+            <div class="block-repo-in d-flex">
               <div class="left d-flex w-100">
                 <div class="top">
                   <div class="date">{{item.snippet.publishedAt |date}}</div>
@@ -100,13 +100,37 @@
           </div>
         </div>
       </mat-tab>
-      <mat-tab >
+      <mat-tab>
         <ng-template mat-tab-label>
           <span class="icon"><i class="uil uil-book-alt"></i></span>
           <span>Descubre más</span>
         </ng-template>
 
+        <div class="thankyou-zone">
+          <h2>Juntos hacemos más</h2>
+          <p>Si caminas solo, irás más rápido; si caminas acompañado, llegarás más lejos
+            <b><a href="https://www.youtube.com/channel/UCgrIGp5QAnC0J8LfNJxDRDw/join" target="_blank">Únete <i
+              class="uil uil-external-link-alt"></i></a></b>
+          </p>
+        </div>
 
+        <!--        <div id="particle-container">-->
+        <!--          <div class="particle" *ngFor="let a of particles"></div>-->
+        <!--        </div>-->
+        <div class="block-member-wrap  animate__animated animate__fadeInUp animation-{{i*2}}
+   col-12 col-sm-12 col-md-12 col-lg-2"
+             *ngFor="let item of members;let i = index;let odd = odd;let even = even">
+          <div class="block-repo-member d-flex" [ngClass]="{'reverse-block':odd}">
+            <div>
+              <img appImgBrake class="member-avatar" width="100px" [src]="item?.avatar"
+                   alt="">
+            </div>
+            <div>
+              <div class="member-name">{{item?.name}}</div>
+              <div class="member-description"><span>{{item?.country}}</span> {{item?.topic}}</div>
+            </div>
+          </div>
+        </div>
 
       </mat-tab>
 

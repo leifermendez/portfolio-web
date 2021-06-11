@@ -9,6 +9,7 @@ const {loginCbGoogle} = require('../controllers/loginCbGoogle')
 const {loginCbInsta} = require('../controllers/loginCbInstagram')
 const {loginEmail} = require('../controllers/loginEmail')
 const {getParticipants} = require('../controllers/getParticipants')
+const {getMembers} = require('../controllers/getMembers')
 const {getProfile} = require('../controllers/getProfile')
 const {getTest} = require('../controllers/getTest')
 const {getCtaFB} = require('../controllers/ctaFb')
@@ -70,6 +71,11 @@ router.get(
 router.get(
   '/participants',
   getParticipants
+)
+
+router.get(
+  '/members',
+  getMembers
 )
 
 router.get(

@@ -64,4 +64,9 @@ export class ApiRestService {
     this.buildHeader(false);
     return this.http.get<Array<any>>(`${this.url}/cta-fb?id=${opt?.id || ''}`, {headers: this.headerUser});
   };
+
+  getMembers = (opt?: any) => {
+    this.buildHeader(false);
+    return this.http.get<Array<any>>(`${this.url}/members`, {headers: this.headerUser});
+  };
 }

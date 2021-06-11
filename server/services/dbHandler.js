@@ -7,6 +7,7 @@ db.defaults({
   users: [],
   tests: [],
   ctaFb: [],
+  members: [],
   commentFb: [],
   participants: []
 }).write();
@@ -104,4 +105,19 @@ const getCTATest = (action) => {
     .value()
 }
 
-module.exports = {db, newUser, saveParticipants, mergeDataYt, findUser, checkIfExist, getCTATest, insertPost}
+
+const dbGetMembers = () => {
+  return db.get('members')
+    .values()
+}
+module.exports = {
+  db,
+  newUser,
+  saveParticipants,
+  mergeDataYt,
+  findUser,
+  checkIfExist,
+  getCTATest,
+  insertPost,
+  dbGetMembers
+}

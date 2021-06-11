@@ -43,6 +43,7 @@ import {NgxGraphModule} from '@swimlane/ngx-graph';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {LoadingBarHttpClientModule} from '@ngx-loading-bar/http-client';
+import { EvendOddPipe } from './pipe/evend-odd.pipe';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -70,7 +71,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     InitTestRunComponent,
     VideoPlayerComponent,
     CallbackSocialComponent,
-    PathRouteComponent
+    PathRouteComponent,
+    EvendOddPipe
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),

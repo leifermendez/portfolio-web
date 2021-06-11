@@ -5,6 +5,7 @@ import {isPlatformBrowser} from '@angular/common';
 import {Router} from '@angular/router';
 import {PerfectScrollbarComponent, PerfectScrollbarDirective} from 'ngx-perfect-scrollbar';
 import {DeviceDetectorService} from 'ngx-device-detector';
+import {ApiRestService} from '../../services/api-rest.service';
 
 @Component({
   selector: 'app-works',
@@ -20,10 +21,12 @@ export class WorksComponent implements OnInit, AfterViewInit {
   config: any;
   tags: Array<string> = [];
   showTagName: string | boolean = false;
-
+  members: Array<MemberModel> = [];
+  particles: Array<any> = [...Array(20).keys()];
 
   constructor(private gitHubService: GithubService, private youtubeService: YoutubeService, @Inject(PLATFORM_ID) private platformId,
-              private router: Router, private renderer2: Renderer2, private deviceService: DeviceDetectorService) {
+              private router: Router, private renderer2: Renderer2, private deviceService: DeviceDetectorService,
+              private apiRestService: ApiRestService) {
   }
 
   ngAfterViewInit(): void {
@@ -40,7 +43,12 @@ export class WorksComponent implements OnInit, AfterViewInit {
   ngOnInit(): void { //
     this.loadRepos();
     this.loadYt();
+    this.loadMembers();
   }
+
+  loadMembers = () => {
+    this.apiRestService.getMembers().subscribe(({data}: any) => this.members = data);
+  };
 
   loadRepos = () => {
     this.gitHubService.loadRepos().subscribe(res => {
@@ -55,6 +63,7 @@ export class WorksComponent implements OnInit, AfterViewInit {
       console.log(res);
     });
   };
+
 
   listenerY($event: any): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -74,4 +83,12 @@ export class WorksComponent implements OnInit, AfterViewInit {
   showFilter(tag: string | boolean): void {
     this.showTagName = tag;
   }
+}
+
+interface MemberModel {
+  avatar: string;
+  name: string;
+  topic: string;
+  country: string;
+
 }
