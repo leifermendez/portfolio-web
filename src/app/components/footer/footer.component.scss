@@ -1,0 +1,49 @@
+.footer-sub {
+  background-color: var(--color-1);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 0.25rem 1rem;
+  margin: 0.5rem;
+  font-size: 80%;
+  font-weight: 500;
+  border-radius: 1rem;
+  box-shadow: 0 0 15px #00000029;
+  flex-wrap: wrap;
+  z-index: 1;
+
+  .close {
+    cursor: pointer;
+    background-color: var(--color-1);
+    box-shadow: 0 0 15px #00000029;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    border: 0;
+    position: absolute;
+    right: -10px;
+    margin-top: -25px;
+    padding: .25rem;
+    border-radius: 1rem;
+    width: 2rem;
+    height: 2rem;
+
+    .uil{
+      font-size: 1.25rem;
+    }
+  }
+
+  ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      cursor: pointer;
+      padding: 0 .5rem;
+    }
+  }
+
+}

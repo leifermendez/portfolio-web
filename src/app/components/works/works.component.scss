@@ -28,7 +28,7 @@
   }
 }
 
-.thankyou-zone{
+.thankyou-zone {
   padding: 1rem 0;
 }
 
@@ -187,6 +187,7 @@
     padding: .5rem;
     cursor: pointer;
     //opacity: .7;
+    overflow: hidden;
     transition: all ease 150ms;
 
     &:hover {
@@ -259,4 +260,12 @@
   .wrapper {
     display: block;
   }
+
+  .block-repo-member {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+
 }

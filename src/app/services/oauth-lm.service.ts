@@ -8,6 +8,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class OAuthLmService {
+  public terms = true;
   public checkSession = false;
   public currentUser = null;
   sessionEmail: boolean;

@@ -1,0 +1,9 @@
+<div class="footer-sub animate__animated animate__fadeInUp animation-1" *ngIf="oAuthService.terms">
+  <button (click)="close()" class="close">
+    <i class="uil uil-times"></i>
+  </button>
+  <ul>
+    <li><a [routerLink]="['/','terms-and-conditions']">Terminos y Condiciones</a></li>
+    <li><a [routerLink]="['/','privacy-policy']">Política de Privacidad</a></li>
+  </ul>
+</div>
