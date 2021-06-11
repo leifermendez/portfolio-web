@@ -44,6 +44,8 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {LoadingBarHttpClientModule} from '@ngx-loading-bar/http-client';
 import { EvendOddPipe } from './pipe/evend-odd.pipe';
+import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component';
+import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -72,7 +74,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     VideoPlayerComponent,
     CallbackSocialComponent,
     PathRouteComponent,
-    EvendOddPipe
+    EvendOddPipe,
+    TermsAndConditionsComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),

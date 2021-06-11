@@ -10,6 +10,8 @@ import {CallbackSocialComponent} from './pages/callback-social/callback-social.c
 import {TokenUserGuard} from './guards/token-user.guard';
 import {PathRouteComponent} from './pages/path-route/path-route.component';
 import {HistoryCourseGuard} from './guards/history-course.guard';
+import {TermsAndConditionsComponent} from './pages/terms-and-conditions/terms-and-conditions.component';
+import {PrivacyPolicyComponent} from './pages/privacy-policy/privacy-policy.component';
 
 const routes: Routes = [
   {
@@ -24,6 +26,14 @@ const routes: Routes = [
   {
     path: 'about-me',
     component: AboutMeComponent
+  },
+  {
+    path: 'terms-and-conditions',
+    component: TermsAndConditionsComponent
+  },
+  {
+    path: 'privacy-policy',
+    component: PrivacyPolicyComponent
   },
   {
     path: 'course/:id',
