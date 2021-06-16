@@ -16,11 +16,17 @@ export class CallbackSocialComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(({tok, course, action, test}) => {
-      console.log('---->', tok);
+      // console.log('---->', tok);
       this.oAuthService.setToken(tok);
       const idHistoryCourse = this.cookieService.get('history_course');
       const testHistoryCourse = this.cookieService.get('history_course_id');
       console.log(action, idHistoryCourse, testHistoryCourse);
+      this.delayAndRedirect(testHistoryCourse, idHistoryCourse);
+    });
+  }
+
+  delayAndRedirect(testHistoryCourse, idHistoryCourse): void {
+    setTimeout(() => {
       if (testHistoryCourse.length) {
         this.router.navigate(['/', 'test', idHistoryCourse, testHistoryCourse]);
         // res.redirect(`${process.env.FRONT_URL}/test/${objQuery.course}/${objQuery.test}?sub_confirmation=${isSub.id}`)
@@ -30,7 +36,7 @@ export class CallbackSocialComponent implements OnInit {
         this.router.navigate(['/', 'course', idHistoryCourse]); // TODO:REVISAR Y COLOCAR UN MIDDLEWARE
         return;
       }
-    });
-  }
+    }, 1000);
+  };
 
 }

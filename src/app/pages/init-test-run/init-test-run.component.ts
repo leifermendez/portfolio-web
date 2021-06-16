@@ -25,6 +25,8 @@ export class InitTestRunComponent implements OnInit, AfterViewInit {
   subConfirmation = null;
   currentUser: UserModel;
   urlStack: string;
+  clickBtn = false;
+  nameTest: string | boolean = false;
   commentPost: string | boolean = false;
 
   constructor(private route: ActivatedRoute, private fb: FacebookService, private oAuthService: OAuthLmService,
@@ -51,10 +53,11 @@ export class InitTestRunComponent implements OnInit, AfterViewInit {
   }
 
   loadTest(id): void {
-    this.apiRest.getTest({test: id, post: true}).subscribe(({stack, comment}) => {
+    this.apiRest.getTest({test: id, post: true}).subscribe(({stack, comment, name}) => {
       this.urlStack = stack;
       this.fb.init(this.initParams);
       this.commentPost = comment;
+      this.nameTest = name;
     });
   }
 

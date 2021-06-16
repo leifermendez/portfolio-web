@@ -1,0 +1,15 @@
+.wrapper-not-found {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+  min-height: 100vh;
+
+  .wrapper-center{
+    h2{
+      margin: 1rem 0;
+    }
+    text-align: center;
+  }
+}

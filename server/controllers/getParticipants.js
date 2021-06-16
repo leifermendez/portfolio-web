@@ -1,11 +1,8 @@
-const {db} = require('../services/dbHandler')
+const {dbGetParticipants} = require('../services/dbHandler')
 
-const getParticipants = (req, res) => {
-    const dataRaw = db.get('users').values() || [];
-    const data = dataRaw.map(({avatar}) => {
-        return {avatar}
-    })
-
+const getParticipants = async (req, res) => {
+  const {course} = req.query;
+    const data = await dbGetParticipants({course});
     res.send({data})
 }
 

@@ -100,4 +100,4 @@ router.post(
   postTest
 )
 
-module.exports = router
+module.exports = router;

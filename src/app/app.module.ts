@@ -47,6 +47,9 @@ import { EvendOddPipe } from './pipe/evend-odd.pipe';
 import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component';
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ParticipantsComponent } from './pages/participants/participants.component';
+import { EditStackPipe } from './pipe/edit-stack.pipe';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -78,7 +81,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     EvendOddPipe,
     TermsAndConditionsComponent,
     PrivacyPolicyComponent,
-    FooterComponent
+    FooterComponent,
+    NotFoundComponent,
+    ParticipantsComponent,
+    EditStackPipe
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'serverApp'}),

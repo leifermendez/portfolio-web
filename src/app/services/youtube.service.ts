@@ -76,4 +76,70 @@ export class YoutubeService {
     ].join('');
     return this.httpModule.get(query);
   };
+
+
+  getBrandColor(value: string): string {
+    value = value.replace(/(\r\n|\n|\r)/gm, '****');
+    const myRegexp = /(COLOR)(.*?)(?=\s)/gm;
+    const match = myRegexp.exec(value) || [];
+    const line = match.pop() || '';
+    let lineRaw = line.replace(':', '');
+    lineRaw = lineRaw.split('****').shift();
+    return lineRaw;
+  }
+
+  getBrandLogo(value: string): string {
+    value = value.replace(/(\r\n|\n|\r)/gm, '****');
+    // console.log(value);
+    const myRegexp = /(LOGO)(.*?)(?=\s)/gm;
+    const match = myRegexp.exec(value) || [];
+    const line = match.pop() || '';
+    let lineRaw = line.replace(':', '');
+    lineRaw = lineRaw.split('****').shift();
+    return lineRaw;
+  }
+
+  getOrderNumber(value: string): string {
+    value = value.replace(/(\r\n|\n|\r)/gm, '****');
+    // console.log(value);
+    const myRegexp = /(ORDER)(.*?)(?=\s)/gm;
+    const match = myRegexp.exec(value) || [];
+    const line = match.pop() || '';
+    let lineRaw = line.replace(':', '');
+    lineRaw = lineRaw.split('****').shift();
+    return lineRaw;
+  }
+
+  getTitle(value: string): string {
+    value = value.replace(/(\r\n|\n|\r)/gm, '****');
+    // console.log(value);
+    const myRegexp = /(TITLE:)"(.*?)"/gm;
+    const match = myRegexp.exec(value) || [];
+    const line = match.pop() || '';
+    let lineRaw = line.replace(':', '');
+    lineRaw = lineRaw.split('****').shift();
+    return lineRaw;
+  }
+
+  getDescription(value: string): string {
+    value = value.replace(/(\r\n|\n|\r)/gm, '****');
+    // console.log(value);
+    const myRegexp = /(TEXT:)"(.*?)"/gm;
+    const match = myRegexp.exec(value) || [];
+    const line = match.pop() || '';
+    let lineRaw = line.replace(':', '');
+    lineRaw = lineRaw.split('****').shift();
+    return lineRaw;
+  }
+
+  getRequirement(value: string): string {
+    value = value.replace(/(\r\n|\n|\r)/gm, '****');
+    // console.log(value);
+    const myRegexp = /(REQUIREMENT:)"(.*?)"/gm;
+    const match = myRegexp.exec(value) || [];
+    const line = match.pop() || '';
+    let lineRaw = line.replace(':', '');
+    lineRaw = lineRaw.split('****').shift();
+    return lineRaw;
+  }
 }

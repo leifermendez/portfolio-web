@@ -1,9 +1,5 @@
 /* eslint-disable no-underscore-dangle */
 const instagramProvider = require('../services/oauth.instagram')
-const {db} = require('../services/dbHandler')
-const {postFb} = require('../services/postFanPage')
-const {generate} = require('../services/generateToken')
-const {newUser} = require('../services/dbHandler')
 
 const getUrlParams = (search) => {
   const hashes = search.slice(search.indexOf('?') + 1).split('&')

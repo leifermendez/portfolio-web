@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 const youtubeProvider = require('../services/oauth.yt')
-const {mergeDataYt, findUser} = require('../services/dbHandler')
-const {postFb} = require('../services/postFanPage')
+const {dbMergeDataYt, dbFindUser} = require('../services/dbHandler')
 const {checkSub, checkUser} = require('../services/checkSubscription')
 const {generate} = require('../services/generateToken')
 
@@ -30,10 +29,10 @@ const loginCbYt = async (req, res, next) => {
           const userDataRaw = await checkUser(rq.accessToken)
           const userData = {...userDataRaw.data, ...{name: rq.profile.displayName}}
           const isSub = subData.data.items.shift() || {id: 0};
-          mergeDataYt({...userData, ...{ytToken: rq.accessToken, isSub: isNaN(isSub.id)}})
+          const newData = await dbMergeDataYt({...userData, ...{ytToken: rq.accessToken, isSub: isNaN(isSub.id)}})
           const {state} = req.query;
           const objQuery = getUrlParams(state);
-          const token = await generate(findUser(userData.email))
+          const token = await generate(newData)
           res.redirect(`${process.env.FRONT_URL}/callback?provider=youtube&tok=${token}&action=test&course=${objQuery.course}&test=${objQuery.test}&sub_confirmation=${isSub.id}`)
           // res.redirect(`${process.env.FRONT_URL}/test/${objQuery.course}/${objQuery.test}?sub_confirmation=${isSub.id}`)
         } else {

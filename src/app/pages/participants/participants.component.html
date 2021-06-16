@@ -1,0 +1,46 @@
+<div class="wrapper-btn-back">
+  <button class="draw-border btn-default not-border" [routerLink]="['/']">
+      <span class="back">
+        <i class="uil uil-arrow-left"></i>
+      </span>
+    <span>Regresar</span>
+  </button>
+
+</div>
+
+
+<div class="ps" [perfectScrollbar]="{}" class="wrapper-participants">
+  <div class="thankyou-zone animate__animated animate__fadeInUp">
+    <h1 class="" class="cursor" [routerLink]="['/','course',idCourse]">Curso <span class="text-primary">{{title}}</span>
+    </h1>
+    <p>Recuerda que la única forma de conocer cuanto aprendiste es poner a prueba tus conocimientos.
+    </p>
+    <button class="btn-default draw-border" [routerLink]="['/','course',idCourse]">VER CURSO</button>
+  </div>
+
+  <!--        <div id="particle-container">-->
+  <!--          <div class="particle" *ngFor="let a of particles"></div>-->
+  <!--        </div>-->
+  <div class="block-member-wrap  animate__animated animate__fadeInUp animation-{{i*2}}
+   col-12 col-sm-12 col-md-12 col-lg-2"
+       *ngFor="let item of users;let i = index;let odd = odd;let even = even">
+    <div class="block-repo-member d-flex" [ngClass]="{'reverse-block':odd}">
+      <div>
+        <img appImgBrake class="member-avatar" width="100px" [src]="item?.avatar"
+             alt="">
+      </div>
+      <div>
+        <div class="member-name truncate">{{item?.name}}</div>
+        <div class="member-description">
+
+        <span><a [href]="item?.urlTest | editStack" target="_blank"> <i class="uil uil-external-link-alt"></i> VER PRUEBA</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="image-legal">
+  <img class="img-responsive" src="../../../assets/images/image_5.png" alt="">
+</div>

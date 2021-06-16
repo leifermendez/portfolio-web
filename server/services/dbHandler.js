@@ -1,123 +1,99 @@
-const low = require('lowdb')
-const FileSync = require('lowdb/adapters/FileSync')
+const User = require('../models/users')
+const Participants = require('../models/particpants')
+const Comments = require('../models/comments')
+const CtaFB = require('../models/ctaFb')
+const Members = require('../models/members')
+const Tests = require('../models/tests')
 
-const adapter = new FileSync('./data/db.json')
-const db = low(adapter)
-db.defaults({
-  users: [],
-  tests: [],
-  ctaFb: [],
-  members: [],
-  commentFb: [],
-  participants: []
-}).write();
-
-
-const newUser = (data) => {
+const dbNewUser = async (data) => {
   const emails = data.emailsArray.shift();
-  const checkUser = db.get('users')
-    .find({emails: emails})
-    .value();
+  const parseData = {
+    id: data.idFb,
+    name: data.dataJson.first_name,
+    lastName: data.dataJson.last_name,
+    avatar: data.avatar,
+    emails: emails,
+    ytToken: data.ytToken || null,
+    fbToken: data.fbToken || null,
+    isSub: null
+  };
+  return User.findOneAndUpdate({emails: emails},
+    parseData,
+    {
+      new: true,
+      upsert: true
+    });
+};
 
-  if (!checkUser) {
-    const parseData = {
-      id: data.idFb,
-      name: data.dataJson.first_name,
-      lastName: data.dataJson.last_name,
-      avatar: data.avatar,
-      emails: emails,
-      ytToken: data.ytToken || null,
-      fbToken: data.fbToken || null,
-      isSub: null
-    };
+const dbFindUser = async (email) => {
+  return User.findOne({emails: email});
+}
 
-    db.get('users')
-      .push(parseData)
-      .write();
+const dbSaveParticipants = async (data) => {
+  const {user_id, test} = data;
+  return Participants.findOneAndUpdate({
+      user_id,
+      test
+    },
+    data,
+    {
+      new: true,
+      upsert: true
+    });
+};
 
-    return parseData;
-  } else {
-    db.get('users')
-      .assign({avatar: data.avatar, fbToken: data.fbToken})
-      .value();
-    return checkUser;
+const dbMergeDataYt = (data) => {
+  const {email, isSub, ytToken} = data;
+  const parseData = {
+    emails: email,
+    ytToken,
+    isSub
   }
+
+  return User.findOneAndUpdate({emails: email}, parseData, {
+    new: true,
+    upsert: true
+  })
+};
+
+const dbCheckIfExist = async ({id}) => {
+  return Comments.findOne({id})
 }
 
-const findUser = (email) => {
-  return db.get('users')
-    .find({emails: email})
-    .value();
+const dbInsertPost = async ({id, comment}) => {
+  return Comments.create({id, comment})
 }
 
-const saveParticipants = (data) => {
-  const checkTest = db.get('participants')
-    .find(p => p.user_id === data.user_id && p.test === data.test)
-    .value();
-
-  if (!checkTest) {
-    db.get('participants')
-      .push(data)
-      .write();
-  }
+const dbGetCTATest = async (action) => {
+  return CtaFB.findOne({action})
 }
 
-const mergeDataYt = (data) => {
-
-  const checkUser = db.get('users')
-    .find({emails: data.email})
-    .value();
-
-  if (checkUser) {
-    db.get('users')
-      .find({emails: data.email})
-      .assign({ytToken: data.ytToken, isSub: data.isSub})
-      .write();
-  } else {
-    data.emailsArray = [data.email];
-    data.dataJson = {
-      first_name: data.name,
-      last_name: ''
-    }
-    newUser(data)
-  }
+const dbGetMembers = async () => {
+  return Members.find({})
 }
 
-
-const checkIfExist = ({id}) => {
-  return db.get('commentFb')
-    .find({id: id})
-    .value();
+const dbGetParticipants = async (opt = {}) => {
+  return Participants.find(opt)
 }
 
-const insertPost = ({id, comment}) => {
-  db.get('commentFb')
-    .push({
-      id,
-      comment
-    })
-    .write();
+const dbGetProfile = async (data) => {
+  return User.findOne({emails: data.emails})
 }
 
-const getCTATest = (action) => {
-  return db.get('ctaFb')
-    .find({action})
-    .value()
+const dbGetTest = async (idTest) => {
+  return Tests.findOne({id: idTest})
 }
 
-
-const dbGetMembers = () => {
-  return db.get('members')
-    .values()
-}
 module.exports = {
-  db,
-  newUser,
-  saveParticipants,
-  mergeDataYt,
-  findUser,
-  checkIfExist,
-  getCTATest,
-  insertPost,
-  dbGetMembers
+  dbNewUser,
+  dbSaveParticipants,
+  dbMergeDataYt,
+  dbFindUser,
+  dbCheckIfExist,
+  dbGetCTATest,
+  dbInsertPost,
+  dbGetMembers,
+  dbGetParticipants,
+  dbGetProfile,
+  dbGetTest
 }

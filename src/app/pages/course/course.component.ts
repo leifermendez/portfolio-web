@@ -56,87 +56,24 @@ export class CourseComponent implements OnInit, OnDestroy {
       this.youtubeService.getDetailPlayList(id).subscribe((res: any) => {
         const {items} = res;
         const {snippet} = items.shift();
-        const color = this.getBrandColor(snippet.description);
-        const logo = this.getBrandLogo(snippet.description);
-        const order = this.getOrderNumber(snippet.description);
-        const title = this.getTitle(snippet.description);
-        const description = this.getDescription(snippet.description);
-        const requirement = this.getRequirement(snippet.description);
+        const color = this.youtubeService.getBrandColor(snippet.description);
+        const logo = this.youtubeService.getBrandLogo(snippet.description);
+        const order = this.youtubeService.getOrderNumber(snippet.description);
+        const title = this.youtubeService.getTitle(snippet.description);
+        const description = this.youtubeService.getDescription(snippet.description);
+        const requirement = this.youtubeService.getRequirement(snippet.description);
         // const requeriment = this.getDescription(snippet.description);
-
         resolve({color, logo, order, title, description, requirement});
       }, () => {
-        console.log('** ERROR **');
         reject(false);
       });
     });
 
   }
 
-  getBrandColor(value: string): string {
-    value = value.replace(/(\r\n|\n|\r)/gm, '****');
-    const myRegexp = /(COLOR)(.*?)(?=\s)/gm;
-    const match = myRegexp.exec(value) || [];
-    const line = match.pop() || '';
-    let lineRaw = line.replace(':', '');
-    lineRaw = lineRaw.split('****').shift();
-    return lineRaw;
-  }
 
-  getBrandLogo(value: string): string {
-    value = value.replace(/(\r\n|\n|\r)/gm, '****');
-    // console.log(value);
-    const myRegexp = /(LOGO)(.*?)(?=\s)/gm;
-    const match = myRegexp.exec(value) || [];
-    const line = match.pop() || '';
-    let lineRaw = line.replace(':', '');
-    lineRaw = lineRaw.split('****').shift();
-    return lineRaw;
-  }
 
-  getOrderNumber(value: string): string {
-    value = value.replace(/(\r\n|\n|\r)/gm, '****');
-    // console.log(value);
-    const myRegexp = /(ORDER)(.*?)(?=\s)/gm;
-    const match = myRegexp.exec(value) || [];
-    const line = match.pop() || '';
-    let lineRaw = line.replace(':', '');
-    lineRaw = lineRaw.split('****').shift();
-    return lineRaw;
-  }
 
-  getTitle(value: string): string {
-    value = value.replace(/(\r\n|\n|\r)/gm, '****');
-    // console.log(value);
-    const myRegexp = /(TITLE:)"(.*?)"/gm;
-    const match = myRegexp.exec(value) || [];
-    const line = match.pop() || '';
-    let lineRaw = line.replace(':', '');
-    lineRaw = lineRaw.split('****').shift();
-    return lineRaw;
-  }
-
-  getDescription(value: string): string {
-    value = value.replace(/(\r\n|\n|\r)/gm, '****');
-    // console.log(value);
-    const myRegexp = /(TEXT:)"(.*?)"/gm;
-    const match = myRegexp.exec(value) || [];
-    const line = match.pop() || '';
-    let lineRaw = line.replace(':', '');
-    lineRaw = lineRaw.split('****').shift();
-    return lineRaw;
-  }
-
-  getRequirement(value: string): string {
-    value = value.replace(/(\r\n|\n|\r)/gm, '****');
-    // console.log(value);
-    const myRegexp = /(REQUIREMENT:)"(.*?)"/gm;
-    const match = myRegexp.exec(value) || [];
-    const line = match.pop() || '';
-    let lineRaw = line.replace(':', '');
-    lineRaw = lineRaw.split('****').shift();
-    return lineRaw;
-  }
 
 }
 

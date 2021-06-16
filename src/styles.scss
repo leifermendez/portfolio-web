@@ -32,7 +32,7 @@ h1, h2 {
 }
 
 .wrapper-btn-back {
-  margin: .5rem;
+  padding: .5rem;
 }
 
 .p-0 {
@@ -247,6 +247,21 @@ hr {
 .particle {
   position: absolute;
   border-radius: 50%;
+}
+
+.thankyou-zone {
+  padding: 1rem 0;
+}
+
+.image-legal {
+  pointer-events: none;
+}
+
+.truncate {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @for $i from 1 through 30 {

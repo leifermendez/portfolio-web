@@ -1,9 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 const facebookProvider = require('../services/oauth.facebook')
-const {db} = require('../services/dbHandler')
-const {postFb} = require('../services/postFanPage')
 const {generate} = require('../services/generateToken')
-const {newUser} = require('../services/dbHandler')
+const {dbNewUser} = require('../services/dbHandler')
 
 const getUrlParams = (search) => {
   const hashes = search.slice(search.indexOf('?') + 1).split('&')
@@ -30,12 +28,12 @@ const loginCbFb = async (req, res, next) => {
         const avatar = dataJson && dataJson.picture ? dataJson.picture : ''
         const idFb = rs.id;
         const data = {idFb, dataJson, avatar, emailsArray, id: idFb, fbToken};
-        newUser(data);
+        const newData = await dbNewUser(data);
         // postFb(data)
 
         const {state} = queryParams;
         const objQuery = getUrlParams(state);
-        const token = await generate({id: idFb, avatar: avatar, name: dataJson.name})
+        const token = await generate(newData)
         res.redirect(`${process.env.FRONT_URL}/callback?provider=facebook&tok=${token}&course=${objQuery.course}&action=init`)
       } else {
         console.log('** ERROR **')

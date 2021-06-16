@@ -1,4 +1,3 @@
-const {db} = require('../services/dbHandler')
 
 
 const getCtaFB = async (req, res) => {

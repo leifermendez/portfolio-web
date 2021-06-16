@@ -69,4 +69,9 @@ export class ApiRestService {
     this.buildHeader(false);
     return this.http.get<Array<any>>(`${this.url}/members`, {headers: this.headerUser});
   };
+
+  getParticipants = (course) => {
+    this.buildHeader(false);
+    return this.http.get<Array<any>>(`${this.url}/participants?course=${course}`, {headers: this.headerUser});
+  };
 }

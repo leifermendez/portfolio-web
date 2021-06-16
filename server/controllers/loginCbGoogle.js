@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 const googleProvider = require('../services/oauth.google')
-const {newUser} = require('../services/dbHandler')
+const {dbNewUser} = require('../services/dbHandler')
 // const {postFb} = require('../services/postFanPage')
 // const {checkSub, checkUser} = require('../services/checkSubscription')
 const {generate} = require('../services/generateToken')
@@ -39,7 +39,7 @@ const loginCbGoogle = async (req, res, next) => {
             emailsArray
           };
 
-          const newData = newUser(data);
+          const newData = await dbNewUser(data);
           // postFb(data)
 
           // const {state} = queryParams;

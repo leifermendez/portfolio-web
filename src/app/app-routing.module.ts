@@ -12,6 +12,8 @@ import {PathRouteComponent} from './pages/path-route/path-route.component';
 import {HistoryCourseGuard} from './guards/history-course.guard';
 import {TermsAndConditionsComponent} from './pages/terms-and-conditions/terms-and-conditions.component';
 import {PrivacyPolicyComponent} from './pages/privacy-policy/privacy-policy.component';
+import {NotFoundComponent} from './pages/not-found/not-found.component';
+import {ParticipantsComponent} from './pages/participants/participants.component';
 
 const routes: Routes = [
   {
@@ -21,7 +23,7 @@ const routes: Routes = [
   {
     path: 'callback',
     component: CallbackSocialComponent,
-    canActivate: [TokenUserGuard]
+    // canActivate: []
   },
   {
     path: 'about-me',
@@ -51,9 +53,18 @@ const routes: Routes = [
     canActivate: [TokenUserGuard, HistoryCourseGuard]
   },
   {
+    path: 'participants/:id',
+    component: ParticipantsComponent,
+    canActivate: [TokenUserGuard, HistoryCourseGuard]
+  },
+  {
     path: 'path-test/:id',
     component: PathRouteComponent,
     canActivate: [TokenUserGuard, HistoryCourseGuard]
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 

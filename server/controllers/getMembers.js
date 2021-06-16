@@ -1,7 +1,7 @@
 const {dbGetMembers} = require('../services/dbHandler')
 
-const getMembers = (req, res) => {
-  const data = dbGetMembers() || []
+const getMembers = async (req, res) => {
+  const data = await dbGetMembers();
   res.send({data})
 }
 

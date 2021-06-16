@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   fbApp: '314221233596544',
-  api: 'http://192.168.1.158:3000'
+  api: 'http://localhost:3000'
 };
 
 /*
